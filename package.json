@@ -1,0 +1,43 @@
+{
+  "name": "react-music-player",
+  "version": "1.0.0",
+  "description": "music player build by react",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/zhao9426/react-music-player.git"
+  },
+  "keywords": [
+    "webpack",
+    "react",
+    "music-player"
+  ],
+  "author": "laitou",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zhao9426/react-music-player/issues"
+  },
+  "homepage": "https://github.com/zhao9426/react-music-player#readme",
+  "dependencies": {
+    "@babel/core": "^7.1.0",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.2",
+    "css-loader": "^1.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "less": "^3.8.1",
+    "less-loader": "^4.1.0",
+    "react-hot-loader": "^4.3.11",
+    "style-loader": "^0.23.0",
+    "webpack": "^4.19.1",
+    "webpack-dev-server": "^3.1.8"
+  }
+}

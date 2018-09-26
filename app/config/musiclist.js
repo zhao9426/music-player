@@ -11,6 +11,6 @@ export const MUSIC_LIST=[
         title:'魔鬼',
         artist:'张韶涵',
         file:'../../static/mp3/buku.mp3',
-        cover:'../../static/images/b1.png'
+        cover:'../../static/images/b1.jpg'
     }
 ]

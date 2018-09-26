@@ -22,8 +22,7 @@ class App extends Component{
             currentMusicItem:musicItem
         });
     }
-    playNext(type){
-        debugger;
+    playNext(type="next"){
         let index=this.findMusicIndex(this.state.currentMusicItem);
         let newIndex=null;
         let musicListLength=this.state.musicList.length;
@@ -63,12 +62,12 @@ class App extends Component{
         });
 
         Pubsub.subscribe('PLAY_PREV',(msg,musicItem)=>{
-            this.playMusic();
+            this.playNext();
         });
 
         Pubsub.subscribe('PLAY_NEXT',(msg,musicItem)=>{
             console.log(musicItem, "fk")
-            this.playMusic();
+            this.playNext();
         });
     }
     componentwillunMount(){

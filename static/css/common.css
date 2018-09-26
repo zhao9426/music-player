@@ -1,0 +1,40 @@
+@charset "utf-8";
+.container{
+
+}
+.styleguide,.styleguide*{
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box
+}
+.clearfix:after,.clearfix:before{
+    content:"";
+    display:table;
+}
+.clearfix:after{
+    clear:both;
+}
+.rt{
+    position:relative;
+}
+.ab{
+    position:absolute;
+}
+.icon{
+    display:inline-block;
+    width:32px;
+    height:32px;
+    background: url() no-repeat;
+    background-size: 32px auto;
+}
+.icon.pause{
+    background-position:0 -64px;
+}
+.icon.play{
+    background-position: 0 -96px;
+}
+.icon.repeat-once{
+    background-position: 0 -128px;
+}
+.icon.repeat-cycle{
+    background-position: 0 -160px;
+}

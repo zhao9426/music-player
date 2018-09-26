@@ -16,9 +16,10 @@ module.exports={
         filename:'bundle.js',
         publicPath:'/'
     },
+    devtool: "eval-source-map",
     plugins:[
         new HtmlWebpackPlugin({
-            template:'./index.html',
+            template:'./index.tpl.html',
             inject:'body',
             filename:'./index.html'
         }),

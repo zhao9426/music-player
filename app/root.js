@@ -14,7 +14,6 @@ class App extends Component{
         }
     }
     playMusic(musicItem){
-        console.log(musicItem)
         $('#player').jPlayer('setMedia',{
             mp3:musicItem.file
         }).jPlayer('play');
@@ -45,7 +44,6 @@ class App extends Component{
         this.playMusic(this.state.currentMusicItem)
 
         $('#player').bind($.jPlayer.event.ended, (e)=>{
-            console.log(e, "te")
             this.playNext("next");
         });
 
@@ -66,7 +64,6 @@ class App extends Component{
         });
 
         Pubsub.subscribe('PLAY_NEXT',(msg,musicItem)=>{
-            console.log(musicItem, "fk")
             this.playNext();
         });
     }

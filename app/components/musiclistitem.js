@@ -12,7 +12,6 @@ class MusicListItem extends Component{
     render(){
 
         let musicItem=this.props.musicItem;
-        console.log(this.props, "kkk")
         return(
             <li onClick={this.playMusic.bind(this,musicItem)} className={`components-musiclistitem row${this.props.focus ? 'focus' :'' }`}>
                 <p><strong>{musicItem.title}</strong>-{musicItem.artist}</p>

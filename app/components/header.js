@@ -4,7 +4,8 @@ class Header  extends Component{
     render(){
         return(
             <div className="components-header row">
-                <img src="../../static/images/logo.png" alt=""  className="img" id="player"/>
+                <div id="player"></div>
+                <img src="../../static/images/logo.png" alt=""  className="img"/>
                 <h1 className="caption">React Music Player</h1>
             </div>
         );

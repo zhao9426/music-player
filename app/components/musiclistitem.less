@@ -3,14 +3,24 @@
     line-height:36px;
     border-bottom: 1px solid #ddd;
     text-indent:10px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
     cursor:pointer;
+    align-items: center;
+    .Row{
+        width:100%;
+    }
+    .right{
+        display: flex;
+        flex-direction: row;
+        justify-content:space-around;
+        align-items: center; 
+    }
     .delete{
         cursor:pointer;
         height:30px;
         width:30px;
-        top:30px;
-        margin-left: 98%;
-        margin-top:-5%;
         position:relative;
         transform: rotate(45deg);
         &::before,&::after{

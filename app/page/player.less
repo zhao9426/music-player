@@ -1,8 +1,23 @@
 .player-page{
-    width:1000px;
-    margin:auto;
-    margin-top:120px;
-
+    width:100%;
+    margin:0 auto;
+    display:flex;
+    flex-direction: column;
+    .under{
+        display:flex;
+        flex-direction: row;
+        background-color:#9E9999;
+        height:750px;
+        justify-content: space-around;
+    }
+    .gound{
+        display:flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background-color: #636363;
+        height:117px;
+    }
     .caption{
         font-size:16px;
         color:rgb(47,152,66);
@@ -14,26 +29,25 @@
         margin-left:20px;  
     }
     .fenhang{
-        flex-direction: row
+        flex-direction: row;
+        margin-top: 5%;
+    }
+    .effect{
+        margin-bottom: 6%;
     }
     .controll-wrapper{
         margin-left: 1%;
         width:60%;
     }
 
-    .over{
-        margin-left: 62%;
-        width:40%;
-        margin-top:-30px;
-    }
-    .over2{
-        margin-left: 65%;
-        width:40%;
-        margin-top: -15%;
-        justify-content: flex-start;
-    }
     
+    .over{
+        margin-top: 5%;
+    }
+
     .volume-container{
+        display:flex;
+        flex-direction: column;
         position:relative;
         left:20px;
         top:-3px;
@@ -41,7 +55,13 @@
     .volume-container .volume-wrapper{
         opacity: 0;
         transition:opacity .5s linear;
+        transform:rotate(-90deg);
+        -ms-transform:rotate(-90deg); /* Internet Explorer */
+        -moz-transform:rotate(-90deg); /* Firefox */
+        -webkit-transform:rotate(-90deg); /* Safari 和 Chrome */
+        -o-transform:rotate(-90deg); /* Opera */
     }
+   
     .volume-container:hover .volume-wrapper{
         opacity:1;
     }
@@ -69,11 +89,17 @@
     .ml20{
         margin-top:20px;
     }
-    .mt5{
-        margin-top:35px;
-    }
+    
     .volume-wrapper{
         width:80px;
         display:inline-block;
+    }
+    .progressbar{
+        width:30%;
+        display: inline-block;
+        height: 10px;
+        line-height: 10px;
+        margin-top: 1%;
+        margin-left: 1%;
     }
 }

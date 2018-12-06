@@ -1,8 +1,11 @@
 export const MUSIC_LIST=[
     {
         id:1,
-        title:'不哭',
-        artist:'火箭少女101Sunnee ',
+        title:'打扰',
+        artist:'庄心妍',
+        lyric:'我打扰你了',
+        album:'打扰',
+        time:'03:50',
         file:'http://opiq8wtrv.bkt.clouddn.com/%E4%B8%8D%E5%93%AD.mp3',
         cover:'../../static/images/buku.png'
     },
@@ -10,6 +13,49 @@ export const MUSIC_LIST=[
         id:2,
         title:'魔鬼',
         artist:'张韶涵',
+        lyric:'我打扰你了',
+        album:'打扰',
+        time:'03:50',
+        file:'../../static/mp3/buku.mp3',
+        cover:'../../static/images/b1.jpg'
+    },
+    {
+        id:3,
+        title:'魔鬼',
+        artist:'张韶涵',
+        lyric:'我打扰你了',
+        album:'打扰',
+        time:'03:50',
+        file:'../../static/mp3/buku.mp3',
+        cover:'../../static/images/b1.jpg'
+    },
+    {
+        id:4,
+        title:'魔鬼',
+        artist:'张韶涵',
+        lyric:'我打扰你了',
+        album:'打扰',
+        time:'03:50',
+        file:'../../static/mp3/buku.mp3',
+        cover:'../../static/images/b1.jpg'
+    },
+    {
+        id:5,
+        title:'魔鬼',
+        artist:'庄心妍',
+        lyric:'我打扰你了',
+        album:'打扰',
+        time:'03:50',
+        file:'../../static/mp3/buku.mp3',
+        cover:'../../static/images/b1.jpg'
+    },
+    {
+        id:6,
+        title:'魔鬼',
+        artist:'庄心妍',
+        lyric:'我打扰你了',
+        album:'打扰',
+        time:'03:50',
         file:'../../static/mp3/buku.mp3',
         cover:'../../static/images/b1.jpg'
     }

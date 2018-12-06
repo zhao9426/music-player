@@ -1,11 +1,14 @@
 import React,{Component} from 'react'
 import Header from './Components/header'
+import Login from './Components/login'
 import Player from './page/player';
 import MusicList from './page/musiclist';
 import {MUSIC_LIST} from './config/musiclist'
 import Pubsub from 'pubsub-js'
 import {Router,IndexRoute,Link,Route,hashHistory} from 'react-router'
+
 class App extends Component{
+
     constructor(props){
         super(props);
         this.state = {
@@ -13,6 +16,7 @@ class App extends Component{
             currentMusicItem:MUSIC_LIST[0]
         }
     }
+
     playMusic(musicItem){
         $('#player').jPlayer('setMedia',{
             mp3:musicItem.file
@@ -21,6 +25,7 @@ class App extends Component{
             currentMusicItem:musicItem
         });
     }
+
     playNext(type="next"){
         let index=this.findMusicIndex(this.state.currentMusicItem);
         let newIndex=null;
@@ -36,11 +41,13 @@ class App extends Component{
     findMusicIndex(musicItem){
         return this.state.musicList.indexOf(musicItem);
     } 
+
     componentDidMount(){
         $('#player').jPlayer({
             supplied:'mp3',
             wmode:'window'
         });
+
         this.playMusic(this.state.currentMusicItem)
 
         $('#player').bind($.jPlayer.event.ended, (e)=>{
@@ -67,6 +74,7 @@ class App extends Component{
             this.playNext();
         });
     }
+
     componentwillunMount(){
         Pubsub.unsubscribe('DELETE_MUSIC');
         Pubsub.unsubscribe('PLAY_MUSIC');
@@ -74,18 +82,23 @@ class App extends Component{
         Pubsub.unsubscribe('PLAY_NEXT');
         $('#player').unbind($.jPlayer.event.ended);
     }
+
     render(){
         return(
             <div>
                 <Header/>
+                <Login/>
                 {React.cloneElement(this.props.children,this.state)}
             </div>
         );
     }
+
 }
 
 let duration=null;
+
 class Root extends Component{
+
     render(){
         return (
         <Router history={hashHistory}>
@@ -96,5 +109,7 @@ class Root extends Component{
         </Router>
         );
     }
+
 }
+
 export default Root;

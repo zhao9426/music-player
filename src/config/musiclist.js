@@ -6,7 +6,7 @@ export default [
         lyric:'我打扰你了',
         album:'打扰',
         time:'03:50',
-        file:'http://opiq8wtrv.bkt.clouddn.com/%E4%B8%8D%E5%93%AD.mp3',
+        url:'https://pmusic.oss-cn-hangzhou.aliyuncs.com/music/%E4%B8%8D%E5%93%AD.mp3',
         cover:'../../static/images/buku.png'
     },
     {
@@ -16,7 +16,7 @@ export default [
         lyric:'我打扰你了',
         album:'打扰',
         time:'03:50',
-        file:'../../static/mp3/buku.mp3',
+        url:'https://pmusic.oss-cn-hangzhou.aliyuncs.com/music/%E4%B8%8D%E5%93%AD.mp3',
         cover:'../../static/images/b1.jpg'
     },
     {
@@ -26,7 +26,7 @@ export default [
         lyric:'我打扰你了',
         album:'打扰',
         time:'03:50',
-        file:'../../static/mp3/buku.mp3',
+        url:'https://pmusic.oss-cn-hangzhou.aliyuncs.com/music/%E4%B8%8D%E5%93%AD.mp3',
         cover:'../../static/images/b1.jpg'
     },
     {
@@ -36,7 +36,7 @@ export default [
         lyric:'我打扰你了',
         album:'打扰',
         time:'03:50',
-        file:'../../static/mp3/buku.mp3',
+        url:'../../static/mp3/buku.mp3',
         cover:'../../static/images/b1.jpg'
     },
     {
@@ -46,7 +46,7 @@ export default [
         lyric:'我打扰你了',
         album:'打扰',
         time:'03:50',
-        file:'../../static/mp3/buku.mp3',
+        url:'../../static/mp3/buku.mp3',
         cover:'../../static/images/b1.jpg'
     },
     {
@@ -56,7 +56,7 @@ export default [
         lyric:'我打扰你了',
         album:'打扰',
         time:'03:50',
-        file:'../../static/mp3/buku.mp3',
+        url:'../../static/mp3/buku.mp3',
         cover:'../../static/images/b1.jpg'
     }
 ]

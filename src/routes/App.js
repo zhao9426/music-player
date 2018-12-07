@@ -17,15 +17,25 @@ export default class App extends Component {
 
     play(song){
         $('#player').jPlayer('setMedia', {
+<<<<<<< HEAD
             mp3: song.file
         }).jPlayer('play');
+=======
+            mp3: song.url
+        }).jPlayer('play');
+
+>>>>>>> rebuild project
         this.setState({
             current: song
         });
     }
 
     playNext(type = 'next'){
+<<<<<<< HEAD
         let index = this.findMusicIndex(this.state.current);
+=======
+        let index = this.findIndex(this.state.current);
+>>>>>>> rebuild project
         let len = this.state.list.length;
         let newIndex = index;
         if('next' == type){

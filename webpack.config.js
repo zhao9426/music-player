@@ -1,15 +1,10 @@
 const path = require("path");
-const webpack=require("webpack");
 const HtmlWebpackPlugin=require('html-webpack-plugin');
+
 module.exports={
     mode: "development",
     devtool: "eval-source-map",
-    entry:[
-        'webpack-dev-server/client',
-        'webpack/hot/only-dev-server',
-        'react-hot-loader/patch',
-        path.join(__dirname,'src/index.js')
-    ],
+    entry: path.join(__dirname,'src/index.js'),
     output:{
         path: path.resolve(__dirname, './dist'),
         filename:'[name].js',
@@ -20,28 +15,48 @@ module.exports={
             {
                 test:/\.js$/,
                 exclude:/node_moudles/,
-                loader:"babel-loader",
+                loader:"babel-loader"
             },
             {
                 test:/\.css$/,
-                loader:"style-loader!css-loader"
+                use: [
+                    "style-loader",
+                    'css-loader'
+                ]
             },
             {
                 test:/\.less$/,
-                loader:'style-loader!css-loader!less-loader'
+                use: [
+                    'style-loader',
+                    'css-loader',
+                    'less-loader'
+                ]
             }
         ]
+    },
+    devServer: {
+        host: "localhost",
+        port: 8888,
+        hot: true,
+        open: true,
+        historyApiFallback: true,
+        quiet: false,
+        noInfo: false,
+        stats: {
+            assets: false,
+            colors: true,
+            version: false,
+            hash: false,
+            timings: false,
+            chunks: false,
+            chunkModules: false
+        }
     },
     plugins: [
         new HtmlWebpackPlugin({
             template: './index.tpl.html',
             inject: 'body',
             filename: './index.html'
-        }),
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV': JSON.stringify('development')
         })
     ],
 }

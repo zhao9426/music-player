@@ -1,14 +1,20 @@
 import React, { Component } from 'react'
-import Progress from '../Components/progress'
-import './player.less';
+import Progress from '../components/progress'
 import { Link } from 'react-router'
 import Pubsub from 'pubsub-js'
-import { Row, Col } from 'antd';
 import {
-    Comment, Avatar, Form, Button, List, Input,
-  } from 'antd';
-  import moment from 'moment';
-  
+    Row, 
+    Col,
+    Comment, 
+    Avatar, 
+    Form, 
+    Button, 
+    List, 
+    Input,
+} from 'antd';
+import moment from 'moment';
+import './player.less';
+
   const TextArea = Input.TextArea;
   
   const CommentList = ({ comments }) => (
@@ -41,8 +47,6 @@ import {
   );
   
 
-
-let duration = null;
 class Player extends Component {
     constructor(props) {
         super(props);
@@ -56,6 +60,7 @@ class Player extends Component {
             value: '',
         }
     }
+
     handleSubmit  ()  {
         if (!this.state.value) {
           return;
@@ -143,7 +148,6 @@ class Player extends Component {
         const { comments, submitting, value } = this.state;
         return (
             <div className="player-page">
-
                 <div className="under">
                     <div className="over">
                         <img src={this.props.currentMusicItem.cover} alt={this.props.currentMusicItem.title} />

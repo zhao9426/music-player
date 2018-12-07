@@ -1,34 +1,20 @@
 const path = require("path");
-var webpack=require("webpack");
-var HtmlWebpackPlugin=require('html-webpack-plugin');
+const webpack=require("webpack");
+const HtmlWebpackPlugin=require('html-webpack-plugin');
 module.exports={
-
     mode: "development",
+    devtool: "eval-source-map",
     entry:[
-        './app/index.js',
         'webpack-dev-server/client',
         'webpack/hot/only-dev-server',
         'react-hot-loader/patch',
-        path.join(__dirname,'app/index.js')
+        path.join(__dirname,'src/index.js')
     ],
     output:{
         path: path.resolve(__dirname, './dist'),
-        filename:'bundle.js',
+        filename:'[name].js',
         publicPath:'/'
     },
-    devtool: "eval-source-map",
-    plugins:[
-        new HtmlWebpackPlugin({
-            template:'./index.tpl.html',
-            inject:'body',
-            filename:'./index.html'
-        }),
-        new webpack.optimize.OccurrenceOrderPlugin(),
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.DefinePlugin({
-            'process.env.NODE_ENV':JSON.stringify('development')
-        })
-    ],
     module:{
         rules:[
             {
@@ -45,6 +31,18 @@ module.exports={
                 loader:'style-loader!css-loader!less-loader'
             }
         ]
-    }
+    },
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: './index.tpl.html',
+            inject: 'body',
+            filename: './index.html'
+        }),
+        new webpack.optimize.OccurrenceOrderPlugin(),
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.DefinePlugin({
+            'process.env.NODE_ENV': JSON.stringify('development')
+        })
+    ],
 }
 

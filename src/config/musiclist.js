@@ -1,4 +1,4 @@
-export const MUSIC_LIST=[
+export default [
     {
         id:1,
         title:'打扰',

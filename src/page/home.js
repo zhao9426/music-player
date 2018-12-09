@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import { Layout } from 'antd';
+import { Layout, Row, Col } from 'antd';
 import LeftHead from "../components/LeftHead";
 import RightHead from "../components/RightHead";
+import TopCarousel from "../components/TopCarousel";
 import "./home.less";
 
 const {
@@ -18,8 +19,19 @@ export default class Home extends Component {
                 </Header>
                 <Content className="home-content">
                     <Layout hasSider>
-                        <Content>Content</Content>
-                        <Sider theme="light">Sider</Sider>
+                        <Content>
+                            <TopCarousel/>
+                            <Row>
+                                <Col>
+                                    <div>精选歌单</div>
+                                    <div>新歌首发</div>
+                                </Col>
+                                <Col>
+                                    <div>热门歌手</div>
+                                    <div>入住歌手</div>  
+                                </Col>
+                            </Row>
+                        </Content>
                     </Layout>
                 </Content>
                 <Footer>Footer</Footer>

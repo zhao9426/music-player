@@ -3,6 +3,8 @@ import { Layout, Row, Col } from 'antd';
 import LeftHead from "../components/LeftHead";
 import RightHead from "../components/RightHead";
 import TopCarousel from "../components/TopCarousel";
+import SongList from "../components/SongList";
+import HotSinger from "../components/HotSinger";
 import "./home.less";
 
 const {
@@ -21,16 +23,42 @@ export default class Home extends Component {
                     <Layout hasSider>
                         <Content>
                             <TopCarousel/>
-                            <Row>
-                                <Col>
-                                    <div>精选歌单</div>
+                            <div className="gutter-example">
+                            <Row gutter={16}>
+                            <Col className="gutter-row" span={2}>
+                                <div className="gutter-box"></div>
+                            </Col>
+                            <Col className="gutter-row" span={12}>
+                                <div className="gutter-box">
+                                    <SongList/>
+                                </div>
+                            </Col>
+                            <Col className="gutter-row" span={6}>
+                                <div className="gutter-box">
+                                <HotSinger/>
+                                </div>
+                            </Col>
+                            <Col className="gutter-row" span={2}>
+                                <div className="gutter-box"></div>
+                            </Col>
+                            </Row>
+                            </div>
+
+
+                            {/* <Row>
+                                <Col span={4}>
+                                </Col>
+                                <Col span={12}>
+                                    <SongList/>
                                     <div>新歌首发</div>
                                 </Col>
-                                <Col>
-                                    <div>热门歌手</div>
+                                <Col span={6}>
+                                    <HotSinger/>
                                     <div>入住歌手</div>  
                                 </Col>
-                            </Row>
+                                <Col span={4}>
+                                </Col>
+                            </Row> */}
                         </Content>
                     </Layout>
                 </Content>

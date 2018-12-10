@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Router, Route, Switch } from "react-router";
 import Home from "../page/home";
+import SongSheet from "../page/songsheet";
 
 export default class Root extends Component {
     constructor(props){
@@ -13,6 +14,7 @@ export default class Root extends Component {
             <Router history={history}>
                 <Switch>
                     <Route path="/" component={Home}/>
+                    <Route path="/" component={SongSheet}/>
                 </Switch>
             </Router>
         );

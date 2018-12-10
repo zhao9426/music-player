@@ -4,6 +4,8 @@ import LeftHead from "../components/LeftHead";
 import RightHead from "../components/RightHead";
 import TopCarousel from "../components/TopCarousel";
 import SongList from "../components/SongList";
+import InSinger from "../components/InSinger";
+import NewSong from "../components/NewSong";
 import HotSinger from "../components/HotSinger";
 import "./home.less";
 
@@ -31,10 +33,12 @@ export default class Home extends Component {
                             <Col className="gutter-row" span={12}>
                                 <div className="gutter-box">
                                     <SongList/>
+                                    <NewSong/>
                                 </div>
                             </Col>
                             <Col className="gutter-row" span={6}>
                                 <div className="gutter-box">
+                                <InSinger/>
                                 <HotSinger/>
                                 </div>
                             </Col>
@@ -43,26 +47,10 @@ export default class Home extends Component {
                             </Col>
                             </Row>
                             </div>
-
-
-                            {/* <Row>
-                                <Col span={4}>
-                                </Col>
-                                <Col span={12}>
-                                    <SongList/>
-                                    <div>新歌首发</div>
-                                </Col>
-                                <Col span={6}>
-                                    <HotSinger/>
-                                    <div>入住歌手</div>  
-                                </Col>
-                                <Col span={4}>
-                                </Col>
-                            </Row> */}
                         </Content>
                     </Layout>
                 </Content>
-                <Footer>Footer</Footer>
+                <Footer/>
             </Layout>
         )
     }

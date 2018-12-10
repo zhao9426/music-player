@@ -4,25 +4,34 @@
     border:1px solid #ccc;
     display:flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
+    background-color: #fff;
 }
+
 .sp{
-   color:blue;
-   font-size: 25px;
-   margin-left: 20px;
+    color:blue;
+    font-size: 25px;
+ }
+
+ .hot-singer-body{
+     border: 1px solid #ccc;
+     .ant-card-body{
+        margin-top: -50px;
+        height: 50px;
+    }
+ }
+.bigs{
+    width: 50%;
+    float: left;
+    .ant-card-cover{
+        img{
+         height:80%;
+         width: 100%;
+        }
+     }
 }
-.more{
-    margin-right: 20px;
-}
-.hot-singer-body{
-   width:100%;
-   .ant-card-body{
-       margin-top: -50px;
-       height: 50px;
-   }
-}
-.ant-card ant-card-bordered{
-    width:100%;
-    height:50px;
+.smalls{
+    width:33.3%;
+    float: left;
 }
 

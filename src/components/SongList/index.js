@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from "react";
-import { Link } from "react-router-dom";
 import "./style.less";
+import { Link } from "react-router-dom";
 import { Card } from 'antd';
 
 export default class SongList extends Component {
@@ -17,7 +17,7 @@ export default class SongList extends Component {
             <Fragment>
                     <div className="song-list-header">
                         <h2><span className="sp">精选</span>歌单</h2>
-                        <h5 className="more">更多</h5>
+                        <Link to="/"> <h5 className="more">更多</h5></Link>
                     </div>
                     <div className="song-list-body">
 

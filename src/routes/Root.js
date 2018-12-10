@@ -13,8 +13,8 @@ export default class Root extends Component {
         return (
             <Router history={history}>
                 <Switch>
-                    <Route path="/" component={Home}/>
-                    <Route path="/" component={SongSheet}/>
+                    <Route exact path="/" component={Home}/>
+                    <Route exact path="/song/list" component={SongSheet}/>
                 </Switch>
             </Router>
         );

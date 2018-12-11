@@ -12,11 +12,6 @@ const {
 export default class Register extends Component {
     render() {
         return (
-            <Layout className="register-page">
-                <Header theme="light" className="register-header">
-                    <div className="head-left"><LeftHead /></div>
-                    <div className="head-right"><RightHead /></div>
-                </Header>
                 <Content className="register-content">
                     <Layout hasSider>
                         <Content>
@@ -38,8 +33,6 @@ export default class Register extends Component {
                         </Content>
                     </Layout>
                 </Content>
-                <Footer />
-            </Layout>
         )
     }
 }

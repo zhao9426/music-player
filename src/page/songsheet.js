@@ -25,11 +25,6 @@ export default class SongSheet extends Component {
     render() {
         const size = this.state.size;
         return (
-            <Layout className="songsheet-page">
-                <Header theme="light" className="songsheet-header">
-                    <div className="head-left"><LeftHead /></div>
-                    <div className="head-right"><RightHead /></div>
-                </Header>
                 <Content className="songsheet-content">
                     <Layout hasSider>
                         <Content>
@@ -72,8 +67,6 @@ export default class SongSheet extends Component {
                         </Content>
                     </Layout>
                 </Content>
-                <Footer />
-            </Layout>
         )
     }
 }

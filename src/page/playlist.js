@@ -12,11 +12,6 @@ const {
 export default class PlayList extends Component {
     render() {
         return (
-            <Layout className="playlist-page">
-                <Header theme="light" className="playlist-header">
-                    <div className="head-left"><LeftHead /></div>
-                    <div className="head-right"><RightHead /></div>
-                </Header>
                 <Content className="playlist-content">
                     <Layout hasSider>
                         <Content>
@@ -38,8 +33,6 @@ export default class PlayList extends Component {
                         </Content>
                     </Layout>
                 </Content>
-                <Footer />
-            </Layout>
         )
     }
 }

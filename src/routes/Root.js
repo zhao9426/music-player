@@ -6,9 +6,11 @@ import RightHead from "../components/RightHead";
 import Home from "../page/home";
 import SongSheet from "../page/songsheet";
 import Play from "../page/play";
-import PlayList from "../page/PlayList";
-import Login from "../page/Login";
-import Register from "../page/Register";
+import PlayList from "../page/playList";
+import Register from "../page/login";
+import Login from "../page/testPlayer";
+import TestPlayer from "../page/testPlayer";
+
 const {
     Header, Footer, Content
 } = Layout;
@@ -34,8 +36,9 @@ export default class Root extends Component {
                                 <Route exact path="/song/list" component={SongSheet} />
                                 <Route exact path="/play" component={Play} />
                                 <Route exact path="/playlist" component={PlayList} />
-                                <Route exact path="/login" component={Login} />
                                 <Route exact path="/register" component={Register} />
+                                <Route exact path="/login" component={Register} />
+                                <Route exact path="/testplay" component={TestPlayer} />
                             </Switch>  
                     </Layout>
                 </Content>

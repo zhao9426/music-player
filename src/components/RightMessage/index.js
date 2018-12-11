@@ -96,6 +96,7 @@ export default class RightMessage extends Component {
                             ]}>
                                 歌曲列表
                             </List.Item>
+                            
                         }
                         itemLayout="horizontal"
                         dataSource={list}
@@ -112,12 +113,14 @@ export default class RightMessage extends Component {
                                 </a>,
                                 <a>
                                 时间
-                        </a>
+                                </a>
                             ]}>
                                 <List.Item.Meta
                                     title={<a href="song">{item.title}</a>}
                                 />
+                                <div>{item.id}</div>
                                 </List.Item>
+                                
                         )}
                     />
                 </div>

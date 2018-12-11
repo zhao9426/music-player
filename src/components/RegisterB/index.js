@@ -90,12 +90,12 @@ export  class RegisterB extends Component {
 
         const formItemLayout = {
             labelCol: {
-                xs: { span: 24 },
-                sm: { span: 8 },
+                xs: { span: 24},
+                sm: { span: 4, offset: 4 },
             },
             wrapperCol: {
                 xs: { span: 24 },
-                sm: { span: 16 },
+                sm: { span: 8 },
             },
         };
         const tailFormItemLayout = {
@@ -124,10 +124,12 @@ export  class RegisterB extends Component {
         ));
 
         return (
-                <Form onSubmit={this.handleSubmit}>
+            <Fragment>
+                <h1 className="register-header">手机注册</h1>
+                <Form  className="register-body" onSubmit={this.handleSubmit}>
                     <FormItem
                         {...formItemLayout}
-                        label="E-mail"
+                        label="邮箱"
                     >
                         {getFieldDecorator('email', {
                             rules: [{
@@ -141,7 +143,7 @@ export  class RegisterB extends Component {
                     </FormItem>
                     <FormItem
                         {...formItemLayout}
-                        label="Password"
+                        label="密码"
                     >
                         {getFieldDecorator('password', {
                             rules: [{
@@ -155,7 +157,7 @@ export  class RegisterB extends Component {
                     </FormItem>
                     <FormItem
                         {...formItemLayout}
-                        label="Confirm Password"
+                        label=" 确认密码 "
                     >
                         {getFieldDecorator('confirm', {
                             rules: [{
@@ -171,7 +173,7 @@ export  class RegisterB extends Component {
                         {...formItemLayout}
                         label={(
                             <span>
-                                Nickname&nbsp;
+                                昵称&nbsp;
               <Tooltip title="What do you want others to call you?">
                                     <Icon type="question-circle-o" />
                                 </Tooltip>
@@ -186,18 +188,7 @@ export  class RegisterB extends Component {
                     </FormItem>
                     <FormItem
                         {...formItemLayout}
-                        label="Habitual Residence"
-                    >
-                        {getFieldDecorator('residence', {
-                            initialValue: ['zhejiang', 'hangzhou', 'xihu'],
-                            rules: [{ type: 'array', required: true, message: 'Please select your habitual residence!' }],
-                        })(
-                            <Cascader options={residences} />
-                            )}
-                    </FormItem>
-                    <FormItem
-                        {...formItemLayout}
-                        label="Phone Number"
+                        label="电话号码"
                     >
                         {getFieldDecorator('phone', {
                             rules: [{ required: true, message: 'Please input your phone number!' }],
@@ -207,24 +198,7 @@ export  class RegisterB extends Component {
                     </FormItem>
                     <FormItem
                         {...formItemLayout}
-                        label="Website"
-                    >
-                        {getFieldDecorator('website', {
-                            rules: [{ required: true, message: 'Please input website!' }],
-                        })(
-                            <AutoComplete
-                                dataSource={websiteOptions}
-                                onChange={this.handleWebsiteChange}
-                                placeholder="website"
-                            >
-                                <Input />
-                            </AutoComplete>
-                            )}
-                    </FormItem>
-                    <FormItem
-                        {...formItemLayout}
-                        label="Captcha"
-                        extra="We must make sure that your are a human."
+                        label="短信验证"
                     >
                         <Row gutter={8}>
                             <Col span={12}>
@@ -235,7 +209,7 @@ export  class RegisterB extends Component {
                                     )}
                             </Col>
                             <Col span={12}>
-                                <Button>Get captcha</Button>
+                                <Button>获取验证码</Button>
                             </Col>
                         </Row>
                     </FormItem>
@@ -243,13 +217,14 @@ export  class RegisterB extends Component {
                         {getFieldDecorator('agreement', {
                             valuePropName: 'checked',
                         })(
-                            <Checkbox>I have read the <a href="">agreement</a></Checkbox>
+                            <Checkbox>我已经认真阅读并<a href="">同意</a></Checkbox>
                             )}
                     </FormItem>
                     <FormItem {...tailFormItemLayout}>
-                        <Button type="primary" htmlType="submit">Register</Button>
+                        <Button type="primary" htmlType="submit">注册</Button>
                     </FormItem>
                 </Form>
+            </Fragment>
         )
     }
 }

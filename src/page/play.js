@@ -12,11 +12,6 @@ const {
 export default class Play extends Component {
     render() {
         return (
-            <Layout className="play-page">
-                <Header theme="light" className="play-header">
-                    <div className="head-left"><LeftHead /></div>
-                    <div className="head-right"><RightHead /></div>
-                </Header>
                 <Content className="play-content">
                     <Layout hasSider>
                         <Content>
@@ -38,8 +33,6 @@ export default class Play extends Component {
                         </Content>
                     </Layout>
                 </Content>
-                <Footer />
-            </Layout>
         )
     }
 }

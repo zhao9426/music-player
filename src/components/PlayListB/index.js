@@ -98,7 +98,7 @@ export default class PlayListB extends Component {
                                     <a>
                                         <i className="fa fa-download" style={{ color: '#7F7F7F' }}></i>
                                     </a>,
-                            <a>
+                                    <a>
                                         <i className="fa fa-trash-o" style={{ color: '#7F7F7F' }}></i>
                                     </a>
                                 </div>

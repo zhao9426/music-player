@@ -16,42 +16,31 @@ const {
 export default class Home extends Component {
     render() {
         return (
-            <Layout className="home-page">
-                <Header theme="light" className="home-header">
-                    <div className="head-left"><LeftHead /></div>
-                    <div className="head-right"><RightHead /></div>
-                </Header>
-                <Content className="home-content">
-                    <Layout hasSider>
-                        <Content>
-                            <TopCarousel />
-                            <div className="gutter-example">
-                                <Row gutter={16}>
-                                    <Col className="gutter-row" span={2}>
-                                        <div className="gutter-box"></div>
-                                    </Col>
-                                    <Col className="gutter-row" span={12}>
-                                        <div className="gutter-box">
-                                            <SongList />
-                                            <NewSong />
-                                        </div>
-                                    </Col>
-                                    <Col className="gutter-row" span={6}>
-                                        <div className="gutter-box">
-                                            <InSinger />
-                                            <HotSinger />
-                                        </div>
-                                    </Col>
-                                    <Col className="gutter-row" span={2}>
-                                        <div className="gutter-box"></div>
-                                    </Col>
-                                </Row>
+            <Content>
+                <TopCarousel />
+                <div className="gutter-example">
+                    <Row gutter={16}>
+                        <Col className="gutter-row" span={2}>
+                            <div className="gutter-box"></div>
+                        </Col>
+                        <Col className="gutter-row" span={12}>
+                            <div className="gutter-box">
+                                <SongList />
+                                <NewSong />
                             </div>
-                        </Content>
-                    </Layout>
-                </Content>
-                <Footer />
-            </Layout>
+                        </Col>
+                        <Col className="gutter-row" span={6}>
+                            <div className="gutter-box">
+                                <InSinger />
+                                <HotSinger />
+                            </div>
+                        </Col>
+                        <Col className="gutter-row" span={2}>
+                            <div className="gutter-box"></div>
+                        </Col>
+                    </Row>
+                </div>
+            </Content>
         )
     }
 }

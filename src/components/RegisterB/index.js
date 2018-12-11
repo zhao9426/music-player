@@ -34,7 +34,7 @@ const residences = [{
 }];
 
 
-export default class RegisterB extends Component {
+export  class RegisterB extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -254,6 +254,6 @@ export default class RegisterB extends Component {
     }
 }
 
-const WrappedRegistrationForm = Form.create()(Register);
+const WrappedRegistrationForm = Form.create()(RegisterB);
 
 export default WrappedRegistrationForm;

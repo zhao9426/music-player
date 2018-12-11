@@ -7,13 +7,37 @@ export default class Player extends Component{
             tracks: [],
             sources: []
         }
+        this.timer = null; 
+    }
+
+    componentDidMount(){
+      /*   this.timer = setInterval(() => {
+            const A = this.refs.AUDIO
+            console.log(this.refs.AUDIO.currentTime, this.refs.AUDIO.duration, "rfs")
+            console.log(this.refs.AUDIO.volume, "volume", this.refs.AUDIO.muted, this.refs.AUDIO.autoBuffer)
+            console.log(A.paused, A.error, A.ended, A.currentSrc)
+        }, 1000); */
+    }
+
+    componentWillMount() {
+        // this.timer && clearInterval(this.timer);
+    }
+
+    play(){
+        this.refs.AUDIO.play();
+    }
+
+    pause(){
+        this.refs.AUDIO.pause();
     }
     
     render(){
         const { src, tracks, sources } = this.state
         return ( 
             <div>
-                <audio controls="controls" src={src}>
+                <button onClick={this.play.bind(this)}>Play</button>
+                <button onClick={this.pause.bind(this)}>Paused</button>
+                <audio loop src={src} ref="AUDIO">
                     Your browser does not support the <code>audio</code> element.
                     { sources && sources.length > 0 && sources.map(s => {
                         return <source src={s.src} type={s.type || "audio/wav"} />

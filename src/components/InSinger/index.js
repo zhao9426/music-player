@@ -8,44 +8,44 @@ export default class InSinger extends Component {
         this.state = {
             list: [
                 {
-                    id:1,
-                    title:'不哭',
-                    artist:'火箭少女101Sunnee ',
-                    file:'http://opiq8wtrv.bkt.clouddn.com/%E4%B8%8D%E5%93%AD.mp3',
-                    cover:'../../static/images/buku.png',
-                    des:'我不哭，我很开心'
+                    id: 1,
+                    title: '不哭',
+                    artist: '火箭少女101Sunnee ',
+                    file: 'http://opiq8wtrv.bkt.clouddn.com/%E4%B8%8D%E5%93%AD.mp3',
+                    cover: '../../static/images/buku.png',
+                    des: '我不哭，我很开心'
                 },
                 {
-                    id:2,
-                    title:'不哭',
-                    artist:'火箭少女101Sunnee ',
-                    file:'http://opiq8wtrv.bkt.clouddn.com/%E4%B8%8D%E5%93%AD.mp3',
-                    cover:'../../static/images/buku.png',
-                    des:'我不哭，我很开心'
+                    id: 2,
+                    title: '不哭',
+                    artist: '火箭少女101Sunnee ',
+                    file: 'http://opiq8wtrv.bkt.clouddn.com/%E4%B8%8D%E5%93%AD.mp3',
+                    cover: '../../static/images/buku.png',
+                    des: '我不哭，我很开心'
                 },
                 {
-                    id:3,
-                    title:'不哭',
-                    artist:'火箭少女101Sunnee ',
-                    file:'http://opiq8wtrv.bkt.clouddn.com/%E4%B8%8D%E5%93%AD.mp3',
-                    cover:'../../static/images/buku.png',
-                    des:'我不哭，我很开心'
+                    id: 3,
+                    title: '不哭',
+                    artist: '火箭少女101Sunnee ',
+                    file: 'http://opiq8wtrv.bkt.clouddn.com/%E4%B8%8D%E5%93%AD.mp3',
+                    cover: '../../static/images/buku.png',
+                    des: '我不哭，我很开心'
                 },
                 {
-                    id:4,
-                    title:'不哭',
-                    artist:'火箭少女101Sunnee ',
-                    file:'http://opiq8wtrv.bkt.clouddn.com/%E4%B8%8D%E5%93%AD.mp3',
-                    cover:'../../static/images/buku.png',
-                    des:'我不哭，我很开心'
+                    id: 4,
+                    title: '不哭',
+                    artist: '火箭少女101Sunnee ',
+                    file: 'http://opiq8wtrv.bkt.clouddn.com/%E4%B8%8D%E5%93%AD.mp3',
+                    cover: '../../static/images/buku.png',
+                    des: '我不哭，我很开心'
                 },
                 {
-                    id:5,
-                    title:'不哭',
-                    artist:'火箭少女101Sunnee ',
-                    file:'http://opiq8wtrv.bkt.clouddn.com/%E4%B8%8D%E5%93%AD.mp3',
-                    cover:'../../static/images/buku.png',
-                    des:'我不哭，我很开心'
+                    id: 5,
+                    title: '不哭',
+                    artist: '火箭少女101Sunnee ',
+                    file: 'http://opiq8wtrv.bkt.clouddn.com/%E4%B8%8D%E5%93%AD.mp3',
+                    cover: '../../static/images/buku.png',
+                    des: '我不哭，我很开心'
                 }
             ]
         }
@@ -59,21 +59,21 @@ export default class InSinger extends Component {
                     <h5 className="more">更多</h5>
                 </div>
                 <div className="in-singer-body">
-                {
-                    <List
-                    itemLayout="horizontal"
-                    dataSource={list}
-                    renderItem={item => (
-                    <List.Item>
-                        <List.Item.Meta
-                        avatar={<Avatar src={item.cover} />}
-                        title={<a href="https://ant.design">{item.title}</a>}
-                        description={item.des}
+                    {
+                        <List
+                            itemLayout="horizontal"
+                            dataSource={list}
+                            renderItem={item => (
+                                <List.Item>
+                                    <List.Item.Meta
+                                        avatar={<Avatar src={item.cover} />}
+                                        title={<a href="https://ant.design">{item.title}</a>}
+                                        description={item.des}
+                                    />
+                                </List.Item>
+                            )}
                         />
-                    </List.Item>
-                    )}
-                    />
-                }
+                    }
                 </div>
             </Fragment>
         )

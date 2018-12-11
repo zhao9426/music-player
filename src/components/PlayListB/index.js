@@ -1,10 +1,11 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import style from "./style.less";
-import { List, Avatar, Skeleton } from 'antd';
-import { Button, Radio, Icon } from 'antd';
+import {
+    List, Avatar, Button, Skeleton,
+} from 'antd';
 
-export default class RightMessage extends Component {
+export default class PlayListB extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -71,56 +72,50 @@ export default class RightMessage extends Component {
                     file: 'http://opiq8wtrv.bkt.clouddn.com/%E4%B8%8D%E5%93%AD.mp3',
                     cover: '../../static/images/buku.png',
                     des: '我不哭，我很开心'
-                }
+                },
+
             ],
-            size: 'small',
         }
     }
-
-    handleSizeChange(e) {
-        this.setState({ size: e.target.value });
-    }
-
     render() {
         const { list } = this.state;
-        const size = this.state.size;
         return (
             <Fragment>
-                <div className="right">
-                    <List
-                        header={
-                            <List.Item actions={[
-                                <a>
-                                    <Button type="primary" icon="caret-right" size={size}>播放</Button>
-                                </a>,
-                            ]}>
-                                歌曲列表
-                            </List.Item>
-                        }
-                        itemLayout="horizontal"
-                        dataSource={list}
-                        renderItem={item => (
-                            <List.Item actions={[
-                                <a>
-                                    <i className="fa fa-caret-square-o-right" style={{ color: '#7F7F7F' }}></i>
-                                </a>,
-                                <a>
-                                    <i className="fa fa-download" style={{ color: '#7F7F7F' }}></i>
-                                </a>,
-                                <a>
-                                    <i className="fa fa-inbox" style={{ color: '#7F7F7F' }}></i>
-                                </a>,
-                                <a>
-                                时间
-                        </a>
-                            ]}>
+                <List
+                    header={
+                        <div className="play-header">
+                            <h2>播放列表</h2>
+                            <a>
+                                <i className="fa fa-trash-o" style={{ color: '#7F7F7F' }}></i>
+                            </a>
+                        </div>}
+                    itemLayout="horizontal"
+                    dataSource={list}
+                    renderItem={item => (
+                        <List.Item
+                            actions={[
+                                <div className="logon-contanier">
+                                    <a>
+                                        <i className="fa fa-download" style={{ color: '#7F7F7F' }}></i>
+                                    </a>,
+                            <a>
+                                        <i className="fa fa-trash-o" style={{ color: '#7F7F7F' }}></i>
+                                    </a>
+                                </div>
+                            ]}
+                        >
+                            <div>{item.id}</div>
+                            <Skeleton avatar title={false} loading={item.loading} active>
                                 <List.Item.Meta
+
                                     title={<a href="song">{item.title}</a>}
+                                    description={item.artist}
                                 />
-                                </List.Item>
-                        )}
-                    />
-                </div>
+                            </Skeleton>
+                            <div>时间</div>
+                        </List.Item>
+                    )}
+                />
             </Fragment>
         )
     }

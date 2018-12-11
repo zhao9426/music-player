@@ -2,10 +2,10 @@ import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
 import style from "./style.less";
 export default class LeftHead extends Component {
-    constructor(props){
+    constructor(props) {
         super(props);
     }
-    render(){
+    render() {
         return (
             <Fragment>
                 <Link to="/">发现音乐</Link>

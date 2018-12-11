@@ -1,7 +1,8 @@
 import React, { Component, Fragment } from "react";
 import { Link } from "react-router-dom";
-import style from "./style.less";
-export default class Footer extends Component {
+import login from "./login.less";
+
+export default class Login extends Component {
     constructor(props) {
         super(props);
     }

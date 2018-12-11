@@ -14,7 +14,7 @@ const {
 } = Layout;
 
 export default class Home extends Component {
-    render(){
+    render() {
         return (
             <Layout className="home-page">
                 <Header theme="light" className="home-header">
@@ -24,33 +24,33 @@ export default class Home extends Component {
                 <Content className="home-content">
                     <Layout hasSider>
                         <Content>
-                            <TopCarousel/>
+                            <TopCarousel />
                             <div className="gutter-example">
-                            <Row gutter={16}>
-                            <Col className="gutter-row" span={2}>
-                                <div className="gutter-box"></div>
-                            </Col>
-                            <Col className="gutter-row" span={12}>
-                                <div className="gutter-box">
-                                    <SongList/>
-                                    <NewSong/>
-                                </div>
-                            </Col>
-                            <Col className="gutter-row" span={6}>
-                                <div className="gutter-box">
-                                <InSinger/>
-                                <HotSinger/>
-                                </div>
-                            </Col>
-                            <Col className="gutter-row" span={2}>
-                                <div className="gutter-box"></div>
-                            </Col>
-                            </Row>
+                                <Row gutter={16}>
+                                    <Col className="gutter-row" span={2}>
+                                        <div className="gutter-box"></div>
+                                    </Col>
+                                    <Col className="gutter-row" span={12}>
+                                        <div className="gutter-box">
+                                            <SongList />
+                                            <NewSong />
+                                        </div>
+                                    </Col>
+                                    <Col className="gutter-row" span={6}>
+                                        <div className="gutter-box">
+                                            <InSinger />
+                                            <HotSinger />
+                                        </div>
+                                    </Col>
+                                    <Col className="gutter-row" span={2}>
+                                        <div className="gutter-box"></div>
+                                    </Col>
+                                </Row>
                             </div>
                         </Content>
                     </Layout>
                 </Content>
-                <Footer/>
+                <Footer />
             </Layout>
         )
     }

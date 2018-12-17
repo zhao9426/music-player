@@ -91,23 +91,17 @@ export  class RegisterB extends Component {
         const formItemLayout = {
             labelCol: {
                 xs: { span: 24},
-                sm: { span: 4, offset: 4 },
+                sm: { span: 4, offset: 2 },
             },
             wrapperCol: {
                 xs: { span: 24 },
-                sm: { span: 8 },
+                sm: { span: 6 },
             },
         };
         const tailFormItemLayout = {
             wrapperCol: {
-                xs: {
-                    span: 24,
-                    offset: 0,
-                },
-                sm: {
-                    span: 16,
-                    offset: 8,
-                },
+                xs: {span: 24},
+                sm: {span: 12,offset: 12},
             },
         };
         const prefixSelector = getFieldDecorator('prefix', {

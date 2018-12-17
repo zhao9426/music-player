@@ -4,7 +4,6 @@ import LeftHead from "../components/LeftHead";
 import RightHead from "../components/RightHead";
 import LeftMessage from "../components/LeftMessage";
 import RightMessage from "../components/RightMessage";
-import TopCarousel from "../components/TopCarousel";
 import "./songsheet.less";
 
 const {

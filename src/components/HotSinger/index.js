@@ -8,7 +8,7 @@ export default class HotSinger extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            list: [1, 2, 3, 4, 5],
+            list: [1,2,3,4,5],
             current: '1',
         }
     }

@@ -111,14 +111,17 @@ export default class RightMessage extends Component {
                                 <a>
                                     <i className="fa fa-inbox" style={{ color: '#7F7F7F' }}></i>
                                 </a>,
-                                <a>
+                                <div>
                                 时间
-                                </a>
+                                </div>
                             ]}>
+                            <div>{item.id}</div>
+                            <Skeleton avatar title={false} loading={item.loading} active>
                                 <List.Item.Meta
                                     title={<a href="song">{item.title}</a>}
+                                    description={item.artist}
                                 />
-                                <div>{item.id}</div>
+                            </Skeleton>
                                 </List.Item>
                                 
                         )}

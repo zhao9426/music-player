@@ -123,13 +123,15 @@ export default class NewSong extends Component {
                                     <a>
                                         <i className="fa fa-inbox" style={{ color: '#7F7F7F' }}></i>
                                     </a>,
-                                    <a>
-                                        时间
-                            </a>
+                                    <div>
+                                       时间
+                                    </div>
                                 ]}>
+                                {item.id}
                                     <Skeleton avatar title={false} loading={item.loading} active>
                                         <List.Item.Meta
                                             title={<a href="song">{item.title}</a>}
+                                            description={item.artist}
                                         />
                                     </Skeleton>
                                 </List.Item>

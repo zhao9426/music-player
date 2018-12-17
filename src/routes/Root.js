@@ -7,9 +7,10 @@ import Home from "../page/home";
 import SongSheet from "../page/songsheet";
 import Play from "../page/play";
 import PlayList from "../page/playList";
-import Register from "../page/login";
-import Login from "../page/testPlayer";
+import Register from "../page/register";
+import Login from "../page/login";
 import TestPlayer from "../page/testPlayer";
+import SingerMessage from "../page/singermessage";
 
 const {
     Header, Footer, Content
@@ -37,8 +38,9 @@ export default class Root extends Component {
                                 <Route exact path="/play" component={Play} />
                                 <Route exact path="/playlist" component={PlayList} />
                                 <Route exact path="/register" component={Register} />
-                                <Route exact path="/login" component={Register} />
                                 <Route exact path="/testplay" component={TestPlayer} />
+                                <Route exact path="/login" component={Login} />
+                                <Route exact path="/singermessage" component={SingerMessage} />
                             </Switch>  
                     </Layout>
                 </Content>

@@ -23,13 +23,13 @@ export default class Home extends Component {
                         <Col className="gutter-row" span={2}>
                             <div className="gutter-box"></div>
                         </Col>
-                        <Col className="gutter-row" span={12}>
+                        <Col className="gutter-row" span={14}>
                             <div className="gutter-box">
                                 <SongList />
                                 <NewSong />
                             </div>
                         </Col>
-                        <Col className="gutter-row" span={6}>
+                        <Col className="gutter-row" span={4}>
                             <div className="gutter-box">
                                 <InSinger />
                                 <HotSinger />

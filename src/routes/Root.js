@@ -1,20 +1,23 @@
 import React, { Component } from "react";
 import { Router, Route, Switch } from "react-router";
-import { Layout } from "antd";
-import LeftHead from "../components/LeftHead";
-import RightHead from "../components/RightHead";
 import Home from "../page/home";
+import ManagePage from '../page/ManagePage'
+import AddUserPage from '../page/AddUserPage'
 import SongSheet from "../page/songsheet";
 import Play from "../page/play";
 import PlayList from "../page/playList";
-import Register from "../page/register";
-import Login from "../page/login";
+// import Register from "./login/login";
+import store from "../store";
+import store2 from "../store2";
+import mstore from '../store/mstore'
+import Login from "../page/testPlayer";
 import TestPlayer from "../page/testPlayer";
-import SingerMessage from "../page/singermessage";
+import Test from "../page/test";
+import TodoList from "../page/TodoList";
 
-const {
-    Header, Footer, Content
-} = Layout;
+import MPLayout from '../layout'
+
+
 
 export default class Root extends Component {
     constructor(props) {
@@ -25,29 +28,19 @@ export default class Root extends Component {
         const { history } = this.props
         return (
             <Router history={history}>
-            <Layout className="home-page">
-                <Header theme="light" className="home-header">
-                    <div className="head-left"><LeftHead /></div>
-                    <div className="head-right"><RightHead /></div>
-                </Header>
-                <Content className="home-content">
-                    <Layout hasSider>        
-                            <Switch>
-                                <Route exact path="/" component={Home} />
-                                <Route exact path="/song/list" component={SongSheet} />
-                                <Route exact path="/play" component={Play} />
-                                <Route exact path="/playlist" component={PlayList} />
-                                <Route exact path="/register" component={Register} />
-                                <Route exact path="/testplay" component={TestPlayer} />
-                                <Route exact path="/login" component={Login} />
-                                <Route exact path="/singermessage" component={SingerMessage} />
-                            </Switch>  
-                    </Layout>
-                </Content>
-                <Footer />
-            </Layout>
+            <MPLayout {...this.props}>
+                    <Switch>
+                        <Route exact path="/" component={Home} />
+                        <Route exact path="/song/list" component={SongSheet} />
+                        <Route exact path="/play" component={Play} />
+                        <Route exact path="/playlist" component={PlayList} />
+                        <Route exact path="/manage" render={() => <ManagePage mstore={mstore} {...this.props} />}/>
+                        <Route exact path="/manage/add/user" render={() => <AddUserPage mstore={mstore} {...this.props} />} />
+                        <Route exact path="/test" render={() => <Test cache={store.cache} refresh={store.refresh} />} />
+                        <Route exact path="/todo" render={() => <TodoList store={store2} />} />
+                    </Switch> 
+            </MPLayout>
         </Router>
         );
     }
 }
-

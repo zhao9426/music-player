@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Layout, Row, Col } from 'antd';
-import LeftHead from "../components/LeftHead";
-import RightHead from "../components/RightHead";
+import LeftHead from "../layout/LeftHead";
+import RightHead from "../layout/RightHead";
 import TopCarousel from "../components/TopCarousel";
 import SongList from "../components/SongList";
 import InSinger from "../components/InSinger";

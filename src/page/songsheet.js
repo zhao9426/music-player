@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Layout, Row, Col } from 'antd';
-import LeftHead from "../components/LeftHead";
-import RightHead from "../components/RightHead";
+import LeftHead from "../layout/LeftHead";
+import RightHead from "../layout/RightHead";
 import LeftMessage from "../components/LeftMessage";
 import RightMessage from "../components/RightMessage";
 import "./songsheet.less";

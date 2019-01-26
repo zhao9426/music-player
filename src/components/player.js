@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Progress from './progress'
-export default class Player extends Component {
-    constructor(props) {
+import "./player.less";
+export default class Player extends Component{
+    constructor(props){
         super(props);
         this.state = {
             src: "https://pmusic.oss-cn-hangzhou.aliyuncs.com/music/%E4%B8%8D%E5%93%AD.mp3",

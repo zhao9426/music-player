@@ -33,7 +33,13 @@ class Store {
 
     @action.bound getUserList(){
         ManageService.fetchUserList().then(list => {
-            this.userList = list;
+            this.userList = observable.array(list);
+        });
+    }
+
+    @action.bound getSongList() {
+        ManageService.fetchSongList().then(list => {
+            this.songList = list;
         });
     }
 
@@ -47,9 +53,21 @@ class Store {
     }
 
     @action deleteUser(user){
-        console.log(user);
-        
-        this.userList.remove(user);
+        ManageService.deleteUser(user.id).then( res => {
+            console.log(res, "res");
+            getUserList();
+        })
+        // console.log(user.name,'kk');
+        // let index = this.userList.findIndex(u => u.id === user.id);
+        // if(index !== -1){
+        //     let u = this.userList.splice(index, 1);
+        //     console.log(u);
+            
+        // }
+
+       let s = this.userList.remove(user);
+       console.log(s, "dd");
+       
     }
 
 /*     save() {
@@ -85,6 +103,13 @@ class Store {
     }
 }
  */
+class User {
+    id
+    @observable name;
+    @observable pwd;
+    @observable created_at;
+    @observable updated_at;
+}
 
 const mstore = new Store();
 

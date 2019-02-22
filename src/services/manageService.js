@@ -19,8 +19,27 @@ export function addUser(data) {
     }).then( res => res.json());
 }
 
-export function deleteUser(data) {
-    return fetch(`${apiPath}/users`, {
+export function deleteUser(id) {
+    return fetch(`${apiPath}/users/${id}`, {
+        method: "DELETE",
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json());
+}
+
+
+export function fetchSongList() {
+    return fetch(`${apiPath}/song-list`, {
+        method: "GET",
+        headers: {
+            'Content-Type': 'application/json'
+        },
+    }).then(res => res.json());
+}
+
+export function addSong(data) {
+    return fetch(`${apiPath}/song-list`, {
         method: "POST",
         headers: {
             'Content-Type': 'application/json'
@@ -31,5 +50,8 @@ export function deleteUser(data) {
 
 export default {
     fetchUserList,
-    addUser
+    addUser,
+    deleteUser,
+    fetchSongList,
+    addSong
 }

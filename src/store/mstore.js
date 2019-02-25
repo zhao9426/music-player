@@ -38,8 +38,8 @@ class Store {
     }
 
     @action.bound getSongList() {
-        ManageService.fetchSongList().then(list => {
-            this.songList = list;
+        ManageService.fetchSongList().then(res => {
+            this.songList = res.data;
         });
     }
 

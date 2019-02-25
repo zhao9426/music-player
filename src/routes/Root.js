@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Router, Route, Switch } from "react-router";
 import Home from "../page/home";
-import ManagePage from '../page/ManagePage'
-import AddUserPage from '../page/AddUserPage'
+import ManagePage from '../page/ManagePage';
+import AddUserPage from '../page/AddUserPage';
 import SongSheet from "../page/songsheet";
 import Play from "../page/play";
 import PlayList from "../page/playList";
@@ -34,8 +34,8 @@ export default class Root extends Component {
                         <Route exact path="/song/list" component={SongSheet} />
                         <Route exact path="/play" component={Play} />
                         <Route exact path="/playlist" component={PlayList} />
-                        <Route exact path="/manage" render={() => <ManagePage mstore={mstore} {...this.props} />}/>
-                        <Route exact path="/manage/add/user" render={() => <AddUserPage mstore={mstore} {...this.props} />} />
+                        <Route path="/manage" render={(props) => <ManagePage mstore={mstore} {...props}></ManagePage>}/>
+                        <Route exact path="/manage/add/user" render={(props) => <AddUserPage mstore={mstore} {...props} />} />
                         <Route exact path="/test" render={() => <Test cache={store.cache} refresh={store.refresh} />} />
                         <Route exact path="/todo" render={() => <TodoList store={store2} />} />
                     </Switch> 

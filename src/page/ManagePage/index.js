@@ -1,10 +1,17 @@
 import React, { Component } from 'react';
 import { Tabs, Input, Button, Table } from 'antd';
+import {
+    Switch,
+    Route
+} from 'react-router';
 import './ManagePage.less'
 import { observer, PropTypes as ObservablePropTypes } from 'mobx-react';
+import ManageUserTable from './ManageUserTable';
+import ManageSongListTable from './ManageSongListTable';
 import PropTypes from 'prop-types';
 const { TabPane } = Tabs;
 const { Search } = Input;
+
 
 const manageTab = [{key: "users", label: "用户管理"},{key: "songs", label: "歌曲管理"}];
 
@@ -26,20 +33,22 @@ class ManagePage extends Component {
      }
     
     componentDidMount() {
-        const { mstore } = this.props;
+        const { mstore, history } = this.props;
+        const { currentTab } = this.state
         mstore.getUserList();
         console.log(this.props.mstore.userList);
-        
+         history.push(`/manage/${currentTab}`)
     }
 
     changeTab(currentTab){
-        const { mstore } = this.props;
+        const { mstore, history } = this.props;
         if(currentTab == 'users'){
             mstore.getUserList();
         } else {
             mstore.getSongList();
         }
-       
+       history.push(`/manage/${currentTab}`)
+
         this.setState({
             currentTab
         })
@@ -57,97 +66,8 @@ class ManagePage extends Component {
 
     render() { 
         const { userList, songList } = this.props.mstore;
-        let list = [], colum = [];
-        const columns = [
-            {
-                title: "ID",
-                dataIndex: 'id'
-            },
-            {
-                title: "名称",
-                dataIndex: 'name'
-            },
-            {
-                title: "密码",
-                dataIndex: 'pwd'
-            },
-            {
-                title: "创建时间",
-                dataIndex: "created_at"
-            },
-            {
-                title: "更新时间",
-                dataIndex: "updated_at"
-            },
-            {
-                title: "操作",
-                align: "center",
-                render: (r) => {
-                    return (
-                        <div className="btn-group">
-                            <Button type="primary" className="btn">修改</Button> 
-                            <Button type="danger" onClick={this.deleteUser.bind(this, r)}  className="btn">删除</Button>
-                        </div> 
-                    )
-                }
-            }
-    ];
-
-        const songListColumns = [
-            {
-                title: "ID",
-                dataIndex: 'id'
-            },
-            {
-                title: "歌名",
-                dataIndex: 'name'
-            },
-            {
-                title: "作者",
-                dataIndex: 'author'
-            },
-            {
-                title: "收藏数",
-                dataIndex: "favorite"
-            },
-            {
-                title: "播放次数",
-                dataIndex: "count"
-            },
-            {
-                title: "描述",
-                dataIndex: "description"
-            },
-            {
-                title: "创建时间",
-                dataIndex: "created_at"
-            },
-            {
-                title: "更新时间",
-                dataIndex: "updated_at"
-            },
-            {
-                title: "操作",
-                align: "center",
-                render: (r) => {
-                    return (
-                        <div className="btn-group">
-                            <Button type="primary" className="btn">修改</Button>
-                            <Button type="danger" onClick={this.deleteUser.bind(this, r)} className="btn">删除</Button>
-                        </div>
-                    )
-                }
-            }
-        ];
-
-    const { currentTab } = this.state
-    if(currentTab == 'users'){
-        list = userList;
-        colum = columns
-    } else {
-        list = songList;
-        colum = songListColumns
-    }
+        const { match } = this.props;
+        const { currentTab } = this.state
         return ( 
             <div className='wrapper'>
                 <Tabs defaultActiveKey={'users'} onChange={this.changeTab.bind(this)}>
@@ -164,13 +84,10 @@ class ManagePage extends Component {
                     </div>
                 </div>
                 <div className="wrapper-table">
-                    <Table dataSource={list} 
-                        columns={colum} 
-                        bordered 
-                        rowKey="id" 
-                        pagination={{ hideOnSinglePage: true}} />
-                </div>
-            </div>   
+                    <Route path={`${match.url}/users`} render={(props) => <ManageUserTable list={userList} {...props}/>}/>
+                    <Route path={`${match.url}/songs`} render={(props) => <ManageSongListTable list={songList} {...props}/>}/>
+                </div> 
+            </div>    
          );
     }
 }

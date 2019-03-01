@@ -6,11 +6,17 @@ export default class RightHead extends Component {
     render() {
         const { showLogin } = this.props
         return (
-            <div className={'right-head'}>
-                <Link to="/mylist">我的音乐</Link>
-                <span className="login" onClick={showLogin} >登录</span>
-                <Link className="join" to="/join">注册</Link>
-            </div>
-        )
+          <div className="head-menu right-head">
+            <Link className="menu-item" to="/mylist">
+              我的音乐
+            </Link>
+            <span className="menu-item" onClick={showLogin}>
+              登录
+            </span>
+            <Link className="menu-item" to="/join">
+              注册
+            </Link>
+          </div>
+        );
     }
 }

@@ -3,6 +3,7 @@ const apiPath = "http://localhost:7001/api";
 export function fetchUserList() {
     return fetch(`${apiPath}/users`, {
         method: "GET",
+        mode: "cors",
         headers: {
             'Content-Type': 'application/json'
         },
@@ -12,6 +13,7 @@ export function fetchUserList() {
 export function addUser(data) {
     return fetch(`${apiPath}/users`,{
         method: "POST",
+        mode: "cors",
         headers: {
             'Content-Type': 'application/json'
         },
@@ -22,6 +24,7 @@ export function addUser(data) {
 export function deleteUser(id) {
     return fetch(`${apiPath}/users/${id}`, {
         method: "DELETE",
+        mode: "cors",
         headers: {
             'Content-Type': 'application/json'
         }
@@ -32,6 +35,7 @@ export function deleteUser(id) {
 export function fetchSongList() {
     return fetch(`${apiPath}/song-list`, {
         method: "GET",
+        mode: "cors",
         headers: {
             'Content-Type': 'application/json'
         },
@@ -41,6 +45,7 @@ export function fetchSongList() {
 export function addSong(data) {
     return fetch(`${apiPath}/song-list`, {
         method: "POST",
+        mode: "cors",
         headers: {
             'Content-Type': 'application/json'
         },

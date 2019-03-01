@@ -13,6 +13,7 @@ export default function login(data) {
             return fetch(`${base}/login`, {
                 method: "POST",
                 withCredentials: true,
+                mode: "cors",
             //   credentials: "include",
                 headers: {
                     'Content-Type': 'application/json',
@@ -25,6 +26,7 @@ export default function login(data) {
     } else {
         return fetch(`${base}/login`, {
             method: "POST",
+            mode: "cors",
            // withCredentials: true,
           //  credentials: "include",
             headers: {

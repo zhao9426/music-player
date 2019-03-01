@@ -18,7 +18,6 @@ import TodoList from "../page/TodoList";
 import MPLayout from '../layout'
 
 
-
 export default class Root extends Component {
     constructor(props) {
         super(props)
@@ -27,20 +26,48 @@ export default class Root extends Component {
     render() {
         const { history } = this.props
         return (
-            <Router history={history}>
+          <Router history={history}>
             <MPLayout {...this.props}>
-                    <Switch>
-                        <Route exact path="/" component={Home} />
-                        <Route exact path="/song/list" component={SongSheet} />
-                        <Route exact path="/play" component={Play} />
-                        <Route exact path="/playlist" component={PlayList} />
-                        <Route path="/manage" render={(props) => <ManagePage mstore={mstore} {...props}></ManagePage>}/>
-                        <Route exact path="/manage/add/user" render={(props) => <AddUserPage mstore={mstore} {...props} />} />
-                        <Route exact path="/test" render={() => <Test cache={store.cache} refresh={store.refresh} />} />
-                        <Route exact path="/todo" render={() => <TodoList store={store2} />} />
-                    </Switch> 
+              <Switch>
+                <Route exact path="/" component={Home} />
+                <Route exact path="/song/list" component={SongSheet} />
+                <Route exact path="/play" component={Play} />
+                <Route exact path="/playlist" component={PlayList} />
+                {/* <Route
+                  exact
+                  path="/manage/add/user"
+                  render={props => (
+                    <AddUserPage mstore={mstore} {...props} />
+                  )}
+                /> */}
+                <Route
+                  path="/manage"
+                  render={props => (
+                    <ManagePage mstore={mstore} {...props} />
+                  )}
+                />
+                {/* <Route
+                  exact
+                  path="/manage/users"
+                  render={props => (
+                    <ManagePage mstore={mstore} {...props} />
+                  )}
+                /> */}
+                <Route
+                  exact
+                  path="/test"
+                  render={() => (
+                    <Test cache={store.cache} refresh={store.refresh} />
+                  )}
+                />
+                <Route
+                  exact
+                  path="/todo"
+                  render={() => <TodoList store={store2} />}
+                />
+              </Switch>
             </MPLayout>
-        </Router>
+          </Router>
         );
     }
 }

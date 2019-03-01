@@ -55,7 +55,7 @@ class Store {
     @action deleteUser(user){
         ManageService.deleteUser(user.id).then( res => {
             console.log(res, "res");
-            getUserList();
+            this.getUserList();
         })
         // console.log(user.name,'kk');
         // let index = this.userList.findIndex(u => u.id === user.id);

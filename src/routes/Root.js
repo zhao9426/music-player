@@ -5,6 +5,7 @@ import ManagePage from '../page/ManagePage';
 import AddUserPage from '../page/AddUserPage';
 import SongSheet from "../page/songsheet";
 import Play from "../page/play";
+import Player from "../page/Player";
 import PlayList from "../page/playList";
 // import Register from "./login/login";
 import store from "../store";
@@ -31,6 +32,7 @@ export default class Root extends Component {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/song/list" component={SongSheet} />
+                {/* <Route exact path="/player" component={Player} /> */}
                 <Route exact path="/play" component={Play} />
                 <Route exact path="/playlist" component={PlayList} />
                 {/* <Route

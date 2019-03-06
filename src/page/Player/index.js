@@ -10,7 +10,7 @@ export class Player extends Component {
   render() {
     return (
       <div>
-        <MusicVisualizer/>>
+        <MusicVisualizer/>
       </div>
     )
   }

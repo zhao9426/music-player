@@ -32,7 +32,7 @@ export default class Root extends Component {
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/song/list" component={SongSheet} />
-                {/* <Route exact path="/player" component={Player} /> */}
+                <Route exact path="/player" component={Player} />
                 <Route exact path="/play" component={Play} />
                 <Route exact path="/playlist" component={PlayList} />
                 {/* <Route

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Router, Route, Switch } from "react-router";
-import Home from "../page/home";
+import HomePage from "../page/HomePage";
 import ManagePage from '../page/ManagePage';
 import AddUserPage from '../page/AddUserPage';
 import SongSheet from "../page/songsheet";
@@ -30,31 +30,17 @@ export default class Root extends Component {
           <Router history={history}>
             <MPLayout {...this.props}>
               <Switch>
-                <Route exact path="/" component={Home} />
+                <Route exact path="/" component={HomePage} />
                 <Route exact path="/song/list" component={SongSheet} />
                 <Route exact path="/player" component={Player} />
                 <Route exact path="/play" component={Play} />
                 <Route exact path="/playlist" component={PlayList} />
-                {/* <Route
-                  exact
-                  path="/manage/add/user"
-                  render={props => (
-                    <AddUserPage mstore={mstore} {...props} />
-                  )}
-                /> */}
                 <Route
                   path="/manage"
                   render={props => (
                     <ManagePage mstore={mstore} {...props} />
                   )}
                 />
-                {/* <Route
-                  exact
-                  path="/manage/users"
-                  render={props => (
-                    <ManagePage mstore={mstore} {...props} />
-                  )}
-                /> */}
                 <Route
                   exact
                   path="/test"

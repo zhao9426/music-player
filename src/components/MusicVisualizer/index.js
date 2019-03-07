@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Slider, Switch  } from "antd";
 import MusicPlayer from '../../utils/MusicVisualizer';
 import { random } from "../../utils/random";
+import "./style.less";
 
 const urls = [
   {
@@ -29,13 +30,15 @@ export class MusicVisualizer extends Component {
              volum: 0,
              type: "dot",
              size: 128,
-             height: 0,
-             width: 0
+             height: 200,
+             width: 100
            };
            this.Dots = [];
            this.CTX = null;
+           this.CANVAS = null;
            this.MV = null;
            this.draw = this.draw.bind(this);
+           this.resize = this.resize.bind(this);
          }
 
          handleChangeSlider(volum) {
@@ -62,34 +65,46 @@ export class MusicVisualizer extends Component {
          }
 
          componentDidMount() {
+           this.CANVAS = this.refs.MUSIC_PLAYER;
            this.CTX = this.refs.MUSIC_PLAYER.getContext("2d");
-           let height = this.refs.MUSIC_PLAYER.clientHeight;
-           let width = this.refs.MUSIC_PLAYER.clientWidth;
+           let height = this.refs.PLAYLOAD.clientHeight;
+           let width = this.refs.PLAYLOAD.clientWidth;
            this.setState({
              height,
              width
+           }, ()=> {
+              this.getDots();
+              this.resize();
            });
             this.MV = new MusicPlayer({
                size: 128,
                visualizer: this.draw
              });
-           this.getDots();
-           this.resize();
-           console.log(height, width, "refs");
+          
+           window.addEventListener('resize', this.resize);
+         }
+
+         componentWillMount() {
+            this.MV = null;
+            window.removeEventListener("resize", this.resize);
          }
 
          resize() {
-           let { height } = this.state;
-           //  height = box.clientHeight;
-           //  width = box.clientWidth;
-           //  canvas.height = height;
-           //  canvas.width = width;
+          let height = this.refs.PLAYLOAD.clientHeight;
+          let width = this.refs.PLAYLOAD.clientWidth;
+           this.setState({
+             height,
+             width
+           });             
+           this.CANVAS.width = width;
+           this.CANVAS.height = height;
            this.line = this.CTX.createLinearGradient(0, 0, 0, height);
            this.line.addColorStop(0, "red");
            this.line.addColorStop(0.5, "yellow");
            this.line.addColorStop(1, "green");
            this.getDots();
          }
+
 
          getDots() {
            const { size, height, width } = this.state;
@@ -183,8 +198,8 @@ export class MusicVisualizer extends Component {
                  />
                </div>
 
-               <div className="player">
-                 <canvas ref="MUSIC_PLAYER" height={200} />
+               <div className="player" ref="PLAYLOAD">
+                 <canvas ref="MUSIC_PLAYER" />
                </div>
                <div>
                  <Slider

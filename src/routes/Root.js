@@ -2,8 +2,10 @@ import React, { Component } from "react";
 import { Router, Route, Switch } from "react-router";
 import HomePage from "../page/HomePage";
 import BankPage from "../page/BankPage";
+import MyMusicPage from "../page/MyMusicPage";
 import ManagePage from '../page/ManagePage';
 import AddUserPage from '../page/AddUserPage';
+import RegisterPage from "../page/RegisterPage";
 import SongSheet from "../page/songsheet";
 import Play from "../page/play";
 import Player from "../page/Player";
@@ -33,6 +35,16 @@ export default class Root extends Component {
               <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route exact path="/bank" component={BankPage} />
+                <Route
+                  exact
+                  path="/register"
+                  component={RegisterPage}
+                />
+                <Route
+                  exact
+                  path="/my"
+                  component={MyMusicPage}
+                />
                 <Route exact path="/song/list" component={SongSheet} />
                 <Route exact path="/player" component={Player} />
                 <Route exact path="/play" component={Play} />

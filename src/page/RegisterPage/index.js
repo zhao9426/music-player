@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { Layout, Row, Col } from 'antd';
-import LeftHead from "../components/LeftHead";
-import RightHead from "../components/RightHead";
-import RegisterB from "../components/RegisterB";
+import RegisterB from "../../components/RegisterB";
 import "./register.less";
 
 const {

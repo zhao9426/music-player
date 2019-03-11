@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Router, Route, Switch } from "react-router";
 import HomePage from "../page/HomePage";
+import BankPage from "../page/BankPage";
 import ManagePage from '../page/ManagePage';
 import AddUserPage from '../page/AddUserPage';
 import SongSheet from "../page/songsheet";
@@ -31,6 +32,7 @@ export default class Root extends Component {
             <MPLayout {...this.props}>
               <Switch>
                 <Route exact path="/" component={HomePage} />
+                <Route exact path="/bank" component={BankPage} />
                 <Route exact path="/song/list" component={SongSheet} />
                 <Route exact path="/player" component={Player} />
                 <Route exact path="/play" component={Play} />

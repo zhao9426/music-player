@@ -53,12 +53,12 @@ export default class MPLaylout extends Component {
     render() {
         const { visible } = this.state
         return (
-                <Layout className="home-page">
+                <Layout className="main-layout">
                     <Header theme="light" className="home-header">
                         <LeftHead />
                         <RightHead showLogin={this.showLogin.bind(this)} />
                     </Header>
-                    <Content className="home-content">
+                    <Content className="main-content">
                         <Layout hasSider className="main">
                             {this.props.children}
                         </Layout>

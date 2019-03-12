@@ -53,27 +53,32 @@ export default class MPLaylout extends Component {
     render() {
         const { visible } = this.state
         return (
-                <Layout className="main-layout">
-                    <Header theme="light" className="home-header">
-                        <LeftHead />
-                        <RightHead showLogin={this.showLogin.bind(this)} />
-                    </Header>
-                    <Content className="main-content">
-                        <Layout hasSider className="main">
-                            {this.props.children}
-                        </Layout>
-                    </Content>
-                    <Footer />
-                    <Modal visible={visible} 
-                        title="登陆"
-                        destroyOnClose
-                        footer={null}
-                        onOk={this.hideLogin.bind(this)}
-                        onCancel={this.hideLogin.bind(this)}
-                    >
-                        <LoginForm login={this.login.bind(this)}/>
-                    </Modal>
-                </Layout>
+          <Layout className="main-layout">
+            <Header theme="light" className="home-header">
+              <LeftHead />
+              <RightHead showLogin={this.showLogin.bind(this)} />
+            </Header>
+            <Content className="main-content">
+              <Layout hasSider className="main">
+                {this.props.children}
+              </Layout>
+            </Content>
+            <Footer className="footer">
+              <div>
+                Panpan Music Player &copy; Created by ZhaoPanpan
+              </div>
+            </Footer>
+            <Modal
+              visible={visible}
+              title="登陆"
+              destroyOnClose
+              footer={null}
+              onOk={this.hideLogin.bind(this)}
+              onCancel={this.hideLogin.bind(this)}
+            >
+              <LoginForm login={this.login.bind(this)} />
+            </Modal>
+          </Layout>
         );
     }
 }

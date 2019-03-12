@@ -58,7 +58,7 @@ class Login extends Component {
               登录
             </Button>
           </FormItem>
-          <a href="">现在去注册!</a>
+          <a href="/register">现在去注册!</a>
         </Form>
       </Fragment>
     )

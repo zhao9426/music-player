@@ -1,36 +1,21 @@
 import React, { Component } from "react";
 import { Layout, Row, Col } from 'antd';
-import RegisterB from "../../components/RegisterB";
-import "./register.less";
+import Register from "../../components/Register";
 
 const {
     Header, Footer, Content, Sider
 } = Layout;
 
-export default class Register extends Component {
+export default class RegisterPage extends Component {
     render() {
         return (
-                <Content className="register-content">
-                    <Layout hasSider>
-                        <Content>
-                            <div className="gutter-example">
-                                <Row gutter={16}>
-                                    <Col className="gutter-row" span={2}>
-                                        <div className="gutter-box"></div>
-                                    </Col>
-                                    <Col className="gutter-row" span={20}>
-                                        <div className="gutter-box">
-                                            <RegisterB />
-                                        </div>
-                                    </Col>
-                                    <Col className="gutter-row" span={2}>
-                                        <div className="gutter-box"></div>
-                                    </Col>
-                                </Row>
-                            </div>
-                        </Content>
-                    </Layout>
-                </Content>
-        )
+          <Content className="register-content">
+            <Layout hasSider>
+              <Content>
+                <Register/>
+              </Content>
+            </Layout>
+          </Content>
+        );
     }
 }

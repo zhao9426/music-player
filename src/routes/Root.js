@@ -6,10 +6,10 @@ import MyMusicPage from "../page/MyMusicPage";
 import ManagePage from '../page/ManagePage';
 import AddUserPage from '../page/AddUserPage';
 import RegisterPage from "../page/RegisterPage";
-import SongSheet from "../page/songsheet";
-import Play from "../page/play";
+// import SongSheet from "../page/songsheet";
+// import Play from "../page/play";
 import Player from "../page/Player";
-import PlayList from "../page/playList";
+// import PlayList from "../page/playList";
 // import Register from "./login/login";
 import store from "../store";
 import store2 from "../store2";
@@ -45,10 +45,10 @@ export default class Root extends Component {
                   path="/my"
                   component={MyMusicPage}
                 />
-                <Route exact path="/song/list" component={SongSheet} />
+                {/* <Route exact path="/song/list" component={SongSheet} /> */}
                 <Route exact path="/player" component={Player} />
-                <Route exact path="/play" component={Play} />
-                <Route exact path="/playlist" component={PlayList} />
+                {/* <Route exact path="/play" component={Play} /> */}
+                {/* <Route exact path="/playlist" component={PlayList} /> */}
                 <Route
                   path="/manage"
                   render={props => (

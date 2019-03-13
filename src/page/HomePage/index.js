@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import { Layout, Row, Col, Card, Carousel } from "antd";
-import LeftHead from "../../layout/LeftHead";
+// import LeftHead from "../../layout/LeftHead";
 import RightHead from "../../layout/RightHead";
 import TopCarousel from "../../components/TopCarousel";
-import SongList from "../../components/SongList";
-import InSinger from "../../components/InSinger";
-import NewSong from "../../components/NewSong";
-import HotSinger from "../../components/HotSinger";
+// import SongList from "../../components/SongList";
+// import InSinger from "../../components/InSinger";
+// import NewSong from "../../components/NewSong";
+// import HotSinger from "../../components/HotSinger";
 import "./home.less";
 
 const {

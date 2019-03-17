@@ -6,19 +6,19 @@ import {
 import { observer, PropTypes as ObservablePropTypes } from "mobx-react";
 import PropTypes from "prop-types";
 import MangeList from "./MangeList";
-import AddUser from "../AddUserPage";
+import AddOrEditUserPage from "../AddOrEditUserPage";
 
 
 @observer
 class ManagePage extends Component {
   render() {
-    const { mstore, match } = this.props;    
+    const { mstore, match, history, location } = this.props;    
     return (
       <div className="wrapper">
         <Switch>
           <Route
-            path={`${match.url}/add/user`}
-            render={props => <AddUser mstore={mstore} {...props} />}
+            path={`${match.url}/:option/user`}
+            render={props => <AddOrEditUserPage mstore={mstore} {...props}/>}
           />
           <Route
             path={`${match.url}`}

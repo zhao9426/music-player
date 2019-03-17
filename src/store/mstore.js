@@ -10,11 +10,11 @@ import {
 import ManageService  from '../services/manageService';
 
 class Store {
-   // @observable todos = [];
-    @observable userList = [];
-    @observable songList = [];
+  // @observable todos = [];
+  @observable userList = [];
+  @observable songList = [];
 
-/*     disposers = [];
+  /*     disposers = [];
     constructor() {
         observe(this.todos, change => {
             this.disposers.forEach(disposer => disposer());
@@ -31,46 +31,46 @@ class Store {
         });
     } */
 
-    @action.bound getUserList(){
-        ManageService.fetchUserList().then(list => {
-            this.userList = observable.array(list);
-        });
-    }
+  @action.bound getUserList() {
+    ManageService.fetchUserList().then(list => {
+      this.userList = observable.array(list);
+    });
+  }
 
-    @action.bound getSongList() {
-        ManageService.fetchSongList().then(res => {
-            this.songList = res.data;
-        });
-    }
+  @action.bound createUser(user, callback) {
+    ManageService.addUser(user).then(res => {
+      callback(res)
+    });
+  }
 
-    @action.bound createUser(user, callback){
-        ManageService.addUser(user).then( user => {
-            this.userList.push(user);
-            if(user && callback){
-                callback(user)
-            }
-        })
-    }
+  @action.bound updateUser(id, user, callback) {
+      ManageService.updateUser(id, user).then(res => {
+        callback(res)
+      });
+  }
 
-    @action deleteUser(user){
-        ManageService.deleteUser(user.id).then( res => {
-            console.log(res, "res");
-            this.getUserList();
-        })
-        // console.log(user.name,'kk');
-        // let index = this.userList.findIndex(u => u.id === user.id);
-        // if(index !== -1){
-        //     let u = this.userList.splice(index, 1);
-        //     console.log(u);
-            
-        // }
+  @action deleteUser(user) {
+    ManageService.deleteUser(user.id).then(res => {
+      this.getUserList();
+    });
+    let s = this.userList.remove(user);
+  }
 
-       let s = this.userList.remove(user);
-       console.log(s, "dd");
-       
-    }
+  @action.bound getSongList() {
+    ManageService.fetchSongList().then(res => {
+      this.songList = res.data;
+    });
+  }
 
-/*     save() {
+  @action.bound deleteSong(song){
+      ManageService.deleteSong(song.id).then(res => {
+          console.log(res);
+          this.getSongList();
+          
+      })
+  }
+
+  /*     save() {
         localStorage.setItem('todos', JSON.stringify(toJS(this.todos)));
         console.log(toJS(this.todos));
     }

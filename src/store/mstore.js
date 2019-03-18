@@ -11,8 +11,9 @@ import ManageService  from '../services/manageService';
 
 class Store {
   // @observable todos = [];
-  @observable userList = [];
-  @observable songList = [];
+  @observable userList = []; // 用户列表
+  @observable songList = []; // 歌曲列表
+  @observable songListList = []; // 歌单列表
 
   /*     disposers = [];
     constructor() {
@@ -30,44 +31,56 @@ class Store {
             // console.log(change);   
         });
     } */
-
+  // 获取用户列表
   @action.bound getUserList() {
     ManageService.fetchUserList().then(list => {
       this.userList = observable.array(list);
     });
   }
-
+  // 创建用户
   @action.bound createUser(user, callback) {
     ManageService.addUser(user).then(res => {
-      callback(res)
+      callback(res);
     });
   }
-
+  // 更新用户
   @action.bound updateUser(id, user, callback) {
-      ManageService.updateUser(id, user).then(res => {
-        callback(res)
-      });
+    ManageService.updateUser(id, user).then(res => {
+      callback(res);
+    });
   }
-
+  // 删除用户
   @action deleteUser(user) {
     ManageService.deleteUser(user.id).then(res => {
       this.getUserList();
     });
     let s = this.userList.remove(user);
   }
-
+  // 获取歌曲列表
   @action.bound getSongList() {
     ManageService.fetchSongList().then(res => {
       this.songList = res.data;
     });
   }
-
-  @action.bound deleteSong(song){
-      ManageService.deleteSong(song.id).then(res => {
-          console.log(res);
-          this.getSongList();
-          
-      })
+  // 删除歌曲
+  @action.bound deleteSong(song) {
+    ManageService.deleteSong(song.id).then(res => {
+      console.log(res);
+      this.getSongList();
+    });
+  }
+  // 获取歌单列表
+  @action.bound getSongListList() {
+    ManageService.fetchSongListList().then(res => {
+      this.songList = res.data;
+    });
+  }
+  // 删除歌单
+  @action.bound deleteSongList(song) {
+    ManageService.deleteSongList(song.id).then(res => {
+      console.log(res);
+      this.getSongList();
+    });
   }
 
   /*     save() {

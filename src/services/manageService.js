@@ -45,7 +45,7 @@ export function deleteUser(id) {
 }
 
 // 获取歌单列表
-export function fetchSongList() {
+export function fetchSongListList() {
   return fetch(`${apiPath}/song-list`, {
     method: "GET",
     mode: "cors",
@@ -56,7 +56,7 @@ export function fetchSongList() {
 }
 
 // 创建歌单
-export function addSong(data) {
+export function addSongList(data) {
   return fetch(`${apiPath}/song-list`, {
     method: "POST",
     mode: "cors",
@@ -68,8 +68,42 @@ export function addSong(data) {
 }
 
 // 删除歌单
-export function deleteSong(id) {
+export function deleteSongList(id) {
   return fetch(`${apiPath}/song-list/${id}`, {
+    method: "DELETE",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).then(res => res.json());
+}
+
+// 获取歌曲列表
+export function fetchSongList() {
+  return fetch(`${apiPath}/song`, {
+    method: "GET",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).then(res => res.json());
+}
+
+// 创建歌曲
+export function addSong(data) {
+  return fetch(`${apiPath}/song`, {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  }).then(res => res.json());
+}
+
+// 删除歌曲
+export function deleteSong(id) {
+  return fetch(`${apiPath}/song/${id}`, {
     method: "DELETE",
     mode: "cors",
     headers: {
@@ -83,6 +117,9 @@ export default {
   addUser,
   updateUser,
   deleteUser,
+  fetchSongListList,
+  addSongList,
+  deleteSongList,
   fetchSongList,
   addSong,
   deleteSong

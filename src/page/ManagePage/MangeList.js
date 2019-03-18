@@ -10,17 +10,18 @@ import { observer, PropTypes as ObservablePropTypes } from 'mobx-react';
 import { toJS } from 'mobx';
 import ManageUserTable from './ManageUserTable';
 import ManageSongListTable from './ManageSongListTable';
+import ManageSongTable from "./ManageSongTable";
 import PropTypes from 'prop-types';
 const { TabPane } = Tabs;
 const { Search } = Input;
 
 const manageTab = [
   { key: "users", label: "用户管理" },
-  { key: "singer", label: "歌手管理" },
+  // { key: "singer", label: "歌手管理" },
   { key: "songs", label: "歌曲管理" },
   { key: "songs-list", label: "歌单管理" },
-  { key: "banner", label: "广告图管理" },
-  { key: "tags", label: "标签管理" }
+  // { key: "banner", label: "广告图管理" },
+  // { key: "tags", label: "标签管理" }
 ];
 
 @observer
@@ -76,9 +77,14 @@ export class ManageList extends Component {
     mstore.deleteUser(user);
   }
 
-  editUser(user){
+  editUser(user) {
     const { mstore, history, match } = this.props;
     history.push(`${match.url}/edit/user`, toJS(user));
+  }
+
+  deleteSongList(sl) {
+    const { mstore } = this.props;
+    mstore.deleteSongList(sl);
   }
 
   deleteSong(song) {
@@ -88,7 +94,7 @@ export class ManageList extends Component {
 
   render() {
     const { mstore } = this.props;
-    const { userList, songList } = this.props.mstore;
+    const { userList, songList, songListList } = this.props.mstore;
     const { match } = this.props;
     const { currentTab } = this.state;
 
@@ -124,11 +130,21 @@ export class ManageList extends Component {
           />
           <Route
             exact
-            path={`${match.url}/songs`}
+            path={`${match.url}/song`}
             render={props => (
-              <ManageSongListTable
+              <ManageSongListListTable
                 list={songList}
                 deleteSong={this.deleteSong.bind(this)}
+              />
+            )}
+          />
+          <Route
+            exact
+            path={`${match.url}/song-list`}
+            render={props => (
+              <ManageSongListListTable
+                list={songListList}
+                deleteSongList={this.deleteSongList.bind(this)}
               />
             )}
           />

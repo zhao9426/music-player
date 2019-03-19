@@ -19,7 +19,7 @@ const manageTab = [
   { key: "users", label: "用户管理" },
   // { key: "singer", label: "歌手管理" },
   { key: "songs", label: "歌曲管理" },
-  { key: "songs-list", label: "歌单管理" },
+  { key: "song-list", label: "歌单管理" },
   // { key: "banner", label: "广告图管理" },
   // { key: "tags", label: "标签管理" }
 ];
@@ -55,10 +55,20 @@ export class ManageList extends Component {
 
   changeTab(currentTab) {
     const { mstore, history } = this.props;
-    if (currentTab == "users") {
-      mstore.getUserList();
-    } else {
-      mstore.getSongList();
+    console.log(currentTab, ">>>");
+    
+    switch (currentTab) {
+      case "users":
+         mstore.getUserList();
+         break;
+      case "song-list":
+        mstore.getSongListList();
+        break;
+      case "songs":
+        mstore.getSongList();
+        break;
+      default:
+        console.log("default");
     }
     history.push(`/manage/${currentTab}`);
 
@@ -132,7 +142,7 @@ export class ManageList extends Component {
             exact
             path={`${match.url}/song`}
             render={props => (
-              <ManageSongListListTable
+              <ManageSongTable
                 list={songList}
                 deleteSong={this.deleteSong.bind(this)}
               />
@@ -142,7 +152,7 @@ export class ManageList extends Component {
             exact
             path={`${match.url}/song-list`}
             render={props => (
-              <ManageSongListListTable
+              <ManageSongListTable
                 list={songListList}
                 deleteSongList={this.deleteSongList.bind(this)}
               />

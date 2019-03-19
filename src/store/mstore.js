@@ -71,8 +71,8 @@ class Store {
   }
   // 获取歌单列表
   @action.bound getSongListList() {
-    ManageService.fetchSongListList().then(res => {
-      this.songList = res.data;
+    ManageService.fetchSongListList().then(res => { 
+      this.songListList = res.data;
     });
   }
   // 删除歌单

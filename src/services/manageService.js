@@ -67,6 +67,18 @@ export function addSongList(data) {
   }).then(res => res.json());
 }
 
+// 更新歌单信息
+export function updateSongList(id, data) {
+  return fetch(`${apiPath}/song-list/${id}`, {
+      method: "PUT",
+      mode: "cors",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+  }).then(res => res.json());
+}
+
 // 删除歌单
 export function deleteSongList(id) {
   return fetch(`${apiPath}/song-list/${id}`, {
@@ -98,6 +110,18 @@ export function addSong(data) {
       "Content-Type": "application/json"
     },
     body: JSON.stringify(data)
+  }).then(res => res.json());
+}
+
+// 更新歌曲信息
+export function updateSong(id, data) {
+  return fetch(`${apiPath}/song/${id}`, {
+      method: "PUT",
+      mode: "cors",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
   }).then(res => res.json());
 }
 

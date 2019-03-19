@@ -7,7 +7,7 @@ import "./addOrEditUserPage.less";
 const { Item } = Form;
 
 @observer
-class AddOrEditSongListPage extends Component {
+class AddOrEditSongPage extends Component {
   state = {
     option: "add",
     type: "text"
@@ -19,21 +19,21 @@ class AddOrEditSongListPage extends Component {
     this.props.form.validateFields((err, values) => {
       if (!err) {
         if ("add" === option) {
-          mstore.createSongList(values, res => {
+          mstore.createSong(values, res => {
             if (res.success) {
               message.info("歌曲创建成功！");
               setTimeout(() => {
-                history.push(`/manage/songs`);
+                history.push(`/manage`);
               }, 1000);
             }
           });
         } else if ("edit" === option) {
-          let song = location.state;
-          mstore.updateSongList(song.id, values, res => {
+          let user = location.state;
+          mstore.updateSong(user.id, values, res => {
             if (res.success) {
               message.success("歌曲信息修改成功！",1);
               setTimeout(() => {
-                history.push(`/manage/songs`);
+                history.push(`/manage`);
               }, 1000);
             }
           });
@@ -49,12 +49,6 @@ class AddOrEditSongListPage extends Component {
     history.goBack();
   }
 
-  changeType() {
-    this.setState({
-      type: "password"
-    });
-  }
-
   componentDidMount() {
     const { match, location, form } = this.props;
     let { option } = match.params;
@@ -62,13 +56,15 @@ class AddOrEditSongListPage extends Component {
       let song = location.state;
       this.setState(
         {
-          type: "password",
           option: option
         },
         () => {
           form.setFieldsValue({
-            name: user.name,
-            pwd: user.pwd
+            name: song.name,
+            author: song.author,
+            favorite: song.favorite,
+            count: song.count,
+            description: song.description
           });
         }
       );
@@ -103,61 +99,28 @@ class AddOrEditSongListPage extends Component {
         className="wrapper-add-user"
         onSubmit={this.handleSubmit.bind(this)}
       >
-        <Item label="歌单名" {...itemLayout}>
+        <Item label="歌名" {...itemLayout}>
           {getFieldDecorator("name", {
             rulse: [
               {
                 required: true,
-                message: "请输入歌单名"
+                message: "请输入歌名"
               }
             ]
-          })(<Input placeholder="歌单名" autoComplete="off" />)}
+          })(<Input placeholder="歌名" autoComplete="off" />)}
         </Item>
-        <Item label="歌单封面" {...itemLayout}>
-          {getFieldDecorator("poster", {
+        <Item label="作者" {...itemLayout}>
+          {getFieldDecorator("singer", {
             rulse: [
               {
                 required: true,
-                message: "请输入歌单封面"
+                message: "请输入作者"
               }
             ]
           })(
             <Input
               type={type}
-              placeholder="歌单封面"
-              autoComplete="off" 
-            />
-          )}
-        </Item>
-        <Item label="歌单作者" {...itemLayout}>
-          {getFieldDecorator("author", {
-            rulse: [
-              {
-                required: true,
-                message: "请输入歌单作者"
-              }
-            ]
-          })(
-            <Input
-              type={type}
-              placeholder="歌单作者"
-              autoComplete="off" 
-            />
-          )}
-        </Item>
-        <Item label="播放数量" {...itemLayout}>
-          {getFieldDecorator("count", {
-            rulse: [
-              {
-                required: true,
-                message: "请输入播放数量"
-              }
-            ]
-          })(
-            <Input
-              type={type}
-              placeholder="专辑"
-              autoComplete="off" 
+              placeholder="作者"
             />
           )}
         </Item>
@@ -173,55 +136,51 @@ class AddOrEditSongListPage extends Component {
             <Input
               type={type}
               placeholder="收藏数"
-              autoComplete="off" 
             />
           )}
         </Item>
-        <Item label="简介" {...itemLayout}>
-          {getFieldDecorator("description", {
+        <Item label="播放数" {...itemLayout}>
+          {getFieldDecorator("count", {
             rulse: [
               {
                 required: true,
-                message: "请输入简介"
+                message: "请输入播放数"
               }
             ]
           })(
             <Input
               type={type}
-              placeholder="简介"
-              autoComplete="off" 
+              placeholder="播放数"
+            />
+          )}
+        </Item>
+        <Item label="描述" {...itemLayout}>
+          {getFieldDecorator("description", {
+            rulse: [
+              {
+                required: true,
+                message: "请输入描述"
+              }
+            ]
+          })(
+            <Input
+              type={type}
+              placeholder="描述"
             />
           )}
         </Item>
         <Item label="创建时间" {...itemLayout}>
-          {getFieldDecorator("created_At", {
+          {getFieldDecorator("created_at", {
             rulse: [
               {
                 required: true,
-                message: "请输入创建时间"
+                message: "请输入创建"
               }
             ]
           })(
             <Input
               type={type}
               placeholder="创建时间"
-              autoComplete="off" 
-            />
-          )}
-        </Item>
-        <Item label="更新时间" {...itemLayout}>
-          {getFieldDecorator("updated_At", {
-            rulse: [
-              {
-                required: true,
-                message: "请输入更新时间"
-              }
-            ]
-          })(
-            <Input
-              type={type}
-              placeholder="更新时间"
-              onClick={this.changeType.bind(this)}
             />
           )}
         </Item>
@@ -240,4 +199,4 @@ class AddOrEditSongListPage extends Component {
   }
 }
 
-export default Form.create()(AddOrEditSongListPage);
+export default Form.create()(AddOrEditSongPage);

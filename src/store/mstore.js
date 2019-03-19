@@ -56,10 +56,23 @@ class Store {
     });
     let s = this.userList.remove(user);
   }
+
   // 获取歌曲列表
   @action.bound getSongList() {
     ManageService.fetchSongList().then(res => {
-      this.songList = res.data;
+      this.songList = res;
+    });
+  }
+  //创建歌曲列表
+  @action.bound createSong(user, callback) {
+    ManageService.addSong(user).then(res => {
+      callback(res);
+    });
+  }
+  // 更新歌曲
+  @action.bound updateSong(id, song, callback) {
+    ManageService.updateSong(id, song).then(res => {
+      callback(res);
     });
   }
   // 删除歌曲
@@ -69,15 +82,28 @@ class Store {
       this.getSongList();
     });
   }
+
   // 获取歌单列表
   @action.bound getSongListList() {
     ManageService.fetchSongListList().then(res => { 
       this.songListList = res.data;
     });
   }
+  //创建歌单列表
+  @action.bound createSongList(songlist, callback) {
+    ManageService.addSongList(songlist).then(res => {
+      callback(res);
+    });
+  }
+   // 更新歌单
+   @action.bound updateSongList(id, song, callback) {
+    ManageService.updateSongList(id, song).then(res => {
+      callback(res);
+    });
+  }
   // 删除歌单
-  @action.bound deleteSongList(song) {
-    ManageService.deleteSongList(song.id).then(res => {
+  @action.bound deleteSongList(songlist) {
+    ManageService.deleteSongList(songlist.id).then(res => {
       console.log(res);
       this.getSongList();
     });
@@ -116,14 +142,14 @@ class Store {
     }
 }
  */
-class User {
+/* class User {
     id
     @observable name;
     @observable pwd;
     @observable created_at;
     @observable updated_at;
 }
-
+ */
 const mstore = new Store();
 
 export default mstore;

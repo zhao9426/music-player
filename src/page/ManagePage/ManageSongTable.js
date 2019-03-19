@@ -19,8 +19,9 @@ export class ManageSongTable extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { list } = this.props;
+    console.log(toJS(list));
+    
     const column = [
       {
         title: "ID",

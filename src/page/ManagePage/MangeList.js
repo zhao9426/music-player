@@ -79,7 +79,13 @@ export class ManageList extends Component {
 
   handleAdd(currentTab) {
     const { history } = this.props;
-    history.push(`/manage/add/user`);
+    switch(currentTab){
+      case "users": history.push(`/manage/add/user`);
+      break;
+      case "song-list": history.push(`/manage/add/song-list`);
+      break;
+      case "songs": history.push(`/manage/add/songs`);
+    }
   }
 
   deleteUser(user) {
@@ -107,7 +113,7 @@ export class ManageList extends Component {
     const { userList, songList, songListList } = this.props.mstore;
     const { match } = this.props;
     const { currentTab } = this.state;
-
+    console.log(this.props, ">>>>>")
     return (
       <div>
         <Tabs defaultActiveKey={"users"} onChange={this.changeTab.bind(this)}>
@@ -140,7 +146,7 @@ export class ManageList extends Component {
           />
           <Route
             exact
-            path={`${match.url}/song`}
+            path={`${match.url}/songs`}
             render={props => (
               <ManageSongTable
                 list={songList}

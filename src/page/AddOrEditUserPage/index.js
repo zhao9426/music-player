@@ -47,7 +47,7 @@ class AddOrEditUserPage extends Component {
 
   cancelOption() {
     const { history } = this.props;
-    history.goBack();
+    history.replace(`/manage`,{to: "users"});
   }
 
   changeType() {

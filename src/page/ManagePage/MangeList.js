@@ -42,10 +42,32 @@ export class ManageList extends Component {
   };
 
   componentDidMount() {
-    const { mstore, history } = this.props;
+    const { mstore, history, location, match } = this.props;
     const { currentTab } = this.state;
-    mstore.getUserList();
-    history.push(`/manage/${currentTab}`);
+    console.log(location);
+    
+    let state  = location.state;
+    let to = (state && state.to) ? state.to : currentTab;
+    console.log(to);
+    
+    switch (to) {
+      case "users":
+        mstore.getUserList();
+        break;
+      case "song-list":
+        mstore.getSongListList();
+        break;
+      case "songs":
+        mstore.getSongList();
+        break;
+      default:
+        console.log("default");
+    }
+    this.setState({
+      currentTab: to
+    },()=> {
+      history.push(`/manage/${to}`);
+    })
   }
 
   deleteUser(user) {
@@ -55,12 +77,10 @@ export class ManageList extends Component {
 
   changeTab(currentTab) {
     const { mstore, history } = this.props;
-    console.log(currentTab, ">>>");
-    
     switch (currentTab) {
       case "users":
-         mstore.getUserList();
-         break;
+        mstore.getUserList();
+        break;
       case "song-list":
         mstore.getSongListList();
         break;
@@ -79,12 +99,15 @@ export class ManageList extends Component {
 
   handleAdd(currentTab) {
     const { history } = this.props;
-    switch(currentTab){
-      case "users": history.push(`/manage/add/user`);
-      break;
-      case "song-list": history.push(`/manage/add/song-list`);
-      break;
-      case "songs": history.push(`/manage/add/songs`);
+    switch (currentTab) {
+      case "users":
+        history.push(`/manage/add/user`);
+        break;
+      case "song-list":
+        history.push(`/manage/add/song-list`);
+        break;
+      case "songs":
+        history.push(`/manage/add/songs`);
     }
   }
 
@@ -93,9 +116,21 @@ export class ManageList extends Component {
     mstore.deleteUser(user);
   }
 
-  editUser(user) {
+  update(type, data){
     const { mstore, history, match } = this.props;
-    history.push(`${match.url}/edit/user`, toJS(user));
+    switch (type) {
+      case "users":
+        history.push(`${match.url}/edit/user`, toJS(data));
+        break;
+      case "songs":
+        history.push(`${match.url}/edit/songs`, toJS(data));
+        break;
+      case "song-list":
+        history.push(`${match.url}/edit/song-list`, toJS(data));
+        break;
+      default:
+        break;
+    }
   }
 
   deleteSongList(sl) {
@@ -113,10 +148,13 @@ export class ManageList extends Component {
     const { userList, songList, songListList } = this.props.mstore;
     const { match } = this.props;
     const { currentTab } = this.state;
-    console.log(this.props, ">>>>>")
     return (
       <div>
-        <Tabs defaultActiveKey={"users"} onChange={this.changeTab.bind(this)}>
+        <Tabs
+          defaultActiveKey={"users"}
+          activeKey={currentTab}
+          onChange={this.changeTab.bind(this)}
+        >
           {manageTab.map(t => (
             <TabPane tab={t.label} key={t.key} />
           ))}
@@ -138,7 +176,7 @@ export class ManageList extends Component {
             path={`${match.url}/users`}
             render={props => (
               <ManageUserTable
-                editUser={this.editUser.bind(this)}
+                update={this.update.bind(this, "users")}
                 deleteUser={this.deleteUser.bind(this)}
                 list={userList}
               />
@@ -150,6 +188,7 @@ export class ManageList extends Component {
             render={props => (
               <ManageSongTable
                 list={songList}
+                update={this.update.bind(this, "songs")}
                 deleteSong={this.deleteSong.bind(this)}
               />
             )}
@@ -160,6 +199,7 @@ export class ManageList extends Component {
             render={props => (
               <ManageSongListTable
                 list={songListList}
+                update={this.update.bind(this, "song-list")}
                 deleteSongList={this.deleteSongList.bind(this)}
               />
             )}

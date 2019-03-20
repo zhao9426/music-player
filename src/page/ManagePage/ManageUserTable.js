@@ -14,7 +14,7 @@ export class ManageUserTable extends Component {
   }
 
   editUser(user){
-    this.props.editUser(user)
+    this.props.update(user)
   }
 
   render() {

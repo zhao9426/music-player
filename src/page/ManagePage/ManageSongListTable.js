@@ -14,8 +14,8 @@ export class ManageSongListTable extends Component {
     this.props.deleteSongList(song);
   }
 
-  editSongList(song){
-      console.log(song, ">>>");
+  update(sl){
+     this.props.update(sl);
   }
 
   render() {
@@ -67,7 +67,7 @@ export class ManageSongListTable extends Component {
             <div className="btn-group">
               <Button
                 type="primary"
-                onClick={this.editSongList.bind(this, r)}
+                onClick={this.update.bind(this, r)}
                 className="btn"
               >
                 修改

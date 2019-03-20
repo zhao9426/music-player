@@ -15,13 +15,11 @@ export class ManageSongTable extends Component {
   }
 
   editSong(song){
-      console.log(song, ">>>");
+    this.props.update(song);
   }
 
   render() {
     const { list } = this.props;
-    console.log(toJS(list));
-    
     const column = [
       {
         title: "ID",

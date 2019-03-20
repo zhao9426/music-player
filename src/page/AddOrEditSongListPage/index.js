@@ -46,7 +46,7 @@ class AddOrEditSongListPage extends Component {
 
   cancelOption() {
     const { history } = this.props;
-    history.goBack();
+    history.replace(`/manage/`,{to: "song-list"});
   }
 
   changeType() {
@@ -66,10 +66,10 @@ class AddOrEditSongListPage extends Component {
           option: option
         },
         () => {
-          form.setFieldsValue({
-            name: user.name,
-            pwd: user.pwd
-          });
+          // form.setFieldsValue({
+          //   name: user.name,
+          //   pwd: user.pwd
+          // });
         }
       );
     } else {

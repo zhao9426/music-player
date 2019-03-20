@@ -46,7 +46,7 @@ class AddOrEditSongPage extends Component {
 
   cancelOption() {
     const { history } = this.props;
-    history.goBack();
+    history.replace(`/manage`, {to: "songs"});
   }
 
   componentDidMount() {

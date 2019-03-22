@@ -23,7 +23,7 @@ class AddOrEditSongPage extends Component {
             if (res.success) {
               message.info("歌曲创建成功！");
               setTimeout(() => {
-                history.push(`/manage`);
+                history.push(`/manage`, { to: "songs" });
               }, 1000);
             }
           });
@@ -33,7 +33,7 @@ class AddOrEditSongPage extends Component {
             if (res.success) {
               message.success("歌曲信息修改成功！",1);
               setTimeout(() => {
-                history.push(`/manage`);
+                history.push(`/manage`,{to: "songs"});
               }, 1000);
             }
           });
@@ -61,9 +61,9 @@ class AddOrEditSongPage extends Component {
         () => {
           form.setFieldsValue({
             name: song.name,
-            author: song.author,
-            favorite: song.favorite,
-            count: song.count,
+            singer: song.singer,
+            album: song.album,
+            url: song.url,
             description: song.description
           });
         }
@@ -109,50 +109,35 @@ class AddOrEditSongPage extends Component {
             ]
           })(<Input placeholder="歌名" autoComplete="off" />)}
         </Item>
-        <Item label="作者" {...itemLayout}>
+        <Item label="歌手" {...itemLayout}>
           {getFieldDecorator("singer", {
             rulse: [
               {
                 required: true,
-                message: "请输入作者"
+                message: "请输入歌手"
               }
             ]
-          })(
-            <Input
-              type={type}
-              placeholder="作者"
-            />
-          )}
+          })(<Input type={type} placeholder="歌手" />)}
         </Item>
-        <Item label="收藏数" {...itemLayout}>
-          {getFieldDecorator("favorite", {
+        <Item label="专辑" {...itemLayout}>
+          {getFieldDecorator("album", {
             rulse: [
               {
                 required: true,
-                message: "请输入收藏数"
+                message: "请输入专辑"
               }
             ]
-          })(
-            <Input
-              type={type}
-              placeholder="收藏数"
-            />
-          )}
+          })(<Input type={type} placeholder="专辑" />)}
         </Item>
-        <Item label="播放数" {...itemLayout}>
-          {getFieldDecorator("count", {
+        <Item label="歌曲文件地址" {...itemLayout}>
+          {getFieldDecorator("url", {
             rulse: [
               {
                 required: true,
-                message: "请输入播放数"
+                message: "请输入歌曲文件地址"
               }
             ]
-          })(
-            <Input
-              type={type}
-              placeholder="播放数"
-            />
-          )}
+          })(<Input type={type} placeholder="歌曲文件地址" />)}
         </Item>
         <Item label="描述" {...itemLayout}>
           {getFieldDecorator("description", {
@@ -162,27 +147,7 @@ class AddOrEditSongPage extends Component {
                 message: "请输入描述"
               }
             ]
-          })(
-            <Input
-              type={type}
-              placeholder="描述"
-            />
-          )}
-        </Item>
-        <Item label="创建时间" {...itemLayout}>
-          {getFieldDecorator("created_at", {
-            rulse: [
-              {
-                required: true,
-                message: "请输入创建"
-              }
-            ]
-          })(
-            <Input
-              type={type}
-              placeholder="创建时间"
-            />
-          )}
+          })(<Input type={type} placeholder="描述" />)}
         </Item>
         <Item wrapperCol={{ span: 2, offset: 4 }}>
           <div className="opt-group">

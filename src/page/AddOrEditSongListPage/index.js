@@ -21,9 +21,9 @@ class AddOrEditSongListPage extends Component {
         if ("add" === option) {
           mstore.createSongList(values, res => {
             if (res.success) {
-              message.info("歌曲创建成功！");
+              message.info("歌单创建成功！");
               setTimeout(() => {
-                history.push(`/manage/songs`);
+                history.push(`/manage/song-list`, { to: "song-list"});
               }, 1000);
             }
           });
@@ -31,9 +31,9 @@ class AddOrEditSongListPage extends Component {
           let song = location.state;
           mstore.updateSongList(song.id, values, res => {
             if (res.success) {
-              message.success("歌曲信息修改成功！",1);
+              message.success("歌单信息修改成功！",1);
               setTimeout(() => {
-                history.push(`/manage/songs`);
+                history.push(`/manage/song-list`,{ to: "song-list"});
               }, 1000);
             }
           });
@@ -145,38 +145,6 @@ class AddOrEditSongListPage extends Component {
             />
           )}
         </Item>
-        <Item label="播放数量" {...itemLayout}>
-          {getFieldDecorator("count", {
-            rulse: [
-              {
-                required: true,
-                message: "请输入播放数量"
-              }
-            ]
-          })(
-            <Input
-              type={type}
-              placeholder="专辑"
-              autoComplete="off" 
-            />
-          )}
-        </Item>
-        <Item label="收藏数" {...itemLayout}>
-          {getFieldDecorator("favorite", {
-            rulse: [
-              {
-                required: true,
-                message: "请输入收藏数"
-              }
-            ]
-          })(
-            <Input
-              type={type}
-              placeholder="收藏数"
-              autoComplete="off" 
-            />
-          )}
-        </Item>
         <Item label="简介" {...itemLayout}>
           {getFieldDecorator("description", {
             rulse: [
@@ -190,38 +158,6 @@ class AddOrEditSongListPage extends Component {
               type={type}
               placeholder="简介"
               autoComplete="off" 
-            />
-          )}
-        </Item>
-        <Item label="创建时间" {...itemLayout}>
-          {getFieldDecorator("created_At", {
-            rulse: [
-              {
-                required: true,
-                message: "请输入创建时间"
-              }
-            ]
-          })(
-            <Input
-              type={type}
-              placeholder="创建时间"
-              autoComplete="off" 
-            />
-          )}
-        </Item>
-        <Item label="更新时间" {...itemLayout}>
-          {getFieldDecorator("updated_At", {
-            rulse: [
-              {
-                required: true,
-                message: "请输入更新时间"
-              }
-            ]
-          })(
-            <Input
-              type={type}
-              placeholder="更新时间"
-              onClick={this.changeType.bind(this)}
             />
           )}
         </Item>

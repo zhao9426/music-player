@@ -142,9 +142,11 @@ export default {
   updateUser,
   deleteUser,
   fetchSongListList,
+  updateSongList,
   addSongList,
   deleteSongList,
   fetchSongList,
   addSong,
+  updateSong,
   deleteSong
 };

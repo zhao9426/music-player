@@ -31,7 +31,7 @@ export default class Root extends Component {
             <Route
               exact
               path="/register"
-              render={props => <RegisterPage mstore={mstore} {...props} />}
+              render={props => <RegisterPage mstore={mstore} {...props}/>}
             />
             <Route
               exact

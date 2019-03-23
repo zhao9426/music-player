@@ -14,6 +14,7 @@ class Store {
   @observable userList = []; // 用户列表
   @observable songList = []; // 歌曲列表
   @observable songListList = []; // 歌单列表
+  @observable singerList = []; //歌手列表
 
   /*     disposers = [];
     constructor() {

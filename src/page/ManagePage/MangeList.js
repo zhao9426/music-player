@@ -17,7 +17,7 @@ const { Search } = Input;
 
 const manageTab = [
   { key: "users", label: "用户管理" },
-  // { key: "singer", label: "歌手管理" },
+  { key: "singer", label: "歌手管理" },
   { key: "songs", label: "歌曲管理" },
   { key: "song-list", label: "歌单管理" },
   // { key: "banner", label: "广告图管理" },

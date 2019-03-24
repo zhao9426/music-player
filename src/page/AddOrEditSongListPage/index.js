@@ -28,8 +28,8 @@ class AddOrEditSongListPage extends Component {
             }
           });
         } else if ("edit" === option) {
-          let song = location.state;
-          mstore.updateSongList(song.id, values, res => {
+          let songlist = location.state;
+          mstore.updateSongList(songlist.id, values, res => {
             if (res.success) {
               message.success("歌单信息修改成功！",1);
               setTimeout(() => {
@@ -49,27 +49,23 @@ class AddOrEditSongListPage extends Component {
     history.replace(`/manage/`,{to: "song-list"});
   }
 
-  changeType() {
-    this.setState({
-      type: "password"
-    });
-  }
-
   componentDidMount() {
     const { match, location, form } = this.props;
     let { option } = match.params;
     if (option && option === "edit") {
-      let song = location.state;
+      let songlist = location.state;
       this.setState(
         {
-          type: "password",
           option: option
         },
         () => {
-          // form.setFieldsValue({
-          //   name: user.name,
-          //   pwd: user.pwd
-          // });
+          form.setFieldsValue({
+            name: songlist.name,
+            singer: songlist.singer,
+            album: songlist.album,
+            url: songlist.url,
+            description: songlist.description
+          });
         }
       );
     } else {

@@ -44,6 +44,52 @@ export function deleteUser(id) {
   }).then(res => res.json());
 }
 
+// 获取歌手列表
+export function fetchSingerList() {
+  return fetch(`${apiPath}/singer`, {
+    method: "GET",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).then(res => res.json());
+}
+
+// 创建歌手
+export function addSinger(data) {
+  return fetch(`${apiPath}/singer`, {
+    method: "POST",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
+  }).then(res => res.json());
+}
+
+// 更新歌手信息
+export function updateSinger(id, data) {
+  return fetch(`${apiPath}/singer/${id}`, {
+      method: "PUT",
+      mode: "cors",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+  }).then(res => res.json());
+}
+
+// 删除歌手
+export function deleteSinger(id) {
+  return fetch(`${apiPath}/song/${id}`, {
+    method: "DELETE",
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json"
+    }
+  }).then(res => res.json());
+}
+
 // 获取歌单列表
 export function fetchSongListList() {
   return fetch(`${apiPath}/song-list`, {
@@ -141,6 +187,10 @@ export default {
   addUser,
   updateUser,
   deleteUser,
+  fetchSingerList,
+  addSinger,
+  updateSinger,
+  deleteSinger,
   fetchSongListList,
   updateSongList,
   addSongList,

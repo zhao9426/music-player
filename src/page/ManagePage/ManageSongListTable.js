@@ -10,8 +10,8 @@ const {Search} = Input;
 export class ManageSongListTable extends Component {
   static propTypes = {};
 
-  deleteSongList(song) {
-    this.props.deleteSongList(song);
+  deleteSongList(sl) {
+    this.props.deleteSongList(sl);
   }
 
   update(sl){

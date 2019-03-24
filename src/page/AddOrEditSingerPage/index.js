@@ -133,16 +133,6 @@ class AddOrEditSingerPage extends Component {
             ]
           })(<Input type={type} placeholder="专辑" />)}
         </Item>
-        <Item label="粉丝数" {...itemLayout}>
-          {getFieldDecorator("url", {
-            rulse: [
-              {
-                required: true,
-                message: "请输入粉丝数"
-              }
-            ]
-          })(<Input type={type} placeholder="粉丝数" />)}
-        </Item>
         <Item label="描述" {...itemLayout}>
           {getFieldDecorator("description", {
             rulse: [

@@ -28,8 +28,8 @@ class AddOrEditSongPage extends Component {
             }
           });
         } else if ("edit" === option) {
-          let user = location.state;
-          mstore.updateSong(user.id, values, res => {
+          let song = location.state;
+          mstore.updateSong(song.id, values, res => {
             if (res.success) {
               message.success("歌曲信息修改成功！",1);
               setTimeout(() => {
@@ -75,8 +75,11 @@ class AddOrEditSongPage extends Component {
         },
         () => {
           form.setFieldsValue({
-            name: "",
-            pwd: ""
+            name: '',
+            singer: '',
+            album: '',
+            url: '',
+            description: ''
           });
         }
       );

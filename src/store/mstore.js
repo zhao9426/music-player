@@ -12,6 +12,7 @@ import ManageService  from '../services/manageService';
 class Store {
   // @observable todos = [];
   @observable userList = []; // 用户列表
+  @observable singerList = [];//歌手列表
   @observable songList = []; // 歌曲列表
   @observable songListList = []; // 歌单列表
   @observable singerList = []; //歌手列表
@@ -56,6 +57,33 @@ class Store {
       this.getUserList();
     });
     let s = this.userList.remove(user);
+  }
+
+  // 获取歌手列表
+  @action.bound getSingerList() {
+    ManageService.fetchSingerList().then(list => {
+      console.log(list, "l>>>")
+      this.singerList = observable.array(list);
+    });
+  }
+  // 创建歌手
+  @action.bound createSinger(singer, callback) {
+    ManageService.addSinger(singer).then(res => {
+      callback(res);
+    });
+  }
+  // 更新歌手
+  @action.bound updateSinger(id, singer, callback) {
+    ManageService.updateUser(id, singer).then(res => {
+      callback(res);
+    });
+  }
+  // 删除歌手
+  @action deleteSinger(singer) {
+    ManageService.deleteSinger(singer.id).then(res => {
+      this.getSingerList();
+    });
+    let s = this.singerList.remove(singer);
   }
 
   // 获取歌曲列表

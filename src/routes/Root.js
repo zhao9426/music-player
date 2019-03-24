@@ -34,7 +34,6 @@ export default class Root extends Component {
               render={props => <RegisterPage mstore={mstore} {...props}/>}
             />
             <Route
-              exact
               path="/my"
               render={props => <MyMusicPage mstore={mstore} {...props} />}
             />

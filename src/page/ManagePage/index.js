@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
-    Switch,
-    Route
+  Switch,
+  Route
 } from 'react-router';
 import { observer, PropTypes as ObservablePropTypes } from "mobx-react";
 import PropTypes from "prop-types";
@@ -9,13 +9,14 @@ import MangeList from "./MangeList";
 import AddOrEditUserPage from "../AddOrEditUserPage";
 import AddOrEditSongListPage from "../AddOrEditSongListPage";
 import AddOrEditSongPage from "../AddOrEditSongPage";
-
+import AddOrEditSingerPage from "../AddOrEditSingerPage";
 
 
 @observer
 class ManagePage extends Component {
   render() {
-    const { mstore, match, history, location } = this.props;    
+    const { mstore, match, history, location } = this.props;
+    console.log(mstore, "?")
     return (
       <div className="wrapper">
         <Switch>
@@ -23,6 +24,12 @@ class ManagePage extends Component {
             path={`${match.url}/:option/user`}
             render={props => (
               <AddOrEditUserPage mstore={mstore} {...props} />
+            )}
+          />
+          <Route
+            path={`${match.url}/:option/singer`}
+            render={props => (
+              <AddOrEditSingerPage mstore={mstore} {...props} />
             )}
           />
           <Route
@@ -46,5 +53,5 @@ class ManagePage extends Component {
     );
   }
 }
- 
+
 export default ManagePage;

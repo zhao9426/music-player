@@ -10,18 +10,16 @@ const {Search} = Input;
 export class ManageSongListTable extends Component {
   static propTypes = {};
 
-  deleteSongList(sl) {
-    this.props.deleteSongList(sl);
+  delete(sl) {
+    this.props.delete(sl);
   }
 
-  update(sl){
-     this.props.update(sl);
+  update(sl) {
+    this.props.update(sl);
   }
 
   render() {
     const { list } = this.props;
-    console.log(toJS(list));
-    
     const column = [
       {
         title: "ID",
@@ -35,6 +33,10 @@ export class ManageSongListTable extends Component {
       {
         title: "作者",
         dataIndex: "author"
+      },
+      {
+        title: "封面图",
+        dataIndex: "poster"
       },
       {
         title: "收藏数",
@@ -74,7 +76,7 @@ export class ManageSongListTable extends Component {
               </Button>
               <Button
                 type="danger"
-                onClick={this.deleteSongList.bind(this, r)}
+                onClick={this.delete.bind(this, r)}
                 className="btn"
               >
                 删除

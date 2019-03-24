@@ -81,7 +81,7 @@ export function updateSinger(id, data) {
 
 // 删除歌手
 export function deleteSinger(id) {
-  return fetch(`${apiPath}/song/${id}`, {
+  return fetch(`${apiPath}/singer/${id}`, {
     method: "DELETE",
     mode: "cors",
     headers: {

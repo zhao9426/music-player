@@ -10,7 +10,7 @@ export class ManageUserTable extends Component {
   static propTypes = {};
 
   deleteUser(user) {
-    this.props.deleteUser(user);
+    this.props.delete(user);
   }
 
   editUser(user){

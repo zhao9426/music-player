@@ -46,13 +46,13 @@ export class ManageList extends Component {
     const { mstore, history, location, match } = this.props;
     const { currentTab } = this.state;
     let state = location.state;
-    let to = (state && state.to) ? state.to : currentTab;
-    console.log(to);
+    let to = state && state.to ? state.to : currentTab;
     switch (to) {
       case "users":
         mstore.getUserList();
         break;
       case "singers":
+        console.log(to);
         mstore.getSingerList();
         break;
       case "song-list":
@@ -64,11 +64,14 @@ export class ManageList extends Component {
       default:
         console.log("default");
     }
-    this.setState({
-      currentTab: to
-    }, () => {
-      history.push(`/manage/${to}`);
-    })
+    this.setState(
+      {
+        currentTab: to
+      },
+      () => {
+        history.push(`/manage/${to}`);
+      }
+    );
   }
 
   deleteUser(user) {
@@ -78,7 +81,6 @@ export class ManageList extends Component {
 
   changeTab(currentTab) {
     const { mstore, history } = this.props;
-    console.log(currentTab);
     switch (currentTab) {
       case "users":
         mstore.getUserList();
@@ -114,7 +116,7 @@ export class ManageList extends Component {
         history.push(`/manage/add/song-list`);
         break;
       case "songs":
-        history.push(`/manage/add/songs`);
+        history.push(`/manage/add/song`);
       default:
     }
   }
@@ -126,10 +128,10 @@ export class ManageList extends Component {
         history.push(`${match.url}/edit/user`, toJS(data));
         break;
       case "singers":
-        history.push(`${match.url}/edit/singers`, toJS(data));
+        history.push(`${match.url}/edit/singer`, toJS(data));
         break;
       case "songs":
-        history.push(`${match.url}/edit/songs`, toJS(data));
+        history.push(`${match.url}/edit/song`, toJS(data));
         break;
       case "song-list":
         history.push(`${match.url}/edit/song-list`, toJS(data));
@@ -138,32 +140,31 @@ export class ManageList extends Component {
     }
   }
 
-  deleteUser(user) {
-    const { mstore } = this.props;
-    mstore.deleteUser(user);
+  delete(type, data){
+     const { mstore, history, match } = this.props;
+     switch (type) {
+       case "users":
+         mstore.deleteUser(data);
+         break;
+       case "singers":
+         mstore.deleteSinger(data);
+         break;
+       case "song-list":
+         mstore.deleteSongList(data);
+         break;
+       case "songs":
+         mstore.deleteSong(data);
+         break;
+       default:
+     }
   }
 
-  deleteSongList(sl) {
-    const { mstore } = this.props;
-    mstore.deleteSongList(sl);
-  }
-
-  deleteSong(song) {
-    const { mstore } = this.props;
-    mstore.deleteSong(song);
-  }
-
-  deleteSinger(singer) {
-    const { mstore } = this.props;
-    mstore.deleteSinger(singer);
-  }
 
   render() {
     const { mstore } = this.props;
     const { userList, songList, songListList, singerList } = this.props.mstore;
     const { match } = this.props;
     const { currentTab } = this.state;
-    console.log(mstore, ">>>");
     return (
       <div>
         <Tabs
@@ -193,7 +194,7 @@ export class ManageList extends Component {
             render={props => (
               <ManageUserTable
                 update={this.update.bind(this, "users")}
-                deleteUser={this.deleteUser.bind(this)}
+                delete={this.delete.bind(this, "users")}
                 list={userList}
               />
             )}
@@ -205,7 +206,7 @@ export class ManageList extends Component {
               <ManageSingerTable
                 list={singerList}
                 update={this.update.bind(this, "singers")}
-                deleteSinger={this.deleteSinger.bind(this)}
+                delete={this.delete.bind(this, "singers")}
               />
             )}
           />
@@ -216,7 +217,7 @@ export class ManageList extends Component {
               <ManageSongTable
                 list={songList}
                 update={this.update.bind(this, "songs")}
-                deleteSong={this.deleteSong.bind(this)}
+                delete={this.delete.bind(this, "songs")}
               />
             )}
           />
@@ -227,7 +228,7 @@ export class ManageList extends Component {
               <ManageSongListTable
                 list={songListList}
                 update={this.update.bind(this, "song-list")}
-                deleteSongList={this.deleteSongList.bind(this)}
+                delete={this.delete.bind(this, "song-list")}
               />
             )}
           />

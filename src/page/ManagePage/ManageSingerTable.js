@@ -10,7 +10,7 @@ export class ManageSingerTable extends Component {
   static propTypes = {};
 
   deleteSinger(singer) {
-    this.props.deleteSinger(singer);
+    this.props.delete(singer);
   }
 
   editSinger(singer){

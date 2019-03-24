@@ -20,7 +20,6 @@ class AddOrEditSingerPage extends Component {
       if (!err) {
         if ("add" === option) {
           mstore.createSinger(values, res => {
-            console.log(values,">>>>>/ll[")
             if (res.success) {
               message.info("歌手创建成功！");
               setTimeout(() => {
@@ -114,7 +113,7 @@ class AddOrEditSingerPage extends Component {
           })(<Input placeholder="歌手" autoComplete="off" />)}
         </Item>
         <Item label="歌手头像" {...itemLayout}>
-          {getFieldDecorator("singer", {
+          {getFieldDecorator("avatarUrl", {
             rulse: [
               {
                 required: true,
@@ -123,7 +122,7 @@ class AddOrEditSingerPage extends Component {
             ]
           })(<Input type={type} placeholder="歌手头像" />)}
         </Item>
-        <Item label="专辑" {...itemLayout}>
+       {/*  <Item label="专辑" {...itemLayout}>
           {getFieldDecorator("album", {
             rulse: [
               {
@@ -132,7 +131,7 @@ class AddOrEditSingerPage extends Component {
               }
             ]
           })(<Input type={type} placeholder="专辑" />)}
-        </Item>
+        </Item> */}
         <Item label="描述" {...itemLayout}>
           {getFieldDecorator("description", {
             rulse: [

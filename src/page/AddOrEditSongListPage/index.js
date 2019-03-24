@@ -23,7 +23,7 @@ class AddOrEditSongListPage extends Component {
             if (res.success) {
               message.info("歌单创建成功！");
               setTimeout(() => {
-                history.push(`/manage/song-list`, { to: "song-list"});
+                history.push(`/manage/song-list`, { to: "song-list" });
               }, 1000);
             }
           });
@@ -31,9 +31,9 @@ class AddOrEditSongListPage extends Component {
           let songlist = location.state;
           mstore.updateSongList(songlist.id, values, res => {
             if (res.success) {
-              message.success("歌单信息修改成功！",1);
+              message.success("歌单信息修改成功！", 1);
               setTimeout(() => {
-                history.push(`/manage/song-list`,{ to: "song-list"});
+                history.push(`/manage/song-list`, { to: "song-list" });
               }, 1000);
             }
           });
@@ -46,7 +46,7 @@ class AddOrEditSongListPage extends Component {
 
   cancelOption() {
     const { history } = this.props;
-    history.replace(`/manage/`,{to: "song-list"});
+    history.replace(`/manage/`, { to: "song-list" });
   }
 
   componentDidMount() {
@@ -61,9 +61,8 @@ class AddOrEditSongListPage extends Component {
         () => {
           form.setFieldsValue({
             name: songlist.name,
-            singer: songlist.singer,
-            album: songlist.album,
-            url: songlist.url,
+            author: songlist.author,
+            poster: songlist.poster,
             description: songlist.description
           });
         }
@@ -117,13 +116,7 @@ class AddOrEditSongListPage extends Component {
                 message: "请输入歌单封面"
               }
             ]
-          })(
-            <Input
-              type={type}
-              placeholder="歌单封面"
-              autoComplete="off" 
-            />
-          )}
+          })(<Input type={type} placeholder="歌单封面" autoComplete="off" />)}
         </Item>
         <Item label="歌单作者" {...itemLayout}>
           {getFieldDecorator("author", {
@@ -133,13 +126,7 @@ class AddOrEditSongListPage extends Component {
                 message: "请输入歌单作者"
               }
             ]
-          })(
-            <Input
-              type={type}
-              placeholder="歌单作者"
-              autoComplete="off" 
-            />
-          )}
+          })(<Input type={type} placeholder="歌单作者" autoComplete="off" />)}
         </Item>
         <Item label="简介" {...itemLayout}>
           {getFieldDecorator("description", {
@@ -149,13 +136,7 @@ class AddOrEditSongListPage extends Component {
                 message: "请输入简介"
               }
             ]
-          })(
-            <Input
-              type={type}
-              placeholder="简介"
-              autoComplete="off" 
-            />
-          )}
+          })(<Input type={type} placeholder="简介" autoComplete="off" />)}
         </Item>
         <Item wrapperCol={{ span: 2, offset: 4 }}>
           <div className="opt-group">

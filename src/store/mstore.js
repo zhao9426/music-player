@@ -62,8 +62,7 @@ class Store {
   // 获取歌手列表
   @action.bound getSingerList() {
     ManageService.fetchSingerList().then(list => {
-      console.log(list, "l>>>")
-      this.singerList = observable.array(list);
+      this.singerList = observable.array(list.data);
     });
   }
   // 创建歌手
@@ -74,7 +73,7 @@ class Store {
   }
   // 更新歌手
   @action.bound updateSinger(id, singer, callback) {
-    ManageService.updateUser(id, singer).then(res => {
+    ManageService.updateSinger(id, singer).then(res => {
       callback(res);
     });
   }
@@ -107,7 +106,6 @@ class Store {
   // 删除歌曲
   @action.bound deleteSong(song) {
     ManageService.deleteSong(song.id).then(res => {
-      console.log(res);
       this.getSongList();
     });
   }
@@ -133,8 +131,7 @@ class Store {
   // 删除歌单
   @action.bound deleteSongList(songlist) {
     ManageService.deleteSongList(songlist.id).then(res => {
-      console.log(res);
-      this.getSongList();
+      this.getSongListList();
     });
   }
 

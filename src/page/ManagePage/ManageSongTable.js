@@ -11,7 +11,7 @@ export class ManageSongTable extends Component {
   static propTypes = {};
 
   deleteSong(song) {
-    this.props.deleteSong(song);
+    this.props.delete(song);
   }
 
   editSong(song){

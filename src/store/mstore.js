@@ -12,7 +12,7 @@ import ManageService  from '../services/manageService';
 class Store {
   // @observable todos = [];
   @observable userList = []; // 用户列表
-  @observable singerList = [];//歌手列表
+  @observable singerList = []; //歌手列表
   @observable songList = []; // 歌曲列表
   @observable songListList = []; // 歌单列表
   @observable singerList = []; //歌手列表
@@ -111,8 +111,8 @@ class Store {
   }
 
   // 获取歌单列表
-  @action.bound getSongListList() {
-    ManageService.fetchSongListList().then(res => { 
+  @action.bound getSongListList(keyword) {
+    ManageService.fetchSongListList(keyword).then(res => {
       this.songListList = res.data;
     });
   }
@@ -122,8 +122,8 @@ class Store {
       callback(res);
     });
   }
-   // 更新歌单
-   @action.bound updateSongList(id, song, callback) {
+  // 更新歌单
+  @action.bound updateSongList(id, song, callback) {
     ManageService.updateSongList(id, song).then(res => {
       callback(res);
     });

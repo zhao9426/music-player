@@ -1,4 +1,5 @@
 const apiPath = "http://localhost:7001/api";
+import qs from "qs";
 
 // 获取用户列表
 export function fetchUserList() {
@@ -91,8 +92,8 @@ export function deleteSinger(id) {
 }
 
 // 获取歌单列表
-export function fetchSongListList() {
-  return fetch(`${apiPath}/song-list`, {
+export function fetchSongListList(keyword) { 
+  return fetch(`${apiPath}/song-list?${keyword?qs.stringify({keyword}): ''}`, {
     method: "GET",
     mode: "cors",
     headers: {

@@ -103,6 +103,27 @@ export class ManageList extends Component {
     });
   }
 
+  search(type, value){
+    const { mstore, history } = this.props;
+    console.log(type, value, "search"); 
+    switch (type) {
+      case "users":
+        mstore.getUserList(value);
+        break;
+      case "singers":
+        mstore.getSingerList(value);
+        break;
+      case "song-list":
+        mstore.getSongListList(value);
+        break;
+      case "songs":
+        mstore.getSongList(value);
+        break;
+      default:
+    console.log(type, value, "search"); 
+   }
+  }
+
   handleAdd(currentTab) {
     const { history } = this.props;
     switch (currentTab) {
@@ -140,25 +161,24 @@ export class ManageList extends Component {
     }
   }
 
-  delete(type, data){
-     const { mstore, history, match } = this.props;
-     switch (type) {
-       case "users":
-         mstore.deleteUser(data);
-         break;
-       case "singers":
-         mstore.deleteSinger(data);
-         break;
-       case "song-list":
-         mstore.deleteSongList(data);
-         break;
-       case "songs":
-         mstore.deleteSong(data);
-         break;
-       default:
-     }
+  delete(type, data) {
+    const { mstore, history, match } = this.props;
+    switch (type) {
+      case "users":
+        mstore.deleteUser(data);
+        break;
+      case "singers":
+        mstore.deleteSinger(data);
+        break;
+      case "song-list":
+        mstore.deleteSongList(data);
+        break;
+      case "songs":
+        mstore.deleteSong(data);
+        break;
+      default:
+    }
   }
-
 
   render() {
     const { mstore } = this.props;
@@ -178,7 +198,7 @@ export class ManageList extends Component {
         </Tabs>
         <div className="header">
           <div className="search">
-            <Search />
+            <Search onSearch={this.search.bind(this, currentTab)} />
           </div>
           <div className="addBtn">
             <Button

@@ -7,31 +7,13 @@ import {
     spy
 } from "mobx";
 
-import ManageService  from '../services/manageService';
+import HomeService  from '../services/HomeService';
 
-class Store {
-  // @observable todos = [];
-  @observable userList = []; // 用户列表
-  @observable songList = []; // 歌曲列表
-  @observable songListList = []; // 歌单列表
-  @observable singerList = []; //歌手列表
+class HStore {
+  @observable singer = []; //歌手列表
+  @observable song = []; // 歌曲列表
+  @observable songList = []; // 歌单列表
 
-  /*     disposers = [];
-    constructor() {
-        observe(this.todos, change => {
-            this.disposers.forEach(disposer => disposer());
-            this.disposers = [];
-            for (const todo of change.object) {
-                let disposer = observe(todo, changex => {
-                    this.save();
-                    // console.log(changex);
-                });
-                this.disposers.push(disposer);
-            }
-            this.save();
-            // console.log(change);   
-        });
-    } */
   // 获取用户列表
   @action.bound getUserList() {
     ManageService.fetchUserList().then(list => {
@@ -134,47 +116,6 @@ class Store {
     });
   }
 
-  /*     save() {
-        localStorage.setItem('todos', JSON.stringify(toJS(this.todos)));
-        console.log(toJS(this.todos));
-    }
+const hstore = new HStore();
 
-    @computed get left() {
-        return this.todos.filter(todo => !todo.finished).length;
-    }
-    @action.bound createTodo(title) {
-        this.todos.unshift(new Todo(title))
-    }
-
-    @action.bound removeTodo(todo) {
-        this.todos.remove(todo);
-    } */
-}
-
-/* spy(event => {
-    console.log(event);  
-}) */
-/* class Todo {
-    id = Math.random();
-    @observable title = '';
-    @observable finished = false;
-
-    @action.bound toggle() {
-        this.finished = !this.finished;
-    }
-    constructor(title) {
-        this.title = title;
-    }
-}
- */
-/* class User {
-    id
-    @observable name;
-    @observable pwd;
-    @observable created_at;
-    @observable updated_at;
-}
- */
-const mstore = new Store();
-
-export default mstore;
+export default hstore;

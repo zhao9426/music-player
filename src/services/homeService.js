@@ -1,6 +1,6 @@
 const apiPath = "http://localhost:7001/api";
 import qs from "qs";
-import { get, post, put, deleta } from "../utils/request";
+import { get, post, put, deleta } from '../utils/request';
 
 // 获取用户列表
 export function fetchUserList() {
@@ -12,7 +12,7 @@ export function addUser(data) {
 }
 // 更新用户信息
 export function updateUser(id, data) {
-  return put(`${apiPath}/users/${id}`, data);
+    return put(`${apiPath}/users/${id}`, data);
 }
 
 // 删除用户
@@ -41,7 +41,7 @@ export function deleteSinger(id) {
 }
 
 // 获取歌单列表
-export function fetchSongListList(keyword) {
+export function fetchSongListList(keyword) { 
   return get(`${apiPath}/song-list`, {
     keyword
   });
@@ -81,23 +81,3 @@ export function updateSong(id, data) {
 export function deleteSong(id) {
   return deleta(`${apiPath}/song/${id}`);
 }
-
-
-export default {
-  fetchUserList,
-  addUser,
-  updateUser,
-  deleteUser,
-  fetchSingerList,
-  addSinger,
-  updateSinger,
-  deleteSinger,
-  fetchSongListList,
-  updateSongList,
-  addSongList,
-  deleteSongList,
-  fetchSongList,
-  addSong,
-  updateSong,
-  deleteSong
-};

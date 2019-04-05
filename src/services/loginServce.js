@@ -1,41 +1,18 @@
 const apiPath = "http://localhost:7001/api";
 const base = 'http://localhost:7001'
 import Cookies from 'js-cookie'
+import { get, post } from '.././utils/request'
 
 export default function login(data) {
     let csrfToken = Cookies.get('csrfToken');
     console.log(csrfToken);
-    
     if(!csrfToken){
-        return fetch(`${base}/token`).then(res=> {
-            return res.json();
+        return get(`${base}/token`).then(res=> {
+            return res;
         }).then((t) => {   
-            return fetch(`${base}/login`, {
-                method: "POST",
-                withCredentials: true,
-                mode: "cors",
-            //   credentials: "include",
-                headers: {
-                    'Content-Type': 'application/json',
-                  //  'x-csrf-token': t.token,
-                //    'Cookie': `csrfToken=${t.token}`
-                },
-                body: JSON.stringify(data)
-            }).then(res => res.json());
+            return post(`${base}/login`, data);
         });
     } else {
-        return fetch(`${base}/login`, {
-            method: "POST",
-            mode: "cors",
-           // withCredentials: true,
-          //  credentials: "include",
-            headers: {
-                'Content-Type': 'application/json',
-             //   'x-csrf-token': Cookies.get('csrfToken'),
-             //   'Cookie': `csrfToken=${Cookies.get('csrfToken')}`
-            },
-            body: JSON.stringify(data)
-        }).then(res => res.json());
-    }
-    
+        return post(`${base}/login`, data);
+    }  
 }

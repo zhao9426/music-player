@@ -38,7 +38,7 @@ export default class MPLaylout extends Component {
                 this.setState({
                     ...res
                 })
-                history.push(`/manage`)
+                history.push(`/manage/`)
                 this.hideLogin();
             } else {
                 this.setState({

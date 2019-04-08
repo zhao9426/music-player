@@ -29,29 +29,46 @@ class Login extends Component {
     const { getFieldDecorator } = this.props.form;
     return (
       <Fragment>
-        <Form onSubmit={this.handleSubmit.bind(this)} layout="vertical" className="login-form">
+        <Form
+          onSubmit={this.handleSubmit.bind(this)}
+          layout="vertical"
+          className="login-form"
+        >
           <FormItem className="form-controll">
-            {getFieldDecorator('userName', {
-              rules: [{ required: true, message: '请输入用户名!' }],
+            {getFieldDecorator("userName", {
+              rules: [{ required: true, message: "请输入用户名!" }]
             })(
-              <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="用户名" />
+              <Input
+                autoComplete="true"
+                prefix={
+                  <Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />
+                }
+                placeholder="用户名"
+              />
             )}
           </FormItem>
           <FormItem className="form-controll">
-            {getFieldDecorator('password', {
-              rules: [{ required: true, message: '请输入密码!' }],
+            {getFieldDecorator("password", {
+              rules: [{ required: true, message: "请输入密码!" }]
             })(
-              <Input prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />} type="password" placeholder="密码" />
+              <Input
+                prefix={
+                  <Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />
+                }
+                autoComplete="current-password"
+                type="password"
+                placeholder="密码"
+              />
             )}
           </FormItem>
           <FormItem className="form-controll">
-            {getFieldDecorator('remember', {
-              valuePropName: 'checked',
-              initialValue: true,
-            })(
-              <Checkbox>记住密码</Checkbox>
-            )}
-            <a className="login-forgot" href="">忘记密码？</a>
+            {getFieldDecorator("remember", {
+              valuePropName: "checked",
+              initialValue: true
+            })(<Checkbox>记住密码</Checkbox>)}
+            <a className="login-forgot" href="">
+              忘记密码？
+            </a>
           </FormItem>
           <FormItem className="form-controll">
             <Button type="primary" htmlType="submit" className="login-btn">
@@ -61,7 +78,7 @@ class Login extends Component {
           <a href="/register">现在去注册!</a>
         </Form>
       </Fragment>
-    )
+    );
   }
 }
 

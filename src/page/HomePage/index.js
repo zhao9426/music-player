@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Layout, Row, Col, Card, Carousel } from "antd";
+import { Layout, Row, Col, Card, Carousel, Divider } from "antd";
 import RightHead from "../../layout/RightHead";
 import TopCarousel from "../../components/TopCarousel";
+import { toJS } from 'mobx'
+import { observer, PropTypes as ObservablePropTypes } from "mobx-react";
 import "./home.less";
 
 const {
@@ -9,87 +11,39 @@ const {
 } = Layout;
 
 const { Meta } = Card;
-const SONGLIST = [
-  {
-    id: 1,
-    name: "Fashion",
-    imageUrl: "http://pmusic.oss-cn-hangzhou.aliyuncs.com/image/a.jpeg",
-    count: 12,
-    favorite: 10,
-    author: "King"
-  },
-  {
-    id: 2,
-    name: "Fashion",
-    imageUrl: "http://pmusic.oss-cn-hangzhou.aliyuncs.com/image/b.jpeg",
-    count: 12,
-    favorite: 10,
-    author: "King"
-  },
-  {
-    id: 3,
-    name: "Fashion",
-    imageUrl: "http://pmusic.oss-cn-hangzhou.aliyuncs.com/image/c.jpeg",
-    count: 12,
-    favorite: 10,
-    author: "King"
-  },
-  {
-    id: 6,
-    name: "Fashion",
-    imageUrl: "http://pmusic.oss-cn-hangzhou.aliyuncs.com/image/c.jpeg",
-    count: 12,
-    favorite: 10,
-    author: "King"
-  },
-  {
-    id: 7,
-    name: "Fashion",
-    imageUrl: "http://pmusic.oss-cn-hangzhou.aliyuncs.com/image/c.jpeg",
-    count: 12,
-    favorite: 10,
-    author: "King"
-  },
-  {
-    id: 8,
-    name: "Fashion",
-    imageUrl: "http://pmusic.oss-cn-hangzhou.aliyuncs.com/image/c.jpeg",
-    count: 12,
-    favorite: 10,
-    author: "King"
-  },
-  {
-    id: 9,
-    name: "Fashion",
-    imageUrl: "http://pmusic.oss-cn-hangzhou.aliyuncs.com/image/c.jpeg",
-    count: 12,
-    favorite: 10,
-    author: "King"
-  },
-  {
-    id: 4,
-    name: "Fashion",
-    imageUrl: "http://pmusic.oss-cn-hangzhou.aliyuncs.com/image/a.jpeg",
-    count: 12,
-    favorite: 10,
-    author: "King"
-  }
-];
 
+
+@observer
 export default class Home extends Component {
+
+  componentDidMount() {
+    console.log(this.props);
+    const { hstore } = this.props;
+    hstore.getHomeSingers();
+    hstore.getHomeSongs();
+    hstore.getHomeSongList();
+  }
+  
+
     render() {
+      const { singers, songs, songList } = this.props.hstore;
+      let slist = toJS(songList);
+      let newSongList = toJS(songs);
+      let newSingers = toJS(singers);
+      
         return (
           <Content>
             <TopCarousel />
+            <Divider style={{height: 46, margin: 0}}/>
             <div className="song-list">
               <h2>精选歌单</h2>
               <div className="list">
-                {SONGLIST.map(s => {
+                {slist.map(s => {
                   return (
                     <Card
                       className="list-card"
                       key={s.id}
-                      cover={<img alt={s.name} src={s.imageUrl} />}
+                      cover={<img alt={s.name} src={s.poster} />}
                     >
                       <Meta
                         title={s.name}
@@ -109,18 +63,18 @@ export default class Home extends Component {
             <div className="new-song">
               <h2>新歌首发</h2>
               <div className="list">
-                {SONGLIST.map(s => {
+                {newSongList.map(s => {
                   return (
                     <Card
                       className="list-card"
                       key={s.id}
-                      cover={<img alt={s.name} src={s.imageUrl} />}
+                      cover={<img alt={s.name} src={s.url} />}
                     >
                       <Meta
                         title={s.name}
                         description={
                           <p>
-                            播放量:{s.count} 收藏量:
+                            下载量:{s.download} 收藏量:
                             {s.favorite}
                           </p>
                         }
@@ -133,21 +87,16 @@ export default class Home extends Component {
             <div className="singer">
               <h2>入住歌手</h2>
               <div className="list">
-                {SONGLIST.map(s => {
+                {newSingers.map(s => {
                   return (
                     <Card
                       className="list-card"
                       key={s.id}
-                      cover={<img alt={s.name} src={s.imageUrl} />}
+                      cover={<img alt={s.name} src={s.avatarUrl} />}
                     >
                       <Meta
                         title={s.name}
-                        description={
-                          <p>
-                            播放量:{s.count} 收藏量:
-                            {s.favorite}
-                          </p>
-                        }
+                        description={<p>关注:{s.follower}</p>}
                       />
                     </Card>
                   );

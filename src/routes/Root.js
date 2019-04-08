@@ -6,14 +6,15 @@ import MyMusicPage from "../page/MyMusicPage";
 import ManagePage from "../page/ManagePage";
 import RegisterPage from "../page/RegisterPage";
 import Player from "../page/Player";
-import store from "../store";
-import store2 from "../store2";
-import mstore from "../store/mstore";
 import Login from "../page/testPlayer";
 import TestPlayer from "../page/testPlayer";
 import Test from "../page/test";
 import TodoList from "../page/TodoList";
 import MPLayout from "../layout";
+import mstore from "../store/mstore";
+import hstore from "../store/hstore";
+import store from "../store";
+import store2 from "../store2";
 
 export default class Root extends Component {
   constructor(props) {
@@ -26,7 +27,7 @@ export default class Root extends Component {
       <Router history={history}>
         <MPLayout {...this.props}>
           <Switch>
-            <Route exact path="/" component={HomePage} />
+            <Route exact path="/" render={ props => <HomePage {...props} hstore={hstore}/>} />
             <Route exact path="/bank" component={BankPage} />
             <Route
               exact

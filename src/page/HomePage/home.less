@@ -8,28 +8,36 @@
         flex-direction: row;
         align-items: stretch;
         flex-flow: nowrap;
+
         .head-left {
             flex: 3;
         }
+
         .head-right {
             flex: 1;
             margin-left: 50%;
         }
     }
+
     .home-content {
         min-height: calc(100vh - 60px);
     }
+
 }
 
 .song-list,
 .new-song,
 .singer {
+    padding: 16px;
     h2 {
-        margin: 24px auto;
-        margin-bottom: 8px;
+        padding-top: 16px;
+        padding-bottom: 8px;
         font-size: 24px;
+        margin: 0;
         text-align: center;
+        background: transparent;
     }
+
     .list {
         display: flex;
         flex-direction: row;
@@ -37,11 +45,24 @@
         align-items: flex-start;
         flex-wrap: wrap;
         width: 1024px;
-        margin: 8px auto;
+        margin: 0 auto;
         min-height: 300px;
+
         .list-card {
             width: 240px;
             margin: 12px 8px;
         }
     }
+}
+
+.song-list {
+    background-color: #fff;
+}
+
+.new-song {
+    background-color: #eee;
+}
+
+.singer {
+    background-color: #fff;
 }

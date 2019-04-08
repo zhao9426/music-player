@@ -1,6 +1,6 @@
-const apiPath = "http://localhost:7001/api";
-const base = 'http://localhost:7001'
-import Cookies from 'js-cookie'
+import base from './base';
+import Cookies from 'js-cookie';
+
 import { get, post } from '.././utils/request'
 
 export default function login(data) {

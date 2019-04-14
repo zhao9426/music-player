@@ -15,9 +15,19 @@ export function fetchHomeNewSong(){
 export function fetchHomeSinger(){
   return get(`${base}/singers`)
 }
+// 歌曲类别
+export function fetchCategories(){
+  return get(`${base}/category`);
+}
+// 歌曲排行榜
+export function fetchRankList(query){
+  return get(`${base}/rank`, query);
+}
 
 export default {
   fetchHomeSongList,
   fetchHomeNewSong,
-  fetchHomeSinger
+  fetchHomeSinger,
+  fetchCategories,
+  fetchRankList
 };

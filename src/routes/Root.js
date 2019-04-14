@@ -27,12 +27,20 @@ export default class Root extends Component {
       <Router history={history}>
         <MPLayout {...this.props}>
           <Switch>
-            <Route exact path="/" render={ props => <HomePage {...props} hstore={hstore}/>} />
-            <Route exact path="/bank" component={BankPage} />
+            <Route
+              exact
+              path="/"
+              render={props => <HomePage {...props} hstore={hstore} />}
+            />
+            <Route
+              exact
+              path="/bank"
+              render={props => <BankPage hstore={hstore} {...props} />}
+            />
             <Route
               exact
               path="/register"
-              render={props => <RegisterPage mstore={mstore} {...props}/>}
+              render={props => <RegisterPage mstore={mstore} {...props} />}
             />
             <Route
               path="/my"

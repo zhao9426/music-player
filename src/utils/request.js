@@ -5,7 +5,7 @@ export default function request(url, options = {}) {
 }
 
 export function get(url, query) {
-  let urlWithQuery = `${url}${query ? "?=" + qs.stringify(query) : ""}`;
+  let urlWithQuery = `${url}${query ? "?" + qs.stringify(query) : ""}`;
   return request(urlWithQuery);
 }
 

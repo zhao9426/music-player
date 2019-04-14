@@ -11,6 +11,8 @@ class HStore {
   @observable singers = []; //歌手列表
   @observable songs = []; // 歌曲列表
   @observable songList = []; // 歌单列表
+  @observable categories = []; // 歌曲类别
+  @observable rankList = []; //排行榜
 
   // 获取歌手列表
   @action.bound getHomeSingers() {
@@ -30,6 +32,19 @@ class HStore {
   @action.bound getHomeSongList() {
     HomeService.fetchHomeSongList().then(res => {
       this.songList = res.data;
+    });
+  }
+
+  // 获取歌曲类别
+  @action.bound getCategries() {
+    HomeService.fetchCategories().then(res => {
+      this.categories = res.data;
+    });
+  }
+
+  @action.bound getRankList(query){
+    HomeService.fetchRankList(query).then(res => {
+      this.rankList = res.data
     });
   }
 }

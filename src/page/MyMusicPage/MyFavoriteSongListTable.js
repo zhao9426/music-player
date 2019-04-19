@@ -8,22 +8,7 @@ import PropTypes from 'prop-types';
 @observer
 export class MyFavoriteSongListTable extends Component {
     render() {
-        const data = [
-            {
-                title: 'Ant Design Title 1',
-            },
-            {
-                title: 'Ant Design Title 2',
-            },
-            {
-                title: 'Ant Design Title 3',
-            },
-            {
-                title: 'Ant Design Title 4',
-            },
-        ];
-        console.log(data);
-        console.log(this.props, ">>>>>>>>")
+        const { data } = this.props
         return (
             <List
                 itemLayout="horizontal"

@@ -14,6 +14,7 @@ import MPLayout from "../layout";
 import mstore from "../store/mstore";
 import hstore from "../store/hstore";
 import store from "../store";
+import mystore from "../store/mystore";
 import store2 from "../store2";
 
 export default class Root extends Component {
@@ -44,7 +45,7 @@ export default class Root extends Component {
             />
             <Route
               path="/my"
-              render={props => <MyMusicPage mstore={mstore} {...props} />}
+              render={props => <MyMusicPage mystore={mystore} {...props} />}
             />
             {/* <Route exact path="/song/list" component={SongSheet} /> */}
             <Route exact path="/player" component={Player} />

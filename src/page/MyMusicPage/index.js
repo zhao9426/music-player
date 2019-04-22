@@ -31,7 +31,7 @@ export default class MyMusicPage extends Component {
   componentDidMount() {
     const { location } = this.props;
     let paths = location.pathname.match(/\/[\w|-]*/ig);
-    let currentTab = paths[1].substring(1);
+    let currentTab = paths[1] && paths[1].substring(1)|| "song-list";
     this.setState({
       currentTab
     },()=> {

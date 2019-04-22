@@ -3,7 +3,13 @@ import { Layout, Modal, message } from "antd";
 import LeftHead from "./LeftHead";
 import RightHead from "./RightHead";
 import LoginForm from '../components/login';
-import loginServce from '../services/loginServce'
+import {
+  toJS
+} from "mobx";
+import {
+  observer,
+  PropTypes as ObservablePropTypes
+} from "mobx-react";
 import './layout.less';
 
 const {
@@ -32,22 +38,14 @@ export default class MPLaylout extends Component {
     }
 
     login(params){
-        const { history } = this.props
-        loginServce({name: params.userName, pwd: params.password}).then(res => {
-            if(res.login){
-                this.setState({
-                    ...res
-                })
-                history.push(`/manage/`)
-                this.hideLogin();
-            } else {
-                this.setState({
-                    login: res.login
-                },()=> {
-                    message.error(res.message)
-                })
-            }
-        }) 
+        const { hstore } = this.props;
+        let name = params.userName;
+        let pwd = params.password
+        hstore.login(name, pwd, (isLogin) => {
+          if(isLogin){
+             this.hideLogin();
+          }
+        });
     }
 
     render() {
@@ -56,7 +54,7 @@ export default class MPLaylout extends Component {
           <Layout className="main-layout">
             <Header theme="light" className="home-header">
               <LeftHead />
-              <RightHead showLogin={this.showLogin.bind(this)} />
+              <RightHead showLogin={this.showLogin.bind(this)} {...this.props} />
             </Header>
             <Content className="main-content">
               <Layout hasSider className="main">

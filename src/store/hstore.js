@@ -6,14 +6,31 @@ import {
 } from "mobx";
 
 import HomeService  from '../services/HomeService';
+import LoginService from '../services/loginServce';
 
 class HStore {
+  @observable loginUser = {};
+  @observable isLogin = false;
   @observable singers = []; //歌手列表
   @observable songs = []; // 歌曲列表
   @observable songList = []; // 歌单列表
   @observable categories = []; // 歌曲类别
   @observable rankList = []; //排行榜
 
+  @action.bound login(name, pwd, callback){
+    console.log(LoginService);
+    
+    LoginService.login({name, pwd}).then(res => {
+        if(res.login){
+          this.isLogin = true;
+          this.loginUser = { name, pwd };
+        } else {
+          this.isLogin = false;
+          this.loginUser = {};
+        }
+        callback && callback(this.isLogin)
+    })
+  }
   // 获取歌手列表
   @action.bound getHomeSingers() {
     HomeService.fetchHomeSinger().then(list => {

@@ -1,9 +1,8 @@
 import base from './base';
 import Cookies from 'js-cookie';
+import { get, post } from '../utils/request'
 
-import { get, post } from '.././utils/request'
-
-export default function login(data) {
+export function login(data) {
     let csrfToken = Cookies.get('csrfToken');
     console.log(csrfToken);
     if(!csrfToken){
@@ -15,4 +14,8 @@ export default function login(data) {
     } else {
         return post(`${base}/login`, data);
     }  
+}
+
+export default {
+    login
 }

@@ -26,7 +26,12 @@ export default class Root extends Component {
     const { history } = this.props;
     return (
       <Router history={history}>
-        <MPLayout {...this.props}>
+        < MPLayout {
+          ...this.props
+        }
+        hstore = {
+          hstore
+        } >
           <Switch>
             <Route
               exact

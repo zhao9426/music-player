@@ -1,9 +1,24 @@
 .music-playload {
     width: 100%;
     flex: 1;
-    margin: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-height: calc(100vh - 72px);
     .player {
+        margin: 4px;
+        flex: 3;
         width: 100%;
-        min-height: calc(100vh - 100px);
+    }
+    .play-option {
+        flex: 1;
+        min-width: 300px;
+        .play {
+            padding-right: 4px;
+            &:hover {
+                transform: scale(1.2);
+                color: red;
+            }
+        }
     }
 }

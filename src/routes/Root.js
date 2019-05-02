@@ -5,9 +5,8 @@ import BankPage from "../page/BankPage";
 import MyMusicPage from "../page/MyMusicPage";
 import ManagePage from "../page/ManagePage";
 import RegisterPage from "../page/RegisterPage";
+import SongListPage from "../page/SongListPage";
 import Player from "../page/Player";
-import Login from "../page/testPlayer";
-import TestPlayer from "../page/testPlayer";
 import Test from "../page/test";
 import TodoList from "../page/TodoList";
 import MPLayout from "../layout";
@@ -26,12 +25,7 @@ export default class Root extends Component {
     const { history } = this.props;
     return (
       <Router history={history}>
-        < MPLayout {
-          ...this.props
-        }
-        hstore = {
-          hstore
-        } >
+        <MPLayout {...this.props} hstore={hstore}>
           <Switch>
             <Route
               exact
@@ -52,10 +46,12 @@ export default class Root extends Component {
               path="/my"
               render={props => <MyMusicPage mystore={mystore} {...props} />}
             />
-            {/* <Route exact path="/song/list" component={SongSheet} /> */}
-            <Route exact path="/player" component={Player} />
-            {/* <Route exact path="/play" component={Play} /> */}
-            {/* <Route exact path="/playlist" component={PlayList} /> */}
+            <Route
+              exact
+              path="/song/list/:id?"
+              render={props => <SongListPage {...props} />}
+            />
+            <Route exact path="/player/:id?" component={Player} />
             <Route
               path="/manage"
               render={props => <ManagePage mstore={mstore} {...props} />}

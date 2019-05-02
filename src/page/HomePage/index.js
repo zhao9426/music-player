@@ -23,6 +23,11 @@ export default class Home extends Component {
     hstore.getHomeSongs();
     hstore.getHomeSongList();
   }
+
+  jumpToPlaySong(songList){
+    const { history } = this.props;
+    history.push(`/song/list/${songList.id}`)
+  }
   
 
     render() {
@@ -41,6 +46,7 @@ export default class Home extends Component {
                 {slist.map(s => {
                   return (
                     <Card
+                      onClick={this.jumpToPlaySong.bind(this, s)}
                       className="list-card"
                       key={s.id}
                       cover={<img alt={s.name} src={s.poster} />}

@@ -61,11 +61,11 @@ export default class MPLaylout extends Component {
                 {this.props.children}
               </Layout>
             </Content>
-            <Footer className="footer">
+            {/* <Footer className="footer">
               <div>
                 Panpan Music Player &copy; Created by ZhaoPanpan
               </div>
-            </Footer>
+            </Footer> */}
             <Modal
               visible={visible}
               title="登陆"

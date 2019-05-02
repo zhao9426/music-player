@@ -1,0 +1,79 @@
+.wrapper {
+   /*  border: 1px solid black; */
+    display: flex;
+    flex-direction: column;
+    width: 1024px;
+    /* border: 1px solid black; */
+}
+
+.title {
+    width: 1024px;
+    margin: 0 auto;
+   /*  border: 1px solid black; */
+    height: 60px;
+    line-height: 60px;
+}
+.songlist-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    width: 1024px;
+    margin: 0 auto;
+    min-height: 300px;
+    .right {
+        flex: 1;
+        /*  border: 1px solid black; */
+         padding-left: 20px;
+         width: 100%;
+     }
+}
+
+.left {
+    width: 200px;
+    padding-right: 20px;
+    border-right: 1px solid #ccc;
+    color: #bababa;
+    .content {
+        color: #555;
+    }
+}
+
+.sub-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+}
+.right-title {
+    padding-left: 20px;
+    padding-bottom: 16px;
+}
+
+
+.ant-list-item-meta {
+    display: flex;
+    flex-direction: row!important;
+}
+
+.songlist-img {
+    width: 148px;
+    height: 148px;
+}
+
+.ant-list-item-meta-title > a {
+    color: #555;
+    .seri {
+        padding-right: 10px;
+    }
+}
+
+.playcon {
+    text-align: right;
+
+}
+
+.icon-fenge {
+    margin-left: 20px;
+}

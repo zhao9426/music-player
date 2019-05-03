@@ -53,6 +53,13 @@ export default class Root extends Component {
               path="/manage"
               render={props => <ManagePage mstore={mstore} {...props} />}
             />
+            <Route
+              exact
+              path="/test"
+              render={() => (
+                <Test/>
+              )}
+            />
           </Switch>
         </MPLayout>
       </Router>

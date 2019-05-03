@@ -1,0 +1,70 @@
+.player {
+    position: fixed;
+    margin: 0 auto;
+    bottom: 0;
+    width: 100%;
+    .tool-bar {
+        width: 800px;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row;
+        .option-group-1 {
+            flex: 1;
+            min-width: 120px;
+            .icon {
+                padding: 4px 8px;
+                font-size: 36px;
+            }
+        }
+        .progress {
+            flex: 1;
+            max-width: 300px;
+            min-width: 240px;
+            margin: 0 8px;
+            .progress-status {
+                display: flex;
+                justify-content: space-between;
+                flex-direction: row;
+                .time {
+                    .left-time {
+                       
+                    }
+                    .divider {
+                        padding: 0 2px;
+                    }
+                    .duration {
+                    }
+                }
+            }
+        }
+        .option-group-2 {
+            padding: 4px;
+            flex: 1;
+            min-width: 160px;
+            .icon {
+                padding: 4px 8px;
+                font-size: 36px;
+            }
+        }
+        .option-group-3 {
+            padding: 4px;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 160px;
+            .icon {
+                padding: 4px 8px;
+                font-weight: 600;
+                font-size: 36px;
+            }
+            .volumn-option {
+                flex: 1
+            }
+        }
+    }
+    .audio {
+        display: none;
+    }
+}

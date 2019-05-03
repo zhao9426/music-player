@@ -1,25 +1,10 @@
 import React, { Component } from "react";
 import { Upload, message, Button, Icon } from "antd";
 import base from '../services/base';
-// import PropTypes from "prop-types";
-import { observer, PropTypes } from "mobx-react";
+import Player from "../components/Player";
 
-@observer
-class Bar extends Component {
-  static propTypes = {
-    queue: PropTypes.observableArray //PropTypes.array
-  };
+class Test extends Component {
 
-  render() {
-    const { queue } = this.props;
-    return <span>{queue.length}</span>;
-  }
-}
-
-class Foo extends Component {
-  static propTypes = {
-    cache: PropTypes.observableObject //PropTypes.object
-  };
 
   handleUploadChange(info){
     if (info.file.status !== 'uploading') {
@@ -33,21 +18,19 @@ class Foo extends Component {
     }
 
   render() {
-    const { cache, refresh } = this.props;
     return (
-      <div>
-        <Upload
+      <div style={{width: "100%"}}>
+        <Player/>
+        {/* <Upload
             action = {`${base}/upload`} 
             onChange={this.handleUploadChange.bind(this)}>
           <Button>
             <Icon type="upload" /> 上传
           </Button>
-        </Upload>
-        <Bar queue={cache.queue} />
-        <button onClick={refresh}>Refresh</button>
+        </Upload> */}
       </div>
     );
   }
 }
 
-export default Foo;
+export default Test;

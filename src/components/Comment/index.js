@@ -11,7 +11,10 @@ const CommentList = ({ comments }) => (
         dataSource={comments}
         header={`${comments.length} ${comments.length > 1 ? 'replies' : 'reply'}`}
         itemLayout="horizontal"
-        renderItem={props => <Comment {...props} />}
+        renderItem={props => <Comment 
+            actions={[<span>Reply to</span>]}
+            {...props} 
+        />}
     />
 );
 
@@ -81,7 +84,6 @@ export default class Footer extends Component {
 
         return (
             <div>
-                {comments.length > 0 && <CommentList comments={comments} />}
                 <Comment
                     avatar={(
                         <Avatar
@@ -91,13 +93,14 @@ export default class Footer extends Component {
                     )}
                     content={(
                         <Editor
-                            onChange={this.handleChange}
-                            onSubmit={this.handleSubmit}
+                            onChange={this.handleChange.bind(this)}
+                            onSubmit={this.handleSubmit.bind(this)}
                             submitting={submitting}
                             value={value}
                         />
                     )}
                 />
+                 {comments.length > 0 && <CommentList comments={comments} />}
             </div>
         )
     }

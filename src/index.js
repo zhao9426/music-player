@@ -10,7 +10,7 @@ ReactDOM.render(
     <Root history={history} />,
     rootDom    
 );
-
+/* 热加载 */
 if(module.hot){
     module.hot.accept('./routes/Root',()=>{
         const NewRoot = require('./routes/Root').default;

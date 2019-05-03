@@ -28,11 +28,12 @@ export default class RightHead extends Component {
                 <Menu.Item key = "2" >
                 <a href = "#" >退出</a> 
                 </Menu.Item> 
-            </Menu>
+              </Menu>
             }
               trigger = {
                   ['click']
-                } >
+                } 
+              >
               <a className = "ant-dropdown-link" >
                 <Avatar 
                 shape = "square"

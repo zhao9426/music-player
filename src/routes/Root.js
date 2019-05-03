@@ -8,14 +8,11 @@ import RegisterPage from "../page/RegisterPage";
 import SongListPage from "../page/SongListPage";
 import Player from "../page/Player";
 import Test from "../page/test";
-import TodoList from "../page/TodoList";
 import MPLayout from "../layout";
 import mstore from "../store/mstore";
 import hstore from "../store/hstore";
-import store from "../store";
 import mystore from "../store/mystore";
-import store2 from "../store2";
-
+import slstore from "../store/slstore";
 export default class Root extends Component {
   constructor(props) {
     super(props);
@@ -49,24 +46,12 @@ export default class Root extends Component {
             <Route
               exact
               path="/song/list/:id?"
-              render={props => <SongListPage {...props} />}
+              render={props => <SongListPage slstore={slstore} {...props} />}
             />
             <Route exact path="/player/:id?" component={Player} />
             <Route
               path="/manage"
               render={props => <ManagePage mstore={mstore} {...props} />}
-            />
-            <Route
-              exact
-              path="/test"
-              render={() => (
-                <Test cache={store.cache} refresh={store.refresh} />
-              )}
-            />
-            <Route
-              exact
-              path="/todo"
-              render={() => <TodoList store={store2} />}
             />
           </Switch>
         </MPLayout>

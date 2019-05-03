@@ -51,7 +51,7 @@ export default class Root extends Component {
             <Route exact path="/player/:id?" component={Player} />
             <Route
               path="/manage"
-              render={props => <ManagePage mstore={mstore} {...props} />}
+              render={props => <ManagePage mstore={mstore} hstore={hstore} {...props} />}
             />
             <Route
               exact

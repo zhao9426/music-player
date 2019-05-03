@@ -74,7 +74,7 @@ export default class Home extends Component {
                     <Card
                       className="list-card"
                       key={s.id}
-                      cover={<img alt={s.name} src={s.url} />}
+                      cover={<img alt={s.name} src={s.poster} />}
                     >
                       <Meta
                         title={s.name}

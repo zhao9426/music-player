@@ -1,11 +1,12 @@
 import React, { Component } from "react";
-import { Form, Input, Button, message } from "antd";
+import { Form, Input, Button, message, Select } from "antd";
+import { toJS } from "mobx";
 import { observer, PropTypes as ObservablePropTypes } from "mobx-react";
 import PropTypes from "prop-types";
 import "./addOrEditUserPage.less";
 
 const { Item } = Form;
-
+const Option = Select.Option;
 @observer
 class AddOrEditSongPage extends Component {
   state = {
@@ -13,7 +14,7 @@ class AddOrEditSongPage extends Component {
     type: "text"
   };
   handleSubmit(e) {
-    const { mstore, history, location } = this.props;
+    const { mstore,  history, location } = this.props;
     const { option } = this.state;
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
@@ -50,7 +51,8 @@ class AddOrEditSongPage extends Component {
   }
 
   componentDidMount() {
-    const { match, location, form } = this.props;
+    const { match, location, form, hstore } = this.props;
+    hstore.getCategries();
     let { option } = match.params;
     if (option && option === "edit") {
       let song = location.state;
@@ -64,6 +66,8 @@ class AddOrEditSongPage extends Component {
             singer: song.singer,
             album: song.album,
             url: song.url,
+            poster: song.poster,
+            category: song.category,
             description: song.description
           });
         }
@@ -97,6 +101,9 @@ class AddOrEditSongPage extends Component {
         span: 8
       }
     };
+    const { hstore } = this.props;
+    let  { categories } = hstore;
+    let  c = toJS(categories);
     return (
       <Form
         className="wrapper-add-user"
@@ -141,6 +148,32 @@ class AddOrEditSongPage extends Component {
               }
             ]
           })(<Input type={type} placeholder="歌曲文件地址" />)}
+        </Item>
+        <Item label="歌曲图片地址" {...itemLayout}>
+          {getFieldDecorator("poster", {
+            rulse: [
+              {
+                required: true,
+                message: "请输入歌曲图片地址"
+              }
+            ]
+          })(<Input type={type} placeholder="歌曲图片地址" />)}
+        </Item>
+        <Item label="歌曲类别" {...itemLayout}>
+          {getFieldDecorator("category", {
+            rulse: [
+              {
+                required: true,
+                message: "请选择歌曲类别"
+              }
+            ]
+          })(
+            <Select>
+              {
+                c && c.map(item =>  <Option key={item.type} value={String(item.type)}>{item.name}</Option> )
+              }
+            </Select>
+        )}
         </Item>
         <Item label="描述" {...itemLayout}>
           {getFieldDecorator("description", {

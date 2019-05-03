@@ -15,7 +15,7 @@ import AddOrEditSingerPage from "../AddOrEditSingerPage";
 @observer
 class ManagePage extends Component {
   render() {
-    const { mstore, match, history, location } = this.props;
+    const { mstore, hstore, match, history, location } = this.props;
     return (
       <div className="wrapper">
         <Switch>
@@ -40,7 +40,7 @@ class ManagePage extends Component {
           <Route
             path={`${match.url}/:option/song`}
             render={props => (
-              <AddOrEditSongPage mstore={mstore} {...props} />
+              <AddOrEditSongPage mstore={mstore} hstore={hstore} {...props} />
             )}
           />
           <Route

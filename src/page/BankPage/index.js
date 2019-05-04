@@ -6,29 +6,19 @@ import "./styles.less";
 
 const { Content, Sider } = Layout;
 const { Item } = Menu;
-const listData = [
-  {
-    name: "绿色",
-    id: 1
-  },
-  {
-    name: "没有意外",
-    id: 2
-  }
-];
 
 @observer
 export default class BankPage extends Component {
   componentDidMount() {
-    console.log(this.props);
     const { hstore } = this.props;
+
     hstore.getCategries();
   }
 
-  handleSelectCategory({ item, key, selectedKeys }) {
+  handleSelectCategory({ key }) {
     const { hstore } = this.props;
     hstore.getRankList({ category: key });
-    // console.log(item, key, selectedKeys);
+    hstore.selectCategory(key);
   }
 
   renderListItem(item) {
@@ -36,8 +26,7 @@ export default class BankPage extends Component {
   }
   
   render() {
-    const { categories, rankList } = this.props.hstore;
-    let rList = toJS(rankList);
+    const { categories, rankList, currentCategory } = this.props.hstore;
     return (
       <Layout className="bank">
         <div className="wrapper">
@@ -47,6 +36,7 @@ export default class BankPage extends Component {
               mode="inline"
               inlineCollapsed={false}
               className="menu"
+              selectedKeys={[String(currentCategory.type)]}
               onSelect={this.handleSelectCategory.bind(this)}
             >
               {categories.map(m => {
@@ -55,11 +45,11 @@ export default class BankPage extends Component {
             </Menu>
           </Sider>
           <Content className="bank-list">
-            <h2>欧美</h2>
+            <h2>{currentCategory && currentCategory.name}</h2>
             <List
               size="large"
               className="song-list"
-              dataSource={rList}
+              dataSource={rankList}
               renderItem={item => this.renderListItem(item)}
               pagination={{
                 defaultCurrnt: 1,

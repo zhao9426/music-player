@@ -47,7 +47,7 @@ export class Register extends Component {
   compareToFirstPassword(rule, value, callback) {
     const form = this.props.form;
     if (value && value !== form.getFieldValue("password")) {
-      callback("Two passwords that you enter is inconsistent!");
+      callback("两次输入的密码不一致!");
     } else {
       callback();
     }
@@ -76,11 +76,9 @@ export class Register extends Component {
     const tailFormItemLayout = {
       wrapperCol: {
         xs: { span: 24 },
-        sm: { span: 10, offset: 4 }
+        sm: { span: 6, offset: 4 }
       }
     };
-
-    console.log(this.props, "kkk");
 
     return (
       <div className="register">
@@ -125,6 +123,10 @@ export class Register extends Component {
                 onBlur={this.handleConfirmBlur.bind(this)}
               />
             )}
+          </FormItem>
+          <FormItem {...formItemLayout} label="用户头像">
+            {getFieldDecorator("avatar", {
+            })(<Input type="text" />)}
           </FormItem>
           <FormItem {...tailFormItemLayout}>
             <Button type="primary" htmlType="submit">

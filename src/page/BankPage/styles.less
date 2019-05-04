@@ -4,6 +4,7 @@
         min-width: 600px;
         margin: 0 auto;
         display: flex;
+        flex-direction: row;
         .bank-menu {
             background: #fff;
             h2 {
@@ -13,7 +14,7 @@
                 text-align: center;
             }
             .menu {
-                height: 100%;
+               
                 border-right: 0;
             }
         }
@@ -24,11 +25,13 @@
                 padding: 8px;
             }
             .song-list {
+                padding: 8px;
+               
                 .ant-spin-nested-loading {
-                    min-height: 76vh;
+                    min-height: calc(100vh - 216px); 
                 }
                 .ant-list-pagination {
-                    text-align: center;
+                    text-align: right;
                 }
             }
         }

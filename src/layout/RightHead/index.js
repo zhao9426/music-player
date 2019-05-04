@@ -5,7 +5,8 @@ import {
   Dropdown,
   Icon,
   Avatar
-} from 'antd'
+} from 'antd';
+import isPicture from '../../utils/isPicture';
 import "./style.less";
 
 export default class RightHead extends Component {
@@ -22,9 +23,9 @@ export default class RightHead extends Component {
                 <Menu.Item key = "0">
                   <Link className = "menu-item" to = "/my" > 我的音乐 </Link>
                 </Menu.Item>
-                <Menu.Item key = "1">
+                { loginUser.role == 0 &&  <Menu.Item key = "1">
                   <Link className = "menu-item" to = "/manage" >管理</Link>
-                </Menu.Item>
+                </Menu.Item> }
                 <Menu.Item key = "2" >
                 <a href = "#" >退出</a> 
                 </Menu.Item> 
@@ -37,7 +38,7 @@ export default class RightHead extends Component {
               <a className = "ant-dropdown-link" >
                 <Avatar 
                 shape = "square"
-                src = "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
+                src = {(loginUser.avatar && isPicture(loginUser.avatar)) ? loginUser.avatar : "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"} />
                 <Icon type = "down" style={{ paddingLeft: 8, color: "#fff"}} />
               </a>
             </Dropdown>}

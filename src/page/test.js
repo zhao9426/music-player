@@ -20,14 +20,14 @@ class Test extends Component {
   render() {
     return (
       <div style={{width: "100%"}}>
-        <Player/>
-        {/* <Upload
+        {/* <Player/> */}
+        <Upload
             action = {`${base}/upload`} 
             onChange={this.handleUploadChange.bind(this)}>
           <Button>
             <Icon type="upload" /> 上传
           </Button>
-        </Upload> */}
+        </Upload>
       </div>
     );
   }

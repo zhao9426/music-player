@@ -5,6 +5,7 @@ import {
     observe,
 } from "mobx";
 
+import store from 'store2';
 import HomeService  from '../services/HomeService';
 import LoginService from '../services/loginServce';
 
@@ -16,14 +17,14 @@ class HStore {
   @observable songList = []; // 歌单列表
   @observable categories = []; // 歌曲类别
   @observable rankList = []; //排行榜
+  @observable currentCategory = {}; // 排行榜选中的类别
 
   @action.bound login(name, pwd, callback){
-    console.log(LoginService);
-    
     LoginService.login({name, pwd}).then(res => {
         if(res.login){
           this.isLogin = true;
-          this.loginUser = { name, pwd };
+          store.session("user", res.data);
+          this.loginUser = res.data;
         } else {
           this.isLogin = false;
           this.loginUser = {};
@@ -56,7 +57,13 @@ class HStore {
   @action.bound getCategries() {
     HomeService.fetchCategories().then(res => {
       this.categories = res.data;
+      this.currentCategory = res.data[0];
+      this.getRankList(res.data[0].type)
     });
+  }
+
+  @action.bound selectCategory(type){
+    this.currentCategory = this.categories.find(c => c.type == type)
   }
 
   @action.bound getRankList(query){

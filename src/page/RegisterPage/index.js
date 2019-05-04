@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Layout, Row, Col } from "antd";
+import { Layout, Row, Col, message } from "antd";
 import Register from "../../components/Register";
 import { observer, PropTypes as ObservablePropTypes } from "mobx-react";
 const { Header, Footer, Content, Sider } = Layout;
@@ -10,10 +10,16 @@ export default class RegisterPage extends Component {
     super(props);
   }
 
-  createUser(value) {
+  createUser(values) {
     const {history} = this.props;
-     this.props.mstore.createUser({name: value.username, pwd: value.password}, user => {
-       history.push(`/`);
+    let { username: name, password: pwd, avatar } = values
+    let pData = { name, pwd, avatar }
+     this.props.mstore.createUser( pData, res => {
+       if(res.success){
+          history.push(`/`);
+       } else {
+         message.error(res.message)
+       }
      });
   }
   render() {

@@ -4,8 +4,11 @@ import {
 } from "mobx";
 
 import store from 'store2';
-import HomeService  from '../services/HomeService';
+import HomeService, { createComment }  from '../services/HomeService';
 import LoginService from '../services/loginServce';
+// fetchCommentList,
+// createComment,
+// deleteComment
 
 class HStore {
   @observable loginUser = {};
@@ -17,6 +20,7 @@ class HStore {
   @observable categories = []; // 歌曲类别
   @observable rankList = []; //排行榜
   @observable currentCategory = {}; // 排行榜选中的类别
+  @observable commentList = []; //评论列表
 
   @action.bound login(name, pwd, callback){/* action修改状态的东西，返回的是一个函数 */
     LoginService.login({name, pwd}).then(res => {
@@ -70,11 +74,32 @@ class HStore {
   @action.bound selectCategory(type){
     this.currentCategory = this.categories.find(c => c.type == type)
   }
-
+  // 获取排行榜中某个类别歌曲的列表
   @action.bound getRankList(query){
     HomeService.fetchRankList(query).then(res => {
       this.rankList = res.data
     });
+  }
+  // 发表评论
+  @action.bound createComment(data, callback){
+    HomeService.createComment(data).then(res => {
+      const { topic_id: topicId, topic_type: topicType} = data;
+      let query = { topicId, topicType };
+      this.getCommentList(query)
+      console.log(res);
+      callback && callback();
+      //this.rankList = res.data
+    });
+  }
+
+  // 获取评论列表
+  @action.bound getCommentList(query){
+    console.log(query);
+    
+    HomeService.fetchCommentList(query).then(res => {
+      console.log(res);
+      this.commentList = res.data;
+    })
   }
 }
 

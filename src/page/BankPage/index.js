@@ -62,10 +62,6 @@ export default class BankPage extends Component {
               className="song-list"
               dataSource={rankList}
               renderItem={(item, index) => this.renderListItem(item, index)}
-              /*  pagination={{
-                 defaultCurrnt: 1,
-                 total: 20
-               }} */
               position="bottom"
               header={null}
               footer={null}

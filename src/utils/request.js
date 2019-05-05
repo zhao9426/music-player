@@ -31,9 +31,13 @@ export function put(url, data) {
   });
 }
 
-export function deleta(url) {
+export function deleta(url, data = {}) {
   return fetch(`${url}`, {
     method: "DELETE",
-    mode: "cors"
+    mode: "cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify(data)
   }).then(res => res.json());
 }

@@ -2,15 +2,18 @@ import React, { Component } from 'react';
 import { Row, Col, List, Avatar, Divider, Button, Icon } from 'antd';
 import { toJS } from 'mobx';
 import { observer } from "mobx-react";
-import './songlistpage.less';
+import './style.less';
 import Comment from '../../components/Comment';
 
 @observer
 export default class SongListPage extends Component {
+  
   componentDidMount() {
-    const { slstore } = this.props;
-    slstore.getSongs(36);
+    const { slstore, match } = this.props;
+    let id = match.params.id;
+    slstore.getSongs(id);
   }
+
   render() {
     const { slstore } = this.props;
     const { songs } = slstore;
@@ -54,7 +57,7 @@ export default class SongListPage extends Component {
             />
           </div>
         </div>
-        <Comment />
+        <Comment {...this.props} />
       </div>
     )
   }

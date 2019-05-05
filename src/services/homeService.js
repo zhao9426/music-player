@@ -6,6 +6,21 @@ import { get, post, put, deleta } from '../utils/request';
 export function fetchHomeSongList() {
   return get(`${base}/song-list`);
 }
+//获取评论 query中必传topicId, topicType字段
+export function fetchCommentList(query) {
+  return get(`${base}/api/comments`, query);
+}
+
+// 发表评论 data中需要fromId, fromName, topicId, topicType，content三个必传字段
+export function createComment(data) {
+  return post(`${base}/api/comments`, data);
+}
+
+// 删除评论 data中需要fromId, topicId, topicType三个必传字段
+export function deleteComment(id, data) {
+  return deleta(`${base}/api/comments/${id}`, data);
+}
+
 
 // 获取新歌列表
 export function fetchHomeNewSong(){
@@ -34,5 +49,8 @@ export default {
   fetchHomeSinger,
   fetchCategories,
   fetchSingerInfo,
-  fetchRankList
+  fetchRankList,
+  fetchCommentList,
+  createComment,
+  deleteComment
 };

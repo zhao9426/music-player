@@ -51,7 +51,7 @@ export default class Root extends Component {
             <Route
               exact/* 精确匹配 */
               path="/song/list/:id?"/* 如果有冒号开头说明是个路径参数如果后面跟上问号表示这个参数可选 */
-              render={props => <SongListPage slstore={slstore} {...props} />}
+              render={props => <SongListPage slstore={slstore} hstore={hstore} {...props} />}
             />
             <Route exact path="/player/:id?" component={Player} />
             <Route

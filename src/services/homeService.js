@@ -48,7 +48,6 @@ export default {
   fetchHomeNewSong,
   fetchHomeSinger,
   fetchCategories,
-  fetchSingerInfo,
   fetchRankList,
   fetchCommentList,
   createComment,

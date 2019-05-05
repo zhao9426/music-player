@@ -109,7 +109,10 @@ class HStore {
 
   // 获取评论列表
   @action.bound getCommentList(query){
+    console.log(query);
+    
     HomeService.fetchCommentList(query).then(res => {
+      console.log(res);
       this.commentList = res.data;
     })
   }

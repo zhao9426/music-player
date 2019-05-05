@@ -57,7 +57,7 @@ export default class SongListPage extends Component {
             />
           </div>
         </div>
-        <Comment {...this.props} type = "0" />
+        <Comment {...this.props} />
       </div>
     )
   }

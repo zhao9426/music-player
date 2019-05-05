@@ -61,7 +61,7 @@ export default class BankPage extends Component {
               size="large"
               className="song-list"
               dataSource={rankList}
-              renderItem={(item, index) => this.renderListItem(item, index)}
+              renderItem={item => this.renderListItem(item)}
               position="bottom"
               header={null}
               footer={null}

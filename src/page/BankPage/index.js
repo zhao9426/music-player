@@ -21,10 +21,21 @@ export default class BankPage extends Component {
     hstore.selectCategory(key);
   }
 
-  renderListItem(item) {
-    return <List.Item key={item.id}>{item.name}</List.Item>;
+  renderListItem(item, index) {
+    return <List.Item key={item.id}>
+      <div className="list-wrapper">
+        <div className="left-list">
+          {index + 1}<span className="title-fenge">{item.name}</span><span className="title-fenge">{item.singer}</span>
+        </div>
+        <span className="playcon">
+          <Icon type="caret-right" className="icon-fenge" />
+          <Icon type="heart" className="icon-fenge" />
+          <Icon type="download" className="icon-fenge" />
+        </span>
+      </div>
+    </List.Item>;
   }
-  
+
   render() {
     const { categories, rankList, currentCategory } = this.props.hstore;
     return (
@@ -50,11 +61,11 @@ export default class BankPage extends Component {
               size="large"
               className="song-list"
               dataSource={rankList}
-              renderItem={item => this.renderListItem(item)}
-              pagination={{
-                defaultCurrnt: 1,
-                total: 20
-              }}
+              renderItem={(item, index) => this.renderListItem(item, index)}
+              /*  pagination={{
+                 defaultCurrnt: 1,
+                 total: 20
+               }} */
               position="bottom"
               header={null}
               footer={null}

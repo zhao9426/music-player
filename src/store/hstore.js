@@ -1,8 +1,6 @@
 import {
     observable,
     action,
-    computed,
-    observe,
 } from "mobx";
 
 import store from 'store2';
@@ -14,12 +12,13 @@ class HStore {
   @observable isLogin = false;
   @observable singers = []; //歌手列表
   @observable songs = []; // 歌曲列表
+  @observable singerInfo = {}; // 歌手信息
   @observable songList = []; // 歌单列表
   @observable categories = []; // 歌曲类别
   @observable rankList = []; //排行榜
   @observable currentCategory = {}; // 排行榜选中的类别
 
-  @action.bound login(name, pwd, callback){
+  @action.bound login(name, pwd, callback){/* action修改状态的东西，返回的是一个函数 */
     LoginService.login({name, pwd}).then(res => {
         if(res.login){
           this.isLogin = true;
@@ -59,6 +58,12 @@ class HStore {
       this.categories = res.data;
       this.currentCategory = res.data[0];
       this.getRankList(res.data[0].type)
+    });
+  }
+
+  @action.bound getSingerInfo(id) {
+    HomeService.fetchSingerInfo(id).then(res => {
+      this.singerInfo = res.data;
     });
   }
 

@@ -15,6 +15,10 @@ export function fetchHomeNewSong(){
 export function fetchHomeSinger(){
   return get(`${base}/singers`)
 }
+// 获取歌手信息
+export function fetchSingerInfo(id){
+  return get(`${base}/api/singer/${id}`);
+}
 // 歌曲类别
 export function fetchCategories(){
   return get(`${base}/category`);
@@ -29,5 +33,6 @@ export default {
   fetchHomeNewSong,
   fetchHomeSinger,
   fetchCategories,
+  fetchSingerInfo,
   fetchRankList
 };

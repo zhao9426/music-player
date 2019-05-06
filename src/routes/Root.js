@@ -6,6 +6,7 @@ import MyMusicPage from "../page/MyMusicPage";
 import ManagePage from "../page/ManagePage";
 import RegisterPage from "../page/RegisterPage";
 import SongListPage from "../page/SongListPage";
+import SingerPage from "../page/SingerPage";
 import Player from "../page/Player";
 import Test from "../page/test";
 import MPLayout from "../layout";
@@ -40,12 +41,16 @@ export default class Root extends Component {
               render={props => <RegisterPage mstore={mstore} {...props} />}
             />
             <Route
+             path="/singer/:id?"
+              render={props => <SingerPage {...props}  hstore={hstore}/>}
+          />
+            <Route
               path="/my"
               render={props => <MyMusicPage mystore={mystore} {...props} />}
             />
             <Route
-              exact
-              path="/song/list/:id?"
+              exact/* 精确匹配 */
+              path="/song/list/:id?"/* 如果有冒号开头说明是个路径参数如果后面跟上问号表示这个参数可选 */
               render={props => <SongListPage slstore={slstore} {...props} />}
             />
             <Route exact path="/player/:id?" component={Player} />

@@ -1,7 +1,7 @@
 import qs from "qs";
 
 export default function request(url, options = {}) {
-  return fetch(`${url}`, options).then(res => res.json());
+  return fetch(`${url}`, options).then(res => res.json());/* 浏览器增加的发送ajax请求的fetch API */
 }
 
 export function get(url, query) {
@@ -12,7 +12,7 @@ export function get(url, query) {
 export function post(url, data) {
   return request(`${url}`, {
     method: "POST",
-    mode: "cors",
+    mode: "cors",/* 跨域 */
     headers: {
       "Content-Type": "application/json"
     },

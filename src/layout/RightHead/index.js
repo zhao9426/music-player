@@ -19,7 +19,7 @@ export default class RightHead extends Component {
           <Dropdown overlay = {
               < Menu >
                 <Menu.Item>{loginUser.name}</Menu.Item>
-                <Menu.Divider/>
+                <Menu.Divider/>{/* 下拉列表分割线 */}
                 <Menu.Item key = "0">
                   <Link className = "menu-item" to = "/my" > 我的音乐 </Link>
                 </Menu.Item>
@@ -31,7 +31,7 @@ export default class RightHead extends Component {
                 </Menu.Item> 
               </Menu>
             }
-              trigger = {
+              trigger = {/* 指定点击之后促发下拉内容*/
                   ['click']
                 } 
               >

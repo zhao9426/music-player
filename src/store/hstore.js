@@ -86,18 +86,30 @@ class HStore {
       const { topic_id: topicId, topic_type: topicType} = data;
       let query = { topicId, topicType };
       this.getCommentList(query)
-      console.log(res);
       callback && callback();
-      //this.rankList = res.data
+    });
+  }
+
+   // 删除评论
+   @action.bound deleteComment(comment){
+     let id = comment.id;
+     let { from_uid: fromId, topic_id: topicId, topic_type: topicType } = comment;
+
+    HomeService.deleteComment(id, {fromId, topicId, topicType }).then(res => {
+      console.log(res);
+     // const { topic_id: topicId, topic_type: topicType} = data;
+     // let query = { topicId, topicType };
+      if(res.success){
+        this.commentList.remove(comment)
+      }
+     // this.getCommentList(query)
+     // callback && callback();
     });
   }
 
   // 获取评论列表
   @action.bound getCommentList(query){
-    console.log(query);
-    
     HomeService.fetchCommentList(query).then(res => {
-      console.log(res);
       this.commentList = res.data;
     })
   }

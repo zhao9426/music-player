@@ -7,13 +7,13 @@ import store from "store2";
 import isPicture from "../../utils/isPicture";
 
 const TextArea = Input.TextArea;
-const CommentList = ({ comments, replayComment, handleReplyChange, handleReplySubmit, submitting, replyContent, replyIndex }) => (
+const CommentList = ({ comments, loginUser, replayComment, deleteComment, onCancel, handleReplyChange, handleReplySubmit, submittingReply, replyContent, replyIndex }) => (
   <List
     dataSource={comments}
     header={`${comments.length} ${comments.length >= 1 ? "最新评论" : ""}`}
     itemLayout="horizontal"
     renderItem={(c,index) => (
-      <div>
+      <div className="comment-item">
         <Comment
           author={c.from_uname}
           avatar={
@@ -33,7 +33,8 @@ const CommentList = ({ comments, replayComment, handleReplyChange, handleReplySu
         {replyIndex == index && <ReplyEditor 
           onChange={handleReplyChange}
           onSubmit={handleReplySubmit}
-          submitting={submitting}
+          submitting={submittingReply}
+          onCancel={onCancel}
           value={replyContent}/>}
         
       </div>
@@ -46,10 +47,11 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
     <Form.Item>
       <TextArea rows={4} onChange={onChange} value={value} />
     </Form.Item>
-    <Form.Item>
+    <Form.Item className="comment-group">
       <Button
         htmlType="submit"
         loading={submitting}
+        className="comment-btn"
         onClick={onSubmit}
         type="primary"
       >
@@ -61,7 +63,7 @@ const Editor = ({ onChange, onSubmit, submitting, value }) => (
 
 const ReplyEditor = ({ onChange, onSubmit, onCancel, submitting, value }) => (
   <div>
-    <Form.Item>
+    <Form.Item className="reply-editor">
       <TextArea rows={4} onChange={onChange} value={value} />
     </Form.Item>
     <Form.Item wrapperCol={{span: 4, offset: 20}} className="reply-option">
@@ -90,7 +92,9 @@ export default class CommentArea extends Component {
     this.state = {
       comments: [],
       submitting: false,
+      submittingReply: false,
       content: "",
+      replyContent: "",
       replyIndex: -1
     };
   }
@@ -100,6 +104,42 @@ export default class CommentArea extends Component {
     let topicId = match.params.id;
     let topicType = 0;
     hstore.getCommentList({ topicId, topicType });
+  }
+
+  handleReplySubmit() {
+    if (!this.state.replyContent) {
+      return;
+    }
+
+    this.setState({
+      submittingReply: true
+    });
+
+    const { match, hstore } = this.props;
+    let user = store.session.get("user");
+
+    let topic_id = match.params.id;
+    let from_uname = user.name;
+    let from_uid = user.id;
+    let comment = hstore.commentList.find((item,index) => this.state.replyIndex == index);
+
+    let pData = {
+      topic_id,
+      topic_type: 0,
+      from_uname,
+      from_uid,
+      to_uid: comment.from_uid,
+      to_uname: comment.from_uname,
+      content: this.state.replyContent
+    };
+
+    hstore.createComment(pData, () => {
+      this.setState({
+        submittingReply: false,
+        replyContent: "",
+        replyIndex: -1
+      });
+    });
   }
 
   handleSubmit() {
@@ -112,7 +152,6 @@ export default class CommentArea extends Component {
     });
     const { match, hstore } = this.props;
     let user = store.session.get("user");
-    console.log(user, "lll");
 
     let topic_id = match.params.id;
     let from_uname = user.name;
@@ -131,23 +170,6 @@ export default class CommentArea extends Component {
         content: ""
       });
     });
-    /* 
-    setTimeout(() => {
-      this.setState({
-        submitting: false,
-        content: "",
-        comments: [
-          {
-            author: "Han Solo",
-            avatar:
-              "https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png",
-            content: <p>{this.state.content}</p>,
-            datetime: moment().fromNow()
-          },
-          ...this.state.comments
-        ]
-      });
-    }, 1000); */
   }
 
   handleChange(e) {
@@ -155,19 +177,37 @@ export default class CommentArea extends Component {
       content: e.target.value
     });
   }
+
+  handleReplyChange(e){
+    this.setState({
+      replyContent: e.target.value
+    });
+  }
   // 回复评论
   replayComment(index) {
     this.setState({
       replyIndex: index
     })
-    
-    console.log("reply", index);
+  }
+
+  //取消评论
+  cancelReplyComment(){
+    this.setState({
+      replyIndex: -1, 
+      submittingReply: false,
+      replyContent: ""
+    })
+  }
+
+  deleteComment(c, index){
+    const { hstore } = this.props;
+    hstore.deleteComment(c);
   }
   render() {
-    const { submitting, content, replyIndex } = this.state;
-    console.log(this.props);
+    const { submitting, content, replyIndex, replyContent, submittingReply } = this.state;
     const { hstore } = this.props;
     let comments = hstore.commentList;
+    let loginUser = hstore.loginUser;
 
     return (
       <div>
@@ -190,7 +230,14 @@ export default class CommentArea extends Component {
         {comments.length > 0 && (
           <CommentList
             comments={comments}
+            loginUser={loginUser}
             replyIndex = {replyIndex}
+            deleteComment= {this.deleteComment.bind(this)}
+            replyContent = {replyContent}
+            submittingReply = {submittingReply}
+            handleReplySubmit={this.handleReplySubmit.bind(this)}
+            handleReplyChange={this.handleReplyChange.bind(this)}
+            onCancel={this.cancelReplyComment.bind(this)}
             replayComment={this.replayComment.bind(this)}
           />
         )}

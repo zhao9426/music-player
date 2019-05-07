@@ -1,24 +1,16 @@
 .music-playload {
     width: 100%;
     flex: 1;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    max-height: calc(100vh - 72px);
-    .player {
+    // max-height: calc(100vh - 72px);
+    .mv-player {
         margin: 4px;
-        flex: 3;
         width: 100%;
+        height: calc(100vh - 128px);
     }
-    .play-option {
-        flex: 1;
-        min-width: 300px;
-        .play {
-            padding-right: 4px;
-            &:hover {
-                transform: scale(1.2);
-                color: red;
-            }
-        }
+    .play-bar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
     }
 }

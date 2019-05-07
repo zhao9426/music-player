@@ -100,9 +100,9 @@ export default class CommentArea extends Component {
   }
 
   componentDidMount() {
-    const { match, hstore } = this.props;
+    const { match, hstore, type } = this.props;
     let topicId = match.params.id;
-    let topicType = 0;
+    let topicType = type;
     hstore.getCommentList({ topicId, topicType });
   }
 
@@ -115,7 +115,7 @@ export default class CommentArea extends Component {
       submittingReply: true
     });
 
-    const { match, hstore } = this.props;
+    const { match, hstore, type } = this.props;
     let user = store.session.get("user");
 
     let topic_id = match.params.id;
@@ -125,7 +125,7 @@ export default class CommentArea extends Component {
 
     let pData = {
       topic_id,
-      topic_type: 0,
+      topic_type: type,
       from_uname,
       from_uid,
       to_uid: comment.from_uid,
@@ -150,7 +150,7 @@ export default class CommentArea extends Component {
     this.setState({
       submitting: true
     });
-    const { match, hstore } = this.props;
+    const { match, hstore, type } = this.props;
     let user = store.session.get("user");
 
     let topic_id = match.params.id;
@@ -158,7 +158,7 @@ export default class CommentArea extends Component {
     let from_uid = user.id;
     let pData = {
       topic_id,
-      topic_type: 0,
+      topic_type: type,
       from_uname,
       from_uid,
       content: this.state.content

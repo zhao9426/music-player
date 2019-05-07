@@ -26,7 +26,7 @@ export class MusicVisualizer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      volum: 0,
+      volume: 0,
       type: "dot",
       size: 128,
       height: 200,
@@ -40,15 +40,15 @@ export class MusicVisualizer extends Component {
     this.resize = this.resize.bind(this);
   }
 
-  handleChangeSlider(volum) {
-    console.log(volum, "v");
+  handleChangeSlider(volume) {
+    console.log(volume, "v");
 
     this.setState(
       {
-        volum
+        volume
       },
       () => {
-        this.MV.changeVolume(this.state.volum);
+        this.MV.changeVolume(this.state.volume);
       }
     );
   }
@@ -57,6 +57,10 @@ export class MusicVisualizer extends Component {
     this.setState({
       type: value ? "dot" : "column"
     });
+  }
+
+  handlePlay(){
+
   }
 
   handleSelect(item) {
@@ -165,7 +169,7 @@ export class MusicVisualizer extends Component {
   }
 
   render() {
-    const { volum, type } = this.state;
+    const { volume, type, isPlay } = this.state;
     const columns = [{
       width: "2em",
       align: "center",
@@ -188,12 +192,21 @@ export class MusicVisualizer extends Component {
     let data = urls;
     return (
       <div className="music-playload">
-        <div className="player" ref="PLAYLOAD">
+        <div className="mv-player" ref="PLAYLOAD">
           <canvas ref="MUSIC_PLAYER" />
         </div>
-        <div className="play-option">
-          
-          <div>
+        <div className="play-bar">
+          <div className="option-group-1">
+           {/*  <Icon
+              onClick={this.handleChangePlay.bind(this, "prev")}
+              className="icon"
+              type="step-backward"
+            /> */}
+            <Icon
+              onClick={this.handlePlay.bind(this, isPlay)}
+              className="icon"
+              type={isPlay ? "pause" : "caret-right"}
+            />
             <Switch
               checkedChildren="点"
               unCheckedChildren="柱"
@@ -201,17 +214,50 @@ export class MusicVisualizer extends Component {
               onChange={this.handleSwitch.bind(this)}
               defaultChecked
             />
-             <Slider
+            {/* <Icon
+              onClick={this.handleChangePlay.bind(this, "next")}
+              className="icon"
+              type="step-forward"
+            /> */}
+          </div>
+         {/*  <div className="progress">
+            <div className="progress-status">
+                <div><span>亲爱的小孩</span></div>
+                <div className="time"><span className="left-time">{leftTime}</span><span className="divider">/</span><span className="duration">{duration}</span></div>
+            </div>
+            <Slider
+              defaultValue={0}
+              tooltipVisible={false}
+              value={progress}
+              onChange={this.handleChangeSlider.bind(this, "progress")}
               min={0}
               max={1}
               step={0.01}
-              onChange={this.handleChangeSlider.bind(this)}
-              value={volum}
             />
+          </div> */}
+          <div className="option-group-2">
+            <Icon className="icon" type="retweet" />
+            <Icon className="icon" type="heart" />
+            {/* <Icon className="icon" type="download" /> */}
+            <Icon className="icon" type="message" />
           </div>
-          <div className="play-list">
-          <Table columns={columns} dataSource={data} />
-          <ul>
+          <div className="option-group-3">
+           {/*  <MyIcon
+              className="icon"
+              onClick={this.handleMute.bind(this, isMute)}
+              type={isMute ? "icon-sound-muted" : "icon-sound-play"}
+            /> */}
+            <Slider
+              className="volumn-option"
+              defaultValue={0}
+              tooltipVisible={false}
+              value={volume}
+              onChange={this.handleChangeSlider.bind(this, "volume")}
+              min={0}
+              max={1}
+              step={0.01}
+            />
+            <ul>
             {urls.map(item => {
               return (
                 <li key={item.id} onClick={this.handleSelect.bind(this, item)}>

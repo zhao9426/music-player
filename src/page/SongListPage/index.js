@@ -7,7 +7,7 @@ import Comment from '../../components/Comment';
 
 @observer
 export default class SongListPage extends Component {
-  
+
   componentDidMount() {
     const { slstore, match } = this.props;
     let id = match.params.id;
@@ -57,7 +57,7 @@ export default class SongListPage extends Component {
             />
           </div>
         </div>
-        <Comment {...this.props} />
+        <Comment {...this.props} type = "0" />
       </div>
     )
   }

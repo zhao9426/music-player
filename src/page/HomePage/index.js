@@ -29,12 +29,12 @@ export default class Home extends Component {
       case 'singer':
         history.push(`/singer/${data.id}`);
         break;
-      case 'song':
+      case 'song-list':
         history.push(`/song/list/${data.id}`);
         break;
-      /* case 'song-list':
-        history.push(`/song/list/${data.id}`);
-        break; */
+      case 'song':
+        history.push(`/song/play/${data.id}`);
+        break;
     }
   }
 
@@ -54,7 +54,7 @@ export default class Home extends Component {
             {slist.map(s => {
               return (
                 <Card
-                  onClick={this.jumpTo.bind(this, 'song', s)}
+                  onClick={this.jumpTo.bind(this, 'song-list', s)}
                   className="list-card"
                   key={s.id}
                   cover={<img alt={s.name} src={s.poster} />}
@@ -82,6 +82,7 @@ export default class Home extends Component {
                 <Card
                   className="list-card"
                   key={s.id}
+                  onClick={this.jumpTo.bind(this, 'song', s)}
                   cover={<img alt={s.name} src={s.poster} />}
                 >
                   <Meta

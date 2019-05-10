@@ -10,7 +10,7 @@ const TextArea = Input.TextArea;
 const CommentList = ({ comments, loginUser, replayComment, deleteComment, onCancel, handleReplyChange, handleReplySubmit, submittingReply, replyContent, replyIndex }) => (
   <List
     dataSource={comments}
-    header={`${comments.length} ${comments.length > 1 ? "最新评论" : ""}`}
+    header={`${comments.length} ${comments.length >= 1 ? "最新评论" : ""}`}
     itemLayout="horizontal"
     renderItem={(c,index) => (
       <div className="comment-item">
@@ -28,7 +28,7 @@ const CommentList = ({ comments, loginUser, replayComment, deleteComment, onCanc
             ]:[
               <span onClick={replayComment.bind(this,index)}>回复</span>
               ] }
-          {...c}
+          content={c.to_uname? `回复@${c.to_uname}:${c.content}`: c.content}
         />
         {replyIndex == index && <ReplyEditor 
           onChange={handleReplyChange}

@@ -3,8 +3,8 @@ import base from './base';
 import { get, post, put, deleta } from '../utils/request';
 
 // 获取我的歌单列表
-export function fetchMySongList() {
-  return get(`${base}/my/song-list`);
+export function fetchMySongList(query) {
+  return get(`${base}/my/csl`, query);
 }
 
 // 获取我收藏的歌单列表

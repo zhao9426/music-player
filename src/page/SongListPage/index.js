@@ -23,7 +23,7 @@ export default class SongListPage extends Component {
       <div className="wrapper">
         <div className="title">当前位置>
             <a>首页></a>
-          <a>午后黄昏</a>
+            <a>{s.name}</a>
         </div>
         <div className="songlist-wrapper">
           <div className="left">

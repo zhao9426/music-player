@@ -5,12 +5,47 @@
     .mv-player {
         margin: 4px;
         width: 100%;
-        height: calc(100vh - 128px);
+        height: calc(100vh - 120px);
     }
     .play-bar {
         display: flex;
+        width: 60%;
+        min-width: 300px;
+        margin: 0 auto;
         flex-direction: row;
         justify-content: space-between;
-        align-items: center;
+        align-items: stretch;
+        .option-group-1 {
+            flex: 1;
+            min-width: 120px;
+            .icon {
+                padding: 4px 8px;
+                font-size: 36px;
+            }
+        }
+        .option-group-2 {
+            padding: 4px;
+            width: 60px;
+            .icon {
+                padding: 4px 8px;
+                font-size: 36px;
+            }
+        }
+        .option-group-3 {
+            padding: 4px;
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 160px;
+            .icon {
+                padding: 4px 8px;
+                font-weight: 600;
+                font-size: 36px;
+            }
+            .volumn-option {
+                flex: 1
+            }
+        }
     }
 }

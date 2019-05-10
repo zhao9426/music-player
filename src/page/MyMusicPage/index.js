@@ -55,13 +55,18 @@ export default class MyMusicPage extends Component {
   getData(currentTab) {
      const {
        mystore,
+       hstore
      } = this.props;
+     let { loginUser } = hstore;
+     let query = {};
      switch (currentTab) {
        case "song-list":
-         mystore.getMySongList();
+          query = { userId: loginUser.id, isSelfCreat: true}
+         mystore.getMySongList(query);
          break;
        case "song":
-         mystore.getMyFavoriteSongList();
+        query = { userId: loginUser.id, isSelfCreat: false}
+         mystore.getMyFavoriteSongList(query);
          break;
        case "love-song":
          mystore.getMyFavoriteSongs();

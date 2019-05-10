@@ -28,15 +28,15 @@ class MyStore {
   }
 
   // 获取我的歌单列表
-  @action.bound getMySongList() {
-    MyService.fetchMySongList().then(res => {
+  @action.bound getMySongList(query) {
+    MyService.fetchMySongList(query).then(res => {
       this.mySongList = res.data;
     });
   }
 
   // 获取我收藏的歌单列表
-  @action.bound getMyFavoriteSongList() {
-    MyService.fetchMyFavoriteSongList().then(res => {
+  @action.bound getMyFavoriteSongList(query) {
+    MyService.fetchMySongList(query).then(res => {
       this.myFavoriteSongList = res.data;
     });
   }

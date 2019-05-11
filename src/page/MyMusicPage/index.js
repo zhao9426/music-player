@@ -29,91 +29,24 @@ export default class MyMusicPage extends Component {
   
  
   componentDidMount() {
-    const { mystore, hstore, history, location, match } = this.props;
-    const { currentTab } = this.state;
-    let state = location.state;
-    // let paths = location.pathname.match(/\/[\w|-]*/ig);
-    // let currentTab = paths[1] && paths[1].substring(1)|| "song-list";
-    let to = state && state.to ? state.to : currentTab;
-    let { loginUser } = hstore;
-    let query = {};
-    switch (to) {
-      case "song-list":
-         query = { userId: loginUser.id, isSelfCreat: true}
-        mystore.getMySongList(query);
-        break;
-      case "love-song-list":
-       query = { userId: loginUser.id, isSelfCreat: false}
-        mystore.getMyFavoriteSongList(query);
-        break;
-      case "love-song":
-        mystore.getMyFavoriteSongs();
-        break;
-      case "love-singer":
-        mystore.getMyFlowSingers();
-        break;
-      default:
-        console.log("default");
-    }
-    this.setState(
-      {
-        currentTab: to
-      },
-      ()=> {
-        this.getData(currentTab);
-     }
-    );
-
-    // const { location } = this.props;
-    // let paths = location.pathname.match(/\/[\w|-]*/ig);
-    // let currentTab = paths[1] && paths[1].substring(1)|| "song-list";
-    // this.setState({
-    //   currentTab
-    // },()=> {
-    //    this.getData(currentTab);
-    // })
-  }
-  
-  changeTab(currentTab) {
-    const { mystore, hstore, history } = this.props;
-    let { loginUser } = hstore;
-    let query = {};
-    switch (currentTab) {
-      case "song-list":
-        query = { userId: loginUser.id, isSelfCreat: true}
-        mystore.getMySongList(query);
-        break;
-      case "love-song-list":
-       query = { userId: loginUser.id, isSelfCreat: false}
-        mystore.getMyFavoriteSongList(query);
-        break;
-      case "love-song":
-        mystore.getMyFavoriteSongs();
-        break;
-      case "love-singer":
-        mystore.getMyFlowSingers();
-        break;
-      default:
-        console.log("default");
-    }
-    () => {
-      this.getData(currentTab);
-     history.push(`/my/${currentTab}`);
-   }
+    const { location } = this.props;
+    let paths = location.pathname.match(/\/[\w|-]*/ig);
+    let currentTab = paths[1] && paths[1].substring(1)|| "song-list";
     this.setState({
       currentTab
-    });
-
-   /*  const { history } = this.props;
-    this.setState(
-      {
+    },()=> {
+       this.getData(currentTab);
+    })
+  }
+  
+  changeTab(currentTab) { 
+    const { history } = this.props
+    this.setState({
         currentTab
-      },
-      () => {
-         this.getData(currentTab);
+      },() => {
+        this.getData(currentTab);
         history.push(`/my/${currentTab}`);
-      }
-    ); */
+    });
   }
 
   getData(currentTab) {

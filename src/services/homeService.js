@@ -50,6 +50,7 @@ export default {
   fetchCategories,
   fetchRankList,
   fetchCommentList,
+  fetchSingerInfo,
   createComment,
   deleteComment
 };

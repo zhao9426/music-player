@@ -28,27 +28,33 @@ export class ManageSongListTable extends Component {
       },
       {
         title: "歌名",
-        dataIndex: "name"
+        dataIndex: "name",
+        width: "6em"
       },
       {
         title: "作者",
-        dataIndex: "author"
+        dataIndex: "author",
+        width: "5em"
       },
       {
         title: "封面图",
-        dataIndex: "poster"
+        dataIndex: "poster",
+        width: "12em"
       },
       {
         title: "收藏数",
-        dataIndex: "favorite"
+        dataIndex: "favorite",
+        width: "6em"
       },
       {
         title: "播放次数",
-        dataIndex: "count"
+        dataIndex: "count",
+        width: "7em"
       },
       {
         title: "描述",
-        dataIndex: "description"
+        dataIndex: "description",
+        width: "5em"
       },
       {
         title: "创建时间",

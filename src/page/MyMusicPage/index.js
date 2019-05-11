@@ -13,7 +13,7 @@ import "./styles.less";
 
 const TABS = [
   { name: "我的歌单", key: "song-list" },
-  { name: "我收藏的歌单", key: "song" },
+  { name: "我收藏的歌单", key: "love-song-list" },
   { name: "我喜欢的歌曲", key: "love-song" },
   { name: "我关注的歌手", key: "love-singer" }
 ];
@@ -29,18 +29,82 @@ export default class MyMusicPage extends Component {
   
  
   componentDidMount() {
-    const { location } = this.props;
-    let paths = location.pathname.match(/\/[\w|-]*/ig);
-    let currentTab = paths[1] && paths[1].substring(1)|| "song-list";
-    this.setState({
-      currentTab
-    },()=> {
-       this.getData(currentTab);
-    })
+    const { mystore, hstore, history, location, match } = this.props;
+    const { currentTab } = this.state;
+    let state = location.state;
+    // let paths = location.pathname.match(/\/[\w|-]*/ig);
+    // let currentTab = paths[1] && paths[1].substring(1)|| "song-list";
+    let to = state && state.to ? state.to : currentTab;
+    let { loginUser } = hstore;
+    let query = {};
+    switch (to) {
+      case "song-list":
+         query = { userId: loginUser.id, isSelfCreat: true}
+        mystore.getMySongList(query);
+        break;
+      case "love-song-list":
+       query = { userId: loginUser.id, isSelfCreat: false}
+        mystore.getMyFavoriteSongList(query);
+        break;
+      case "love-song":
+        mystore.getMyFavoriteSongs();
+        break;
+      case "love-singer":
+        mystore.getMyFlowSingers();
+        break;
+      default:
+        console.log("default");
+    }
+    this.setState(
+      {
+        currentTab: to
+      },
+      ()=> {
+        this.getData(currentTab);
+     }
+    );
+
+    // const { location } = this.props;
+    // let paths = location.pathname.match(/\/[\w|-]*/ig);
+    // let currentTab = paths[1] && paths[1].substring(1)|| "song-list";
+    // this.setState({
+    //   currentTab
+    // },()=> {
+    //    this.getData(currentTab);
+    // })
   }
   
   changeTab(currentTab) {
-    const { history } = this.props;
+    const { mystore, hstore, history } = this.props;
+    let { loginUser } = hstore;
+    let query = {};
+    switch (currentTab) {
+      case "song-list":
+        query = { userId: loginUser.id, isSelfCreat: true}
+        mystore.getMySongList(query);
+        break;
+      case "love-song-list":
+       query = { userId: loginUser.id, isSelfCreat: false}
+        mystore.getMyFavoriteSongList(query);
+        break;
+      case "love-song":
+        mystore.getMyFavoriteSongs();
+        break;
+      case "love-singer":
+        mystore.getMyFlowSingers();
+        break;
+      default:
+        console.log("default");
+    }
+    () => {
+      this.getData(currentTab);
+     history.push(`/my/${currentTab}`);
+   }
+    this.setState({
+      currentTab
+    });
+
+   /*  const { history } = this.props;
     this.setState(
       {
         currentTab
@@ -49,7 +113,7 @@ export default class MyMusicPage extends Component {
          this.getData(currentTab);
         history.push(`/my/${currentTab}`);
       }
-    );
+    ); */
   }
 
   getData(currentTab) {
@@ -64,7 +128,7 @@ export default class MyMusicPage extends Component {
           query = { userId: loginUser.id, isSelfCreat: true}
          mystore.getMySongList(query);
          break;
-       case "song":
+       case "love-song-list":
         query = { userId: loginUser.id, isSelfCreat: false}
          mystore.getMyFavoriteSongList(query);
          break;
@@ -80,12 +144,8 @@ export default class MyMusicPage extends Component {
   }
 
   render() {
-    const {
-      myFlowSingers,
-      myFavoriteSongs,
-      mySongList,
-      myFavoriteSongList
-    } = this.props.mystore;
+    const {myFlowSingers, myFavoriteSongs,mySongList, myFavoriteSongList} = this.props.mystore;
+    console.log(myFavoriteSongs,"llll")
     const { match } = this.props;
     let { currentTab } = this.state
     return (
@@ -113,27 +173,27 @@ export default class MyMusicPage extends Component {
               <Route
                 exact
                 path={`${match.url}/song-list`}
-                render={props => <MySongListTable data={toJS(mySongList)} />}
+                render={props => <MySongListTable  list={mySongList}/>}
               />
               <Route
                 exact
-                path={`${match.url}/song`}
+                path={`${match.url}/love-song-list`}
                 render={props => (
-                  <MyLikeSingerTable data={toJS(myFlowSingers)} />
+                  <MySongListTable  list={myFavoriteSongList}/>
                 )}
               />
               <Route
                 exact
                 path={`${match.url}/love-song`}
                 render={props => (
-                  <MyLikeSongTable data={toJS(myFavoriteSongs)} />
+                  <MyLikeSongTable   list={myFavoriteSongs} />
                 )}
               />
               <Route
                 exact
                 path={`${match.url}/love-singer`}
                 render={props => (
-                  <MyFavoriteSongListTable data={toJS(myFavoriteSongList)} />
+                  <MyFavoriteSongListTable  list={myFlowSingers} />
                 )}
               />
             </Switch>

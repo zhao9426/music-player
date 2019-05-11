@@ -66,6 +66,7 @@ class HStore {
   }
 
   @action.bound getSingerInfo(id) {
+    console.log(id,"hhjjj")
     HomeService.fetchSingerInfo(id).then(res => {
       this.singerInfo = res.data;
     });

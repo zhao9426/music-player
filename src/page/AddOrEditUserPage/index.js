@@ -30,6 +30,7 @@ class AddOrEditUserPage extends Component {
           });
         } else if ("edit" === option) {
           let user = location.state;
+          console.log(user,+'hkdfkd');
           mstore.updateUser(user.id, values, res => {
             if (res.success) {
               message.success("用户信息修改成功！",1);

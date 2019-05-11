@@ -21,8 +21,6 @@ const manageTab = [
   { key: "singers", label: "歌手管理" },
   { key: "songs", label: "歌曲管理" },
   { key: "song-list", label: "歌单管理" },
-  // { key: "banner", label: "广告图管理" },
-  // { key: "tags", label: "标签管理" }
 ];
 
 @observer

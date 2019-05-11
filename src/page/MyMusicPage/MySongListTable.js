@@ -8,15 +8,16 @@ import PropTypes from 'prop-types';
 @observer
 export class MySongListTable extends Component {
     render() {
-        const { data } = this.props
+        const { list } = this.props
+        console.log(list, "jjjj");
         return (
             <List
                 itemLayout="horizontal"
-                dataSource={data}
+                dataSource={list}
                 renderItem={item => (
                     <List.Item>
                         <List.Item.Meta
-                            title={<a href="https://ant.design">{item.title}</a>}
+                            title={<a href="https://ant.design">{list.title}</a>}
                             description={item.description}
                         />
                         <div>{item.count}</div>

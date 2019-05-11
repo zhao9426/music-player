@@ -28,31 +28,38 @@ export class ManageSongTable extends Component {
       },
       {
         title: "歌名",
-        dataIndex: "name"
+        dataIndex: "name",
+        width: "10em"
       },
       {
         title: "歌手",
-        dataIndex: "singer"
+        dataIndex: "singer",
+        width: "6em"
       },
       {
         title: "专辑",
-        dataIndex: "album"
+        dataIndex: "album",
+        width: "6em"
       },
       {
         title: "收藏数",
-        dataIndex: "favorite"
+        dataIndex: "favorite",
+        width: "6em"
       },
       {
         title: "播放次数",
-        dataIndex: "count"
+        dataIndex: "count",
+        width: "7em"
       },
       {
         title: "描述",
-        dataIndex: "description"
+        dataIndex: "description",
+        width: "6em"
       },
       {
         title: "创建时间",
         dataIndex: "created_at",
+        width: "7em",
         render: (t, d) => (
           <span>{moment(t).format("YYYY-MM-DD hh:mm")}</span>
         )
@@ -60,6 +67,7 @@ export class ManageSongTable extends Component {
       {
         title: "更新时间",
         dataIndex: "updated_at",
+        width: "7em",
         render: (t, d) => (
           <span>{moment(t).format("YYYY-MM-DD hh:mm")}</span>
         )

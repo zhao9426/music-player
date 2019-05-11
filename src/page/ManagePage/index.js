@@ -15,7 +15,7 @@ import AddOrEditSingerPage from "../AddOrEditSingerPage";
 @observer
 class ManagePage extends Component {
   render() {
-    const { mstore, hstore, match, history, location } = this.props;
+    const { mstore, hstore, mystore, match, history, location } = this.props;
     return (
       <div className="wrapper">
         <Switch>

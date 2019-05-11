@@ -8,15 +8,15 @@ import PropTypes from 'prop-types';
 @observer
 export class MyLikeSingerTable extends Component {
     render() {
-        const { data } = this.props
+        const { list } = this.props;
         return (
             <List
                 itemLayout="horizontal"
-                dataSource={data}
+                dataSource={list}
                 renderItem={item => (
                     <List.Item>
                         <List.Item.Meta
-                            title={<a href="https://ant.design">{item.title}</a>}
+                            title={<a href="https://ant.design">{list.title}</a>}
                             description="Ant Design, a design language for background applications, is refined by Ant UED Team"
                         />
                     </List.Item>

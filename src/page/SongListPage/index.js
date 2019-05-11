@@ -50,7 +50,6 @@ export default class SongListPage extends Component {
                   <span className="playcon">
                   <Icon type="caret-right" className="icon-fenge"/>
                   <Icon type="heart" className="icon-fenge"/>
-                  <Icon type="download" className="icon-fenge" />
                   </span>
                 </List.Item>
               )}

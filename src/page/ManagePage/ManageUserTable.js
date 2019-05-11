@@ -22,11 +22,11 @@ export class ManageUserTable extends Component {
     const colum = [
       {
         title: "ID",
-        dataIndex: "id"
+        dataIndex: "id",
       },
       {
         title: "名称",
-        dataIndex: "name"
+        dataIndex: "name",
       },
       {
         title: "密码",

@@ -30,7 +30,6 @@ export default class BankPage extends Component {
         <span className="playcon">
           <Icon type="caret-right" className="icon-fenge" />
           <Icon type="heart" className="icon-fenge" />
-          <Icon type="download" className="icon-fenge" />
         </span>
       </div>
     </List.Item>;
@@ -61,7 +60,7 @@ export default class BankPage extends Component {
               size="large"
               className="song-list"
               dataSource={rankList}
-              renderItem={item => this.renderListItem(item)}
+              renderItem={(item, index) => this.renderListItem(item, index)}
               position="bottom"
               header={null}
               footer={null}

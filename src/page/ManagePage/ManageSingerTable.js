@@ -22,11 +22,13 @@ export class ManageSingerTable extends Component {
     const colum = [
       {
         title: "ID",
-        dataIndex: "id"
+        dataIndex: "id",
+        width: "4em"
       },
       {
         title: "名称",
-        dataIndex: "name"
+        dataIndex: "name",
+        width: "8em"
       },
       {
         title: "歌手头像",
@@ -34,21 +36,25 @@ export class ManageSingerTable extends Component {
       },
       {
         title: "粉丝数",
-        dataIndex: "follower"
+        dataIndex: "follower",
+        width: "6em"
       },
       {
         title: "创建时间",
+        width: "7em",
         dataIndex: "created_at",
         render: (t, d) => <span>{moment(t).format("YYYY-MM-DD hh:mm")}</span>
       },
       {
         title: "更新时间",
+        width: "7em",
         dataIndex: "updated_at",
         render: (t, d) => <span>{moment(t).format("YYYY-MM-DD hh:mm")}</span>
       },
       {
         title: "操作",
         align: "center",
+        width: "14em",
         render: r => {
           return (
             <div className="btn-group">

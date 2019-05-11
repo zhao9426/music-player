@@ -17,7 +17,7 @@ export class MyLikeSingerTable extends Component {
                     <List.Item>
                         <List.Item.Meta
                             title={<a href="https://ant.design">{list.title}</a>}
-                            description="Ant Design, a design language for background applications, is refined by Ant UED Team"
+                            description={item.description}
                         />
                     </List.Item>
                 )}

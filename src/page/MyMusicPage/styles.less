@@ -5,6 +5,25 @@
     padding: 32px;
     min-height: calc(100vh - 156px);
     .card-container {
+        display: flex;
+        flex-direction: row;
+        .tab-wrapper {
+            background-color: #fff;;
+        }
+        .wrapper-table {
+            border: 1px solid black;
+            flex: 1;
+            margin-left: 15px;
+            .content-wrapper {
+                background: #fff;
+                .ant-list-item-meta-description {
+                    padding: 8px;
+                }
+                .ant-list-item-content {
+                    padding: 8px;
+                }
+            }
+        }
         .ant-tabs-card {
             .ant-tabs-tabs-content {
                 height: 120px;
@@ -16,8 +35,10 @@
             }
             .ant-tabs-bar {
                 border-color: #fff;
+                margin-bottom: 0px!important;
                 .my-menus {
                     font-size: 20px;
+                    
                 }
                 .ant-tabs-tab {
                     border-color: transparent;
@@ -26,6 +47,9 @@
                 .ant-tabs-tab-active {
                     border-color: #fff;
                     background: #fff;
+                    .ant-tabs-tab:hover{
+                        background: #e6f7ff;
+                    }
                 }
             }
         }

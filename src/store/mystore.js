@@ -14,15 +14,15 @@ class MyStore {
   @observable myFavoriteSongList = []; // 我收藏的歌单列表
 
   // 获取我关注的歌手列表
-  @action.bound getMyFlowSingers() {
-    MyService.fetchMyFlowSinger().then(list => {
+  @action.bound getMyFlowSingers(query) {
+    MyService.fetchMyFlowSinger(query).then(list => {
       this.myFlowSingers = observable.array(list.data);
     });
   }
 
   // 获取我喜欢的歌曲列表
-  @action.bound getMyFavoriteSongs() {
-    MyService.fetchMyFavoriteSong().then(res => {
+  @action.bound getMyFavoriteSongs(query) {
+    MyService.fetchMyFavoriteSong(query).then(res => {
       this.myFavoriteSongs = res.data;
     });
   }

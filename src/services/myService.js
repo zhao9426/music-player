@@ -8,16 +8,16 @@ export function fetchMySongList(query) {
 }
 
 // 获取我收藏的歌单列表
-export function fetchMyFavoriteSongList(){
-  return get(`${base}/my/collect-song-list`);
+export function fetchMyFavoriteSongList(query){
+  return get(`${base}/my/collect-song-list`, query);
 }
 // 获取我关注的歌手列表
-export function fetchMyFlowSinger(){
-  return get(`${base}/my/like-singer`);
+export function fetchMyFlowSinger(query){
+  return get(`${base}/my/like-singer`, query);
 }
 // 歌曲类别
-export function fetchMyFavoriteSong(){
-  return get(`${base}/my/like-song`);
+export function fetchMyFavoriteSong(query){
+  return get(`${base}/my/like-song`, query);
 }
 
 

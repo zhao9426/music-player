@@ -49,6 +49,12 @@ export default class MyMusicPage extends Component {
     });
   }
 
+  handleSelectCategory({ key }) {
+    const { hstore } = this.props;
+    hstore.getRankList({ category: key });
+    hstore.selectCategory(key);
+  }
+  
   getData(currentTab) {
      const {
        mystore,
@@ -58,7 +64,7 @@ export default class MyMusicPage extends Component {
      let query = {};
      switch (currentTab) {
        case "song-list":
-          query = { userId: loginUser.id, isSelfCreat: true}
+          query = { userId: loginUser.id, isSelfCreat: false}
          mystore.getMySongList(query);
          break;
        case "love-song-list":
@@ -66,10 +72,12 @@ export default class MyMusicPage extends Component {
          mystore.getMyFavoriteSongList(query);
          break;
        case "love-song":
-         mystore.getMyFavoriteSongs();
+        query = { userId: loginUser.id }
+         mystore.getMyFavoriteSongs(query);
          break;
        case "love-singer":
-         mystore.getMyFlowSingers();
+       query = { userId: loginUser.id }
+         mystore.getMyFlowSingers(query);
          break;
        default:
          console.log("default");
@@ -78,7 +86,6 @@ export default class MyMusicPage extends Component {
 
   render() {
     const {myFlowSingers, myFavoriteSongs,mySongList, myFavoriteSongList} = this.props.mystore;
-    console.log(myFavoriteSongs,"llll")
     const { match } = this.props;
     let { currentTab } = this.state
     return (
@@ -86,6 +93,8 @@ export default class MyMusicPage extends Component {
         <div className="card-container">
           <Tabs
             type="card"
+            tabPosition="left"
+            className="tab-wrapper"
             activeKey = {
               currentTab
             }
@@ -102,6 +111,8 @@ export default class MyMusicPage extends Component {
             })}
           </Tabs>
           <div className="wrapper-table">
+          <h2>{currentTab && currentTab.name}</h2>
+          <div className="content-wrapper">
             <Switch>
               <Route
                 exact
@@ -130,6 +141,7 @@ export default class MyMusicPage extends Component {
                 )}
               />
             </Switch>
+            </div>
           </div>
         </div>
       </div>

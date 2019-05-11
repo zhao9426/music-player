@@ -103,22 +103,22 @@ export class ManageList extends Component {
 
   search(type, value){
     const { mstore, history } = this.props;
-    console.log(type, value, "search"); 
+    let query = { keyword : value }
     switch (type) {
       case "users":
-        mstore.getUserList(value);
+        mstore.getUserList(query);
         break;
       case "singers":
-        mstore.getSingerList(value);
+        mstore.getSingerList(query);
         break;
       case "song-list":
-        mstore.getSongListList(value);
+        mstore.getSongListList(query);
         break;
       case "songs":
-        mstore.getSongList(value);
+        mstore.getSongList(query);
         break;
       default:
-    console.log(type, value, "search"); 
+    console.log(type, query, "search"); 
    }
   }
 

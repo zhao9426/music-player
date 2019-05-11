@@ -3,8 +3,8 @@ import qs from "qs";
 import { get, post, put, deleta } from "../utils/request";
 
 // 获取用户列表
-export function fetchUserList() {
-  return get(`${apiPath}/users`);
+export function fetchUserList(query) {
+  return get(`${apiPath}/users`, query);
 }
 // 添加用户
 export function addUser(data) {
@@ -21,8 +21,8 @@ export function deleteUser(id) {
 }
 
 // 获取歌手列表
-export function fetchSingerList() {
-  return get(`${apiPath}/singer`);
+export function fetchSingerList(query) {
+  return get(`${apiPath}/singer`,query);
 }
 
 // 创建歌手
@@ -41,10 +41,8 @@ export function deleteSinger(id) {
 }
 
 // 获取歌单列表
-export function fetchSongListList(keyword) {
-  return get(`${apiPath}/song-list`, {
-    keyword
-  });
+export function fetchSongListList(query) {
+  return get(`${apiPath}/song-list`, query);
 }
 
 // 创建歌单
@@ -63,8 +61,8 @@ export function deleteSongList(id) {
 }
 
 // 获取歌曲列表
-export function fetchSongList() {
-  return get(`${apiPath}/song`);
+export function fetchSongList(query) {
+  return get(`${apiPath}/song`, query);
 }
 
 // 创建歌曲

@@ -22,7 +22,7 @@ export default class SongListPage extends Component {
     return (
       <div className="wrapper">
         <div className="title">当前位置>
-            <a>首页></a>
+            <a href="/">首页></a>
             <a>{s.name}</a>
         </div>
         <div className="songlist-wrapper">

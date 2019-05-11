@@ -17,8 +17,8 @@ export default class SingerPage extends Component {
         return (
             <div className="wrapper">
             <div className="title">当前位置>
-                <a>首页></a>
-              <a>午后黄昏</a>
+                <a href="/">首页></a>
+                <a>{singerInfo.name}</a>
             </div>
             <div className="singer-wrapper">
             <img src={singerInfo.avatarUrl} className="singer-img"/>

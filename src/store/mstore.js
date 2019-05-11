@@ -33,9 +33,9 @@ class Store {
         });
     } */
   // 获取用户列表
-  @action.bound getUserList() {
-    ManageService.fetchUserList().then(list => {
-      this.userList = observable.array(list);
+  @action.bound getUserList(query) {
+    ManageService.fetchUserList(query).then(res => {
+      this.userList = res.data;
     });
   }
   // 创建用户
@@ -59,9 +59,9 @@ class Store {
   }
 
   // 获取歌手列表
-  @action.bound getSingerList() {
-    ManageService.fetchSingerList().then(list => {
-      this.singerList = observable.array(list.data);
+  @action.bound getSingerList(query) {
+    ManageService.fetchSingerList(query).then(list => {
+      this.singerList = list.data;
     });
   }
   // 创建歌手
@@ -85,9 +85,9 @@ class Store {
   }
 
   // 获取歌曲列表
-  @action.bound getSongList() {
-    ManageService.fetchSongList().then(res => {
-      this.songList = res;
+  @action.bound getSongList(query) {
+    ManageService.fetchSongList(query).then(res => {
+      this.songList = res.data;
     });
   }
   //创建歌曲列表
@@ -110,8 +110,8 @@ class Store {
   }
 
   // 获取歌单列表
-  @action.bound getSongListList(keyword) {
-    ManageService.fetchSongListList(keyword).then(res => {
+  @action.bound getSongListList(query) {
+    ManageService.fetchSongListList(query).then(res => {
       this.songListList = res.data;
     });
   }

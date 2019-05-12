@@ -1,7 +1,10 @@
 import qs from "qs";
+import { message } from 'antd'
 
 export default function request(url, options = {}) {
-  return fetch(`${url}`, options).then(res => res.json());/* 浏览器增加的发送ajax请求的fetch API */
+  return fetch(`${url}`, options).then(res => res.json()).catch((error)=> {
+    message.error(error.message);
+  });/* 浏览器增加的发送ajax请求的fetch API */
 }
 
 export function get(url, query) {

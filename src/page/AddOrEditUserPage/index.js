@@ -30,7 +30,6 @@ class AddOrEditUserPage extends Component {
           });
         } else if ("edit" === option) {
           let user = location.state;
-          console.log(user,+'hkdfkd');
           mstore.updateUser(user.id, values, res => {
             if (res.success) {
               message.success("用户信息修改成功！",1);
@@ -97,7 +96,7 @@ class AddOrEditUserPage extends Component {
         span: 4
       },
       wrapperCol: {
-        span: 8
+        span: 20
       }
     };
     return (
@@ -107,7 +106,7 @@ class AddOrEditUserPage extends Component {
       >
         <Item label="用户名" {...itemLayout}>
           {getFieldDecorator("name", {
-            rulse: [
+            rules: [
               {
                 required: true,
                 message: "请输入用户名"
@@ -117,10 +116,11 @@ class AddOrEditUserPage extends Component {
         </Item>
         <Item label="密码" {...itemLayout}>
           {getFieldDecorator("pwd", {
-            rulse: [
+            rules: [
               {
                 required: true,
-                message: "请输入密码"
+                len: 6,
+                message: "请输入密码,密码长度至少6个字符！"
               }
             ]
           })(

@@ -5,6 +5,7 @@ import PropTypes from "prop-types";
 import "./addOrEditUserPage.less";
 
 const { Item } = Form;
+const { TextArea } = Input;
 
 @observer
 class AddOrEditSongListPage extends Component {
@@ -90,7 +91,7 @@ class AddOrEditSongListPage extends Component {
         span: 4
       },
       wrapperCol: {
-        span: 8
+        span: 20
       }
     };
     return (
@@ -100,7 +101,7 @@ class AddOrEditSongListPage extends Component {
       >
         <Item label="歌单名" {...itemLayout}>
           {getFieldDecorator("name", {
-            rulse: [
+            rules: [
               {
                 required: true,
                 message: "请输入歌单名"
@@ -110,17 +111,17 @@ class AddOrEditSongListPage extends Component {
         </Item>
         <Item label="歌单封面" {...itemLayout}>
           {getFieldDecorator("poster", {
-            rulse: [
+            rules: [
               {
                 required: true,
                 message: "请输入歌单封面"
               }
             ]
-          })(<Input type={type} placeholder="歌单封面" autoComplete="off" />)}
+          })(<TextArea rows = { 3 } placeholder="歌单封面" autoComplete="off" />)}
         </Item>
         <Item label="歌单作者" {...itemLayout}>
           {getFieldDecorator("author", {
-            rulse: [
+            rules: [
               {
                 required: true,
                 message: "请输入歌单作者"
@@ -130,13 +131,13 @@ class AddOrEditSongListPage extends Component {
         </Item>
         <Item label="简介" {...itemLayout}>
           {getFieldDecorator("description", {
-            rulse: [
+            rules: [
               {
-                required: true,
+                required: false,
                 message: "请输入简介"
               }
             ]
-          })(<Input type={type} placeholder="简介" autoComplete="off" />)}
+          })(<TextArea rows={ 6 } placeholder="简介" autoComplete="off" />)}
         </Item>
         <Item wrapperCol={{ span: 2, offset: 4 }}>
           <div className="opt-group">

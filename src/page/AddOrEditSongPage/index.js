@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import "./addOrEditUserPage.less";
 
 const { Item } = Form;
+const { TextArea } = Input;
 const Option = Select.Option;
 @observer
 class AddOrEditSongPage extends Component {
@@ -98,7 +99,7 @@ class AddOrEditSongPage extends Component {
         span: 4
       },
       wrapperCol: {
-        span: 8
+        span: 20
       }
     };
     const { hstore } = this.props;
@@ -111,7 +112,7 @@ class AddOrEditSongPage extends Component {
       >
         <Item label="歌名" {...itemLayout}>
           {getFieldDecorator("name", {
-            rulse: [
+            rules: [
               {
                 required: true,
                 message: "请输入歌名"
@@ -121,7 +122,7 @@ class AddOrEditSongPage extends Component {
         </Item>
         <Item label="歌手" {...itemLayout}>
           {getFieldDecorator("singer", {
-            rulse: [
+            rules: [
               {
                 required: true,
                 message: "请输入歌手"
@@ -131,9 +132,9 @@ class AddOrEditSongPage extends Component {
         </Item>
         <Item label="专辑" {...itemLayout}>
           {getFieldDecorator("album", {
-            rulse: [
+            rules: [
               {
-                required: true,
+                required: false,
                 message: "请输入专辑"
               }
             ]
@@ -141,27 +142,27 @@ class AddOrEditSongPage extends Component {
         </Item>
         <Item label="歌曲文件地址" {...itemLayout}>
           {getFieldDecorator("url", {
-            rulse: [
+            rules: [
               {
                 required: true,
                 message: "请输入歌曲文件地址"
               }
             ]
-          })(<Input type={type} placeholder="歌曲文件地址" />)}
+          })(<TextArea  rows={ 3 } placeholder="歌曲文件地址" />)}
         </Item>
         <Item label="歌曲图片地址" {...itemLayout}>
           {getFieldDecorator("poster", {
-            rulse: [
+            rules: [
               {
                 required: true,
                 message: "请输入歌曲图片地址"
               }
             ]
-          })(<Input type={type} placeholder="歌曲图片地址" />)}
+          })(<TextArea  placeholder="歌曲图片地址" />)}
         </Item>
         <Item label="歌曲类别" {...itemLayout}>
           {getFieldDecorator("category", {
-            rulse: [
+            rules: [
               {
                 required: true,
                 message: "请选择歌曲类别"
@@ -177,13 +178,13 @@ class AddOrEditSongPage extends Component {
         </Item>
         <Item label="描述" {...itemLayout}>
           {getFieldDecorator("description", {
-            rulse: [
+            rules: [
               {
-                required: true,
+                required: false,
                 message: "请输入描述"
               }
             ]
-          })(<Input type={type} placeholder="描述" />)}
+          })(<TextArea rows={6} placeholder="描述" />)}
         </Item>
         <Item wrapperCol={{ span: 2, offset: 4 }}>
           <div className="opt-group">

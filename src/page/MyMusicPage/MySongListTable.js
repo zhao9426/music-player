@@ -9,7 +9,6 @@ import PropTypes from 'prop-types';
 export class MySongListTable extends Component {
     render() {
         const { list } = this.props
-        console.log(list, "jjjj");
         return (
             <List
                 itemLayout="horizontal"

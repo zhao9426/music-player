@@ -6,7 +6,6 @@ import { observer, PropTypes as ObservablePropTypes } from "mobx-react";
 import MySongListTable from "./MySongListTable";
 import MyLikeSingerTable from "./MyLikeSingerTable";
 import MyLikeSongTable from "./MyLikeSongTable";
-import MyFavoriteSongListTable from "./MyFavoriteSongListTable";
 const { TabPane } = Tabs;
 
 import "./styles.less";
@@ -23,7 +22,9 @@ export default class MyMusicPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      currentTab: "song-list"
+      current: {
+        name: "我的歌单", key: "song-list"
+      }
     }
   }
 
@@ -32,17 +33,19 @@ export default class MyMusicPage extends Component {
     const { location } = this.props;
     let paths = location.pathname.match(/\/[\w|-]*/ig);
     let currentTab = paths[1] && paths[1].substring(1) || "song-list";
+    let current = TABS.find(t => t.key == currentTab);
     this.setState({
-      currentTab
+      current
     }, () => {
       this.getData(currentTab);
     })
   }
 
   changeTab(currentTab) {
-    const { history } = this.props
+    const { history } = this.props;
+    let current = TABS.find(t => t.key == currentTab);
     this.setState({
-      currentTab
+      current
     }, () => {
       this.getData(currentTab);
       history.push(`/my/${currentTab}`);
@@ -87,8 +90,7 @@ export default class MyMusicPage extends Component {
   render() {
     const { myFlowSingers, myFavoriteSongs, mySongList, myFavoriteSongList } = this.props.mystore;
     const { match } = this.props;
-    let { currentTab } = this.state;
-    console.log(currentTab)
+    let { current } = this.state;
     return (
       <div className="my-music">
         <div className="card-container">
@@ -97,7 +99,7 @@ export default class MyMusicPage extends Component {
             tabPosition="left"
             className="tab-wrapper"
             activeKey={
-              currentTab
+              current.key
             }
             defaultActiveKey={"song-list"}
             onChange={this.changeTab.bind(this)}
@@ -112,7 +114,7 @@ export default class MyMusicPage extends Component {
             })}
           </Tabs>
           <div className="wrapper-table">
-            <h2 className="tab-title">aa{currentTab && currentTab.name}</h2>
+            <h2 className="tab-title">{current && current.name}</h2>
             <div className="content-wrapper">
               <Switch>
                 <Route
@@ -138,7 +140,7 @@ export default class MyMusicPage extends Component {
                   exact
                   path={`${match.url}/love-singer`}
                   render={props => (
-                    <MyFavoriteSongListTable list={myFlowSingers} />
+                    <MyLikeSingerTable list={myFlowSingers} />
                   )}
                 />
               </Switch>

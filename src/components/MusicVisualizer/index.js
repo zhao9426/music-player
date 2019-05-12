@@ -107,6 +107,7 @@ export class MusicVisualizer extends Component {
   }
 
   componentWillUnmount() {
+    this.MV.stop();
     this.MV = null;
     window.removeEventListener("resize", this.resize);
   }
@@ -229,7 +230,6 @@ export class MusicVisualizer extends Component {
               max={1}
               step={0.01}
             />
-           
           </div>
         </div>
       </div>

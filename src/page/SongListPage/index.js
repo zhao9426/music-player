@@ -4,7 +4,7 @@ import { toJS } from 'mobx';
 import { observer } from "mobx-react";
 import './style.less';
 import Comment from '../../components/Comment';
-
+import Player from '../../components/Player'
 @observer
 export default class SongListPage extends Component {
 
@@ -16,6 +16,8 @@ export default class SongListPage extends Component {
 
   jumpTo(type, data) {
     const { history } = this.props;
+    console.log(data);
+    
     switch (type) {
       case 'song':
         history.push(`/song/play/${data.id}`);
@@ -26,11 +28,16 @@ export default class SongListPage extends Component {
     }
   }
 
+  playList(){
+    this.refs.PLAYER.play();
+  }
+
   render() {
     const { slstore } = this.props;
     const { songs } = slstore;
     let s = toJS(songs);
     return (
+      <div className="song-list">
       <div className="wrapper">
         <div className="title">当前位置>
             <a href="/">首页></a>
@@ -47,10 +54,9 @@ export default class SongListPage extends Component {
           <div className="right">
             <div className="sub-wrapper">
               <h3 className="right-title">歌曲列表</h3>
-              <Button type="primary" icon="caret-right">播放</Button>
+              <Button type="primary" onClick={this.playList.bind(this)} icon="caret-right">播放</Button>
             </div>
             <List
-
               itemLayout="horizontal"
               dataSource={s.songs}
               renderItem={(item, index) => (
@@ -60,7 +66,7 @@ export default class SongListPage extends Component {
                   />
                   <span className="playcon">
                     <Icon type="caret-right" className="icon-fenge"
-                      onClick={this.jumpTo.bind(this, 'song', s)}
+                      onClick={this.jumpTo.bind(this, 'song', item)}
                     />
                     <Icon type="heart" className="icon-fenge" />
                   </span>
@@ -70,6 +76,8 @@ export default class SongListPage extends Component {
           </div>
         </div>
         <Comment {...this.props} />
+        </div>
+        <Player list={s.songs || []} ref="PLAYER"/>
       </div>
     )
   }

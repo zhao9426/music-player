@@ -17,6 +17,7 @@ export default function MusicVisualizer(obj) {
 MusicVisualizer.prototype.load = function(url, fn) {
   this.xhr.abort();
   this.xhr.open('GET', url);
+  //this.xhr.setRequestHeader()
   this.xhr.responseType = 'arraybuffer';
   const self = this;
   this.xhr.onload = function() {

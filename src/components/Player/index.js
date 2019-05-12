@@ -1,24 +1,16 @@
 import React, { Component } from "react";
 import "./player.less";
 import { Icon, Progress, Slider } from "antd";
+import { observer } from "mobx-react";
 const MyIcon = Icon.createFromIconfontCN({
   scriptUrl: "//at.alicdn.com/t/font_961670_e5nxqa6e56r.js"
 });
+
+@observer
 export default class Player extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tracks: [],
-      playlist: [
-        {
-          src:
-            "https://pmusic.oss-cn-hangzhou.aliyuncs.com/music/%E4%B8%8D%E5%93%AD.mp3"
-        },
-        {
-          src:
-            "http://pmusic.oss-cn-hangzhou.aliyuncs.com/music/%E5%8F%AF%E8%83%BD%E5%90%A6-%E5%A4%8F%E7%A3%8A.mp3"
-        }
-      ],
       current: 0,
       sources: [],
       isPlay: false,
@@ -30,6 +22,7 @@ export default class Player extends Component {
       volume: 0.5
     };
     this.timer = null;
+    this.play = this.play.bind(this)
   }
 
   componentWillUnmount() {
@@ -117,14 +110,17 @@ export default class Player extends Component {
   }
 
   handleChangePlay(type) {
-    let { playlist, current } = this.state;
+    let { list = [] } = this.props
+    let { current } = this.state;
     this.pause();
     const OPTIONS = {
       prev: -1,
       next: 1
     };
-    let index = current + OPTIONS[type];
-    current = index % playlist.length;
+    let index = current + OPTIONS[type] + list.length;
+    current = index % list.length;
+    console.log(current, "lll");
+    
     this.setState(
       {
         current,
@@ -147,11 +143,7 @@ export default class Player extends Component {
 
   render() {
     let {
-      src,
       current,
-      playlist,
-      tracks,
-      sources,
       leftTime,
       duration,
       progress,
@@ -159,7 +151,7 @@ export default class Player extends Component {
       isPlay,
       isMute
     } = this.state;
-    console.log(volume);
+    let { list = [] } = this.props;
 
     return (
       <div className="player">
@@ -183,7 +175,7 @@ export default class Player extends Component {
           </div>
           <div className="progress">
             <div className="progress-status">
-                <div><span>亲爱的小孩</span></div>
+                <div><span>{list && list[current] && list[current].name}</span></div>
                 <div className="time"><span className="left-time">{leftTime}</span><span className="divider">/</span><span className="duration">{duration}</span></div>
             </div>
             <Slider
@@ -223,7 +215,7 @@ export default class Player extends Component {
         <audio
           className="audio"
           onEnded={this.playToEnd.bind(this)}
-          src={playlist[current] && playlist[current].src}
+          src={ list && list[current] && list[current].url}
           ref="AUDIO"
         />
       </div>

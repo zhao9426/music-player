@@ -4,32 +4,19 @@ import { Slider, Switch, Table, Icon } from "antd";
 import MusicPlayer from "../../utils/MusicVisualizer";
 import { random } from "../../utils/random";
 import "./style.less";
+import { observer } from "mobx-react";
 const MyIcon = Icon.createFromIconfontCN({
   scriptUrl: "//at.alicdn.com/t/font_961670_e5nxqa6e56r.js"
 });
 
-const urls = [
-  {
-    name: "不哭",
-    id: 1,
-    url:
-      "http://pmusic.oss-cn-hangzhou.aliyuncs.com/music/%E4%B8%8D%E5%93%AD.mp3"
-  },
-  {
-    name: "可能否",
-    id: 2,
-    url:
-      "http://pmusic.oss-cn-hangzhou.aliyuncs.com/music/%E5%8F%AF%E8%83%BD%E5%90%A6-%E5%A4%8F%E7%A3%8A.mp3"
-  }
-];
-
+@observer
 export class MusicVisualizer extends Component {
   static propTypes = {};
 
   constructor(props) {
     super(props);
     this.state = {
-      volume: 0,
+      volume: 0.5,
       type: "dot",
       size: 128,
       height: 200,
@@ -45,14 +32,12 @@ export class MusicVisualizer extends Component {
   }
 
   handleChangeSlider(volume) {
-    console.log(volume, "v");
-
     this.setState(
       {
         volume
       },
       () => {
-        this.MV.changeVolume(this.state.volume);
+        this.MV && this.MV.changeVolume(this.state.volume);
       }
     );
   }
@@ -64,10 +49,32 @@ export class MusicVisualizer extends Component {
   }
 
   handlePlay(){
-
+    const { currentSong } = this.props;
+    this.setState({
+      isPlay: !this.state.isPlay
+    },() => {
+      if(this.state.isPlay){
+        this.MV && this.MV.play(currentSong.url);
+      } else {
+        this.MV && this.MV.stop();
+      }
+    })
   }
 
   handleMute(){
+    let { isMute } = this.state;
+   
+    this.setState({
+      isMute: !isMute
+    }, ()=> {
+      if (this.MV) {
+        if (!isMute) {
+          this.MV.changeVolume(0);
+        } else {
+          this.MV.changeVolume(this.state.volume || 0.5);
+        }
+      }
+    });
 
   }
 
@@ -76,6 +83,7 @@ export class MusicVisualizer extends Component {
   }
 
   componentDidMount() {
+    let { volume } = this.state;
     this.CANVAS = this.refs.MUSIC_PLAYER;
     this.CTX = this.refs.MUSIC_PLAYER.getContext("2d");
     let height = this.refs.PLAYLOAD.clientHeight;
@@ -92,6 +100,7 @@ export class MusicVisualizer extends Component {
     );
     this.MV = new MusicPlayer({
       size: 128,
+      volume,
       visualizer: this.draw
     });
     window.addEventListener("resize", this.resize);
@@ -178,37 +187,9 @@ export class MusicVisualizer extends Component {
 
   render() {
     const { volume, type, isPlay, isMute } = this.state;
-    const columns = [{
-      width: "2em",
-      align: "center",
-      render: (text, record, index) => {
-        return <span>{index + 1}</span>
-      }
-    },
-      {
-      title: "歌名",
-      width: "62%",
-      render: (text, record, index) => {
-        return <div><Icon type="play-circle" className="play" /> <span>{text}</span> </div>  
-      },
-      dataIndex: "name"
-    },{
-      title: "歌手",
-      width: "36%",
-      dataIndex: "singer"
-    }];
-    let data = urls;
+    
     return (
       <div className="music-playload">
-       <ul style={{ position: "fixed", top: 64 }}>
-            {urls.map(item => {
-              return (
-                <li key={item.id} onClick={this.handleSelect.bind(this, item)}>
-                  {item.name}
-                </li>
-              );
-            })}
-          </ul>
         <div className="mv-player" ref="PLAYLOAD">
           <canvas ref="MUSIC_PLAYER" />
         </div>
@@ -243,7 +224,7 @@ export class MusicVisualizer extends Component {
               defaultValue={0}
               tooltipVisible={false}
               value={volume}
-              onChange={this.handleChangeSlider.bind(this, "volume")}
+              onChange={this.handleChangeSlider.bind(this)}
               min={0}
               max={1}
               step={0.01}

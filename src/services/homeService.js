@@ -26,6 +26,11 @@ export function deleteComment(id, data) {
 export function fetchHomeNewSong(){
   return get(`${base}/new-songs`);
 }
+
+//获取某一首歌曲
+export function fetchSong(songId){
+  return get(`${base}/api/song/${songId}`);
+}
 // 获取歌手列表
 export function fetchHomeSinger(){
   return get(`${base}/singers`)
@@ -46,6 +51,7 @@ export function fetchRankList(query){
 export default {
   fetchHomeSongList,
   fetchHomeNewSong,
+  fetchSong,
   fetchHomeSinger,
   fetchCategories,
   fetchRankList,

@@ -53,7 +53,8 @@ export default class Root extends Component {
               path="/song/list/:id?"
               render={props => <SongListPage slstore={slstore} hstore={hstore} {...props} />}
             />
-            <Route exact path="/song/play/:id?" component={Player} />
+            <Route exact path="/song/play/:id?" 
+              render={ props => <Player {...props} hstore={hstore}/>} />
             <Route
               path="/manage"
               render={props => <ManagePage mstore={mstore} hstore={hstore} {...props} />}

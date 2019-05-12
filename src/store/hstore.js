@@ -21,6 +21,7 @@ class HStore {
   @observable rankList = []; //排行榜
   @observable currentCategory = {}; // 排行榜选中的类别
   @observable commentList = []; //评论列表
+  @observable currentSong = {}; //当前播放的歌曲
 
   @action.bound login(name, pwd, callback){/* action修改状态的东西，返回的是一个函数 */
     LoginService.login({name, pwd}).then(res => {
@@ -46,6 +47,12 @@ class HStore {
   @action.bound getHomeSongs() {
     HomeService.fetchHomeNewSong().then(res => {
       this.songs = res.data;
+    });
+  }
+
+  @action.bound getSong(songId){
+    HomeService.fetchSong(songId).then(res => {
+      this.currentSong = res.data;
     });
   }
 

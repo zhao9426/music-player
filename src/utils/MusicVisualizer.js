@@ -8,6 +8,7 @@ export default function MusicVisualizer(obj) {
   this.gainNode = this.ac.createGain();
   this.analyser.connect(this.gainNode);
   this.gainNode.connect(this.ac.destination);
+  this.gainNode.gain.value = obj.volume || 0.5;
   this.xhr = new XMLHttpRequest();
   this.visualizer = obj.visualizer;
   this.visualize();
@@ -50,7 +51,7 @@ MusicVisualizer.prototype.play = function(url) {
 };
 
 MusicVisualizer.prototype.stop = function() {
-  this.source.stop();
+  this.source && this.source.stop();
 };
 
 MusicVisualizer.prototype.addInit = function(fun) {

@@ -14,16 +14,27 @@ export default class SongListPage extends Component {
     slstore.getSongs(id);
   }
 
+  jumpTo(type, data) {
+    const { history } = this.props;
+    switch (type) {
+      case 'song':
+        history.push(`/song/play/${data.id}`);
+        break;
+      case 'my':
+        history.push(`/my/${data.id}`);
+        break;
+    }
+  }
+
   render() {
     const { slstore } = this.props;
     const { songs } = slstore;
     let s = toJS(songs);
-    console.log(s);
     return (
       <div className="wrapper">
         <div className="title">当前位置>
             <a href="/">首页></a>
-            <a>{s.name}</a>
+          <a>{s.name}</a>
         </div>
         <div className="songlist-wrapper">
           <div className="left">
@@ -33,23 +44,25 @@ export default class SongListPage extends Component {
             <p>名称：<span className="content"></span></p>
             <p>简介：<span className="content">{s.description}</span></p>
           </div>
-          <div  className="right">
-          <div className="sub-wrapper">
-          <h3 className="right-title">歌曲列表</h3>
-            <Button type="primary" icon="caret-right">播放</Button>
-          </div>
+          <div className="right">
+            <div className="sub-wrapper">
+              <h3 className="right-title">歌曲列表</h3>
+              <Button type="primary" icon="caret-right">播放</Button>
+            </div>
             <List
-             
+
               itemLayout="horizontal"
               dataSource={s.songs}
               renderItem={(item, index) => (
                 <List.Item>
                   <List.Item.Meta
-                    title={<a><span className="seri">{index+1}</span><span className="seri">{item.name}</span>{item.singer}</a>}
+                    title={<a><span className="seri">{index + 1}</span><span className="seri">{item.name}</span>{item.singer}</a>}
                   />
                   <span className="playcon">
-                  <Icon type="caret-right" className="icon-fenge"/>
-                  <Icon type="heart" className="icon-fenge"/>
+                    <Icon type="caret-right" className="icon-fenge"
+                      onClick={this.jumpTo.bind(this, 'song', s)}
+                    />
+                    <Icon type="heart" className="icon-fenge" />
                   </span>
                 </List.Item>
               )}

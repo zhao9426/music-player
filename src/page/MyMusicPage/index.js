@@ -26,26 +26,26 @@ export default class MyMusicPage extends Component {
       currentTab: "song-list"
     }
   }
-  
- 
+
+
   componentDidMount() {
     const { location } = this.props;
     let paths = location.pathname.match(/\/[\w|-]*/ig);
-    let currentTab = paths[1] && paths[1].substring(1)|| "song-list";
+    let currentTab = paths[1] && paths[1].substring(1) || "song-list";
     this.setState({
       currentTab
-    },()=> {
-       this.getData(currentTab);
+    }, () => {
+      this.getData(currentTab);
     })
   }
-  
-  changeTab(currentTab) { 
+
+  changeTab(currentTab) {
     const { history } = this.props
     this.setState({
-        currentTab
-      },() => {
-        this.getData(currentTab);
-        history.push(`/my/${currentTab}`);
+      currentTab
+    }, () => {
+      this.getData(currentTab);
+      history.push(`/my/${currentTab}`);
     });
   }
 
@@ -54,40 +54,41 @@ export default class MyMusicPage extends Component {
     hstore.getRankList({ category: key });
     hstore.selectCategory(key);
   }
-  
+
   getData(currentTab) {
-     const {
-       mystore,
-       hstore
-     } = this.props;
-     let { loginUser } = hstore;
-     let query = {};
-     switch (currentTab) {
-       case "song-list":
-          query = { userId: loginUser.id, isSelfCreat: false}
-         mystore.getMySongList(query);
-         break;
-       case "love-song-list":
-        query = { userId: loginUser.id, isSelfCreat: false}
-         mystore.getMyFavoriteSongList(query);
-         break;
-       case "love-song":
+    const {
+      mystore,
+      hstore
+    } = this.props;
+    let { loginUser } = hstore;
+    let query = {};
+    switch (currentTab) {
+      case "song-list":
+        query = { userId: loginUser.id, isSelfCreat: false }
+        mystore.getMySongList(query);
+        break;
+      case "love-song-list":
+        query = { userId: loginUser.id, isSelfCreat: false }
+        mystore.getMyFavoriteSongList(query);
+        break;
+      case "love-song":
         query = { userId: loginUser.id }
-         mystore.getMyFavoriteSongs(query);
-         break;
-       case "love-singer":
-       query = { userId: loginUser.id }
-         mystore.getMyFlowSingers(query);
-         break;
-       default:
-         console.log("default");
-     }
+        mystore.getMyFavoriteSongs(query);
+        break;
+      case "love-singer":
+        query = { userId: loginUser.id }
+        mystore.getMyFlowSingers(query);
+        break;
+      default:
+        console.log("default");
+    }
   }
 
   render() {
-    const {myFlowSingers, myFavoriteSongs,mySongList, myFavoriteSongList} = this.props.mystore;
+    const { myFlowSingers, myFavoriteSongs, mySongList, myFavoriteSongList } = this.props.mystore;
     const { match } = this.props;
-    let { currentTab } = this.state
+    let { currentTab } = this.state;
+    console.log(currentTab)
     return (
       <div className="my-music">
         <div className="card-container">
@@ -95,10 +96,10 @@ export default class MyMusicPage extends Component {
             type="card"
             tabPosition="left"
             className="tab-wrapper"
-            activeKey = {
+            activeKey={
               currentTab
             }
-            defaultActiveKey = { "song-list" }
+            defaultActiveKey={"song-list"}
             onChange={this.changeTab.bind(this)}
           >
             {TABS.map(t => {
@@ -111,36 +112,36 @@ export default class MyMusicPage extends Component {
             })}
           </Tabs>
           <div className="wrapper-table">
-          <h2>{currentTab && currentTab.name}</h2>
-          <div className="content-wrapper">
-            <Switch>
-              <Route
-                exact
-                path={`${match.url}/song-list`}
-                render={props => <MySongListTable  list={mySongList}/>}
-              />
-              <Route
-                exact
-                path={`${match.url}/love-song-list`}
-                render={props => (
-                  <MySongListTable  list={myFavoriteSongList}/>
-                )}
-              />
-              <Route
-                exact
-                path={`${match.url}/love-song`}
-                render={props => (
-                  <MyLikeSongTable   list={myFavoriteSongs} />
-                )}
-              />
-              <Route
-                exact
-                path={`${match.url}/love-singer`}
-                render={props => (
-                  <MyFavoriteSongListTable  list={myFlowSingers} />
-                )}
-              />
-            </Switch>
+            <h2 className="tab-title">aa{currentTab && currentTab.name}</h2>
+            <div className="content-wrapper">
+              <Switch>
+                <Route
+                  exact
+                  path={`${match.url}/song-list`}
+                  render={props => <MySongListTable list={mySongList} />}
+                />
+                <Route
+                  exact
+                  path={`${match.url}/love-song-list`}
+                  render={props => (
+                    <MySongListTable list={myFavoriteSongList} />
+                  )}
+                />
+                <Route
+                  exact
+                  path={`${match.url}/love-song`}
+                  render={props => (
+                    <MyLikeSongTable list={myFavoriteSongs} />
+                  )}
+                />
+                <Route
+                  exact
+                  path={`${match.url}/love-singer`}
+                  render={props => (
+                    <MyFavoriteSongListTable list={myFlowSingers} />
+                  )}
+                />
+              </Switch>
             </div>
           </div>
         </div>

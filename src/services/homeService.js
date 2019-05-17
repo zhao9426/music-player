@@ -20,7 +20,10 @@ export function createComment(data) {
 export function deleteComment(id, data) {
   return deleta(`${base}/api/comments/${id}`, data);
 }
-
+// 收藏歌单
+export function favoriteSongList(data){
+  return post(`${base}/my/csl`, data);
+}
 
 // 获取新歌列表
 export function fetchHomeNewSong(){
@@ -52,6 +55,7 @@ export default {
   fetchHomeSongList,
   fetchHomeNewSong,
   fetchSong,
+  favoriteSongList,
   fetchHomeSinger,
   fetchCategories,
   fetchRankList,

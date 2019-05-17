@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Router, Route, Switch } from "react-router";
+import { Router, Route, Switch, Redirect } from "react-router";
 import HomePage from "../page/HomePage";
 import BankPage from "../page/BankPage";
 import MyMusicPage from "../page/MyMusicPage";
@@ -19,6 +19,19 @@ export default class Root extends Component {
     super(props);
   }
 
+  RenderManage(props){
+    const { history } = this.props;
+    if(hstore && hstore.loginUser.role == 0){
+      return <ManagePage mstore={mstore} hstore={hstore} {...props} />
+    } else {
+      return  <Redirect
+      to={{
+        pathname: "/",
+        state: { from: props.location }
+      }}
+    />
+    }
+  }
   render() {
     const { history } = this.props;
     return (
@@ -57,7 +70,7 @@ export default class Root extends Component {
               render={ props => <Player {...props} hstore={hstore}/>} />
             <Route
               path="/manage"
-              render={props => <ManagePage mstore={mstore} hstore={hstore} {...props} />}
+              render={this.RenderManage.bind(this)}
             />
             <Route
               exact

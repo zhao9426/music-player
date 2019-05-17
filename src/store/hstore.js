@@ -36,6 +36,12 @@ class HStore {
         callback && callback(this.isLogin)
     })
   }
+
+  @action.bound logout(callback){
+    this.isLogin = false;
+    this.loginUser = {};
+    callback && callback(this.isLogin)
+  }
   // 获取歌手列表
   @action.bound getHomeSingers() {
     HomeService.fetchHomeSinger().then(list => {
@@ -60,6 +66,14 @@ class HStore {
   @action.bound getHomeSongList() {
     HomeService.fetchHomeSongList().then(res => {
       this.songList = res.data;
+    });
+  }
+
+  @action.bound favoriteSongList(data){
+    HomeService.favoriteSongList(data).then(res => {
+      console.log(res);
+      
+      //this.songList = res.data;
     });
   }
 

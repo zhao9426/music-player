@@ -21,6 +21,13 @@ export default class BankPage extends Component {
     hstore.selectCategory(key);
   }
 
+  playSong(song){
+    console.log(song, 's');
+    
+    const { history } = this.props;
+    history.push(`/song/play/${song.id}`)
+  }
+
   renderListItem(item, index) {
     return <List.Item key={item.id}>
       <div className="list-wrapper">
@@ -28,7 +35,7 @@ export default class BankPage extends Component {
           {index + 1}<span className="title-fenge">{item.name}</span><span className="title-fenge">{item.singer}</span>
         </div>
         <span className="playcon">
-          <Icon type="caret-right" className="icon-fenge" />
+          <Icon type="caret-right" onClick={this.playSong.bind(this, item)} className="icon-fenge" />
           <Icon type="heart" className="icon-fenge" />
         </span>
       </div>

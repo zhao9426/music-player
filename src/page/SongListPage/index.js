@@ -32,6 +32,13 @@ export default class SongListPage extends Component {
     this.refs.PLAYER.play();
   }
 
+  favoriteSongList(){
+    const { slstore, match, hstore } = this.props;
+    let songListId = match.params.id;
+    let userId = hstore.loginUser.id
+    hstore.favoriteSongList({ songListId, userId });
+  }
+
   render() {
     const { slstore } = this.props;
     const { songs } = slstore;
@@ -54,7 +61,10 @@ export default class SongListPage extends Component {
           <div className="right">
             <div className="sub-wrapper">
               <h3 className="right-title">歌曲列表</h3>
-              <Button type="primary" onClick={this.playList.bind(this)} icon="caret-right">播放</Button>
+              <div className="opts">
+               <Button type="primary" onClick={this.playList.bind(this)} icon="caret-right">播放</Button>
+               <Button className="favorite" onClick={this.favoriteSongList.bind(this)} icon="plus">收藏</Button>
+              </div>
             </div>
             <List
               itemLayout="horizontal"

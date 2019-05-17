@@ -10,6 +10,7 @@ import isPicture from '../../utils/isPicture';
 import "./style.less";
 
 export default class RightHead extends Component {
+
     render() {
         const { showLogin, hstore } = this.props
         let { isLogin, loginUser } = hstore
@@ -20,14 +21,14 @@ export default class RightHead extends Component {
               < Menu >
                 <Menu.Item>{loginUser.name}</Menu.Item>
                 <Menu.Divider/>{/* 下拉列表分割线 */}
-                <Menu.Item key = "0">
+                <Menu.Item key = "my">
                   <Link className = "menu-item" to = "/my" > 我的音乐 </Link>
                 </Menu.Item>
-                { loginUser.role == 0 &&  <Menu.Item key = "1">
+                { loginUser.role == 0 &&  <Menu.Item key = "0">
                   <Link className = "menu-item" to = "/manage" >管理</Link>
                 </Menu.Item> }
                 <Menu.Item key = "2" >
-                <a href = "#" >退出</a> 
+                <a href = "#" onClick={()=> this.props.logout()} >退出</a> 
                 </Menu.Item> 
               </Menu>
             }

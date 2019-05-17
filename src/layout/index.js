@@ -49,13 +49,20 @@ export default class MPLaylout extends Component {
         });
     }
 
+    logout(){
+      const { hstore, history } = this.props;
+      hstore.logout(()=> {
+        history.push('/')
+      });
+    }
+
     render() {
         const { visible } = this.state
         return (
           <Layout className="main-layout">
             <Header theme="light" className="home-header">
               <LeftHead />
-              <RightHead showLogin={this.showLogin.bind(this)} {...this.props} />
+              <RightHead showLogin={this.showLogin.bind(this)} {...this.props} logout={this.logout.bind(this)} />
             </Header>
             <Content className="main-content">
               <Layout hasSider className="main">

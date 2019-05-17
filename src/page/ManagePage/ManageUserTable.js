@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import { Input, Button, Table } from 'antd';
+import { Button, Table } from 'antd';
 import { observer } from "mobx-react";
 import moment from "moment";
-import PropTypes from 'prop-types'
-const {Search} = Input;
 
 @observer
 export class ManageUserTable extends Component {

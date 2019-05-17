@@ -1,10 +1,10 @@
 import {
     observable,
     action,
-    computed,
+  /*   computed,
     observe,
     toJS,
-    spy
+    spy */
 } from "mobx";
 
 import ManageService  from '../services/manageService';

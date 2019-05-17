@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Layout, Row, Col, Card, Carousel, Divider } from "antd";
+import { Layout, Card, Divider } from "antd";
 import TopCarousel from "../../components/TopCarousel";
 import { toJS } from 'mobx'/* tojs把可观察对象转换为js对象 */
 import { observer } from "mobx-react";

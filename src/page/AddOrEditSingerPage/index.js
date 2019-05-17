@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Form, Input, Button, message } from "antd";
-import { observer, PropTypes as ObservablePropTypes } from "mobx-react";
-import PropTypes from "prop-types";
+import { observer } from "mobx-react";
 import "./addOrEditUserPage.less";
 
 const { Item } = Form;
@@ -14,10 +13,10 @@ class AddOrEditSingerPage extends Component {
     type: "text"
   };
   handleSubmit(e) {
-    const { mstore, history, location } = this.props;
+    const { mstore, history, location } = this.props;//location跟浏览器对象的location一样
     const { option } = this.state;
     e.preventDefault();
-    this.props.form.validateFields((err, values) => {
+    this.props.form.validateFields((err, values) => {//表单验证方法
       if (!err) {
         if ("add" === option) {
           mstore.createSinger(values, res => {
@@ -45,15 +44,15 @@ class AddOrEditSingerPage extends Component {
     });
   }
 
-  cancelOption() {
+  cancelOption() {//取消操作
     const { history } = this.props;
     history.replace(`/manage`, {to: "singers"});
   }
 
   componentDidMount() {
-    const { match, location, form } = this.props;
+    const { match, location, form } = this.props;//match接受路由参数回匹配路由参数
     let { option } = match.params;
-    if (option && option === "edit") {
+    if (option && option === "edit"){
       let singer = location.state;
       this.setState(
         {

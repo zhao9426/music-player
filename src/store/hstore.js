@@ -45,7 +45,7 @@ class HStore {
   // 获取歌手列表
   @action.bound getHomeSingers() {
     HomeService.fetchHomeSinger().then(list => {
-      this.singers = observable.array(list.data);
+      this.singers = observable.array(list.data);//把js转换为可观察的对象
     });
   }
 

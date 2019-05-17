@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
-import moment from 'moment';
-import { List, Avatar } from 'antd';
-import { toJS } from "mobx";
+import { List } from 'antd';
 import { observer } from "mobx-react";
 import PropTypes from 'prop-types';
 

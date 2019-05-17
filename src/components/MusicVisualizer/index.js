@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { Slider, Switch, Table, Icon } from "antd";
+import { Slider, Switch, Icon } from "antd";
 import MusicPlayer from "../../utils/MusicVisualizer";
 import { random } from "../../utils/random";
 import "./style.less";
@@ -123,14 +122,14 @@ export class MusicVisualizer extends Component {
     });
     this.CANVAS.width = width;
     this.CANVAS.height = height;
-    this.line = this.CTX.createLinearGradient(0, 0, 0, height);
+    this.line = this.CTX.createLinearGradient(0, 0, 0, height);//静向渐变
     this.line.addColorStop(0, "red");
     this.line.addColorStop(0.5, "yellow");
     this.line.addColorStop(1, "green");
     this.getDots();
   }
 
-  getDots() {
+  getDots() {//点状
     const { size, height, width } = this.state;
     for (let i = 0; i < size; i++) {
       const x = random(0, width);

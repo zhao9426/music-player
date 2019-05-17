@@ -1,9 +1,7 @@
 import React, { Component } from "react";
 import { Form, Input, Button, message } from "antd";
-
 import "./addOrEditUserPage.less";
-import { observer, PropTypes as ObservablePropTypes } from "mobx-react";
-import PropTypes from "prop-types";
+import { observer} from "mobx-react";
 
 const { Item } = Form;
 

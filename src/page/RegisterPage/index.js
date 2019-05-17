@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import { Layout, Row, Col, message } from "antd";
+import { Layout, message } from "antd";
 import Register from "../../components/Register";
-import { observer, PropTypes as ObservablePropTypes } from "mobx-react";
-const { Header, Footer, Content, Sider } = Layout;
+import { observer } from "mobx-react";
+const { Content } = Layout;
 
 @observer
 export default class RegisterPage extends Component {

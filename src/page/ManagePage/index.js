@@ -3,8 +3,7 @@ import {
   Switch,
   Route
 } from 'react-router';
-import { observer, PropTypes as ObservablePropTypes } from "mobx-react";
-import PropTypes from "prop-types";
+import { observer } from "mobx-react";
 import MangeList from "./MangeList";
 import AddOrEditUserPage from "../AddOrEditUserPage";
 import AddOrEditSongListPage from "../AddOrEditSongListPage";
@@ -15,7 +14,7 @@ import AddOrEditSingerPage from "../AddOrEditSingerPage";
 @observer
 class ManagePage extends Component {
   render() {
-    const { mstore, hstore, mystore, match, history, location } = this.props;
+    const { mstore, hstore, match } = this.props;
     return (
       <div className="wrapper">
         <Switch>

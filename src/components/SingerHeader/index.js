@@ -1,9 +1,5 @@
-import React, { Component, Fragment } from "react";
-import { Link } from "react-router-dom";
-import { Menu, Icon } from 'antd';
-
-const SubMenu = Menu.SubMenu;
-const MenuItemGroup = Menu.ItemGroup;
+import React, { Component } from "react";
+import { Menu } from 'antd';
 export default class Footer extends Component {
     constructor(props) {
         super(props);

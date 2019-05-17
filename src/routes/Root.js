@@ -54,7 +54,7 @@ export default class Root extends Component {
               render={props => <RegisterPage mstore={mstore} {...props} />}
             />
             <Route
-             path="/singer/:id?"
+             path="/singer/:id?"//路经参数
               render={props => <SingerPage {...props}  hstore={hstore}/>}
           />
             <Route

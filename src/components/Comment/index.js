@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from "react";
-import style from "./style.less";
+import React, { Component } from "react";
+import "./style.less";
 import { Comment, Avatar, Form, Button, List, Input } from "antd";
 import moment from "moment";
 import { observer } from "mobx-react";
@@ -36,7 +36,6 @@ const CommentList = ({ comments, loginUser, replayComment, deleteComment, onCanc
           submitting={submittingReply}
           onCancel={onCancel}
           value={replyContent}/>}
-        
       </div>
     )}
   />

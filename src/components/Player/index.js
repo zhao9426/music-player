@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./player.less";
-import { Icon, Progress, Slider } from "antd";
+import { Icon, Slider } from "antd";
 import { observer } from "mobx-react";
 const MyIcon = Icon.createFromIconfontCN({
   scriptUrl: "//at.alicdn.com/t/font_961670_e5nxqa6e56r.js"
@@ -191,7 +191,6 @@ export default class Player extends Component {
           <div className="option-group-2">
             <Icon className="icon" type="retweet" />
             <Icon className="icon" type="heart" />
-            {/* <Icon className="icon" type="download" /> */}
             <Icon className="icon" type="message" />
           </div>
           <div className="option-group-3">

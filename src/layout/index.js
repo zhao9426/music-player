@@ -1,20 +1,11 @@
 import React, { Component } from "react";
-import { Layout, Modal, message } from "antd";
+import { Layout, Modal } from "antd";
 import LeftHead from "./LeftHead";
 import RightHead from "./RightHead";
 import LoginForm from '../components/login';
-
-import {
-  toJS
-} from "mobx";
-import {
-  observer,
-  PropTypes as ObservablePropTypes
-} from "mobx-react";
 import './layout.less';
-
 const {
-    Header, Footer, Content
+    Header, Content, Footer
 } = Layout;
 
 
@@ -69,14 +60,14 @@ export default class MPLaylout extends Component {
                 {this.props.children}
               </Layout>
             </Content>
-            {/* <Footer className="footer">
+           <Footer className="footer">
               <div>
                 Panpan Music Player &copy; Created by ZhaoPanpan
               </div>
-            </Footer> */}
+            </Footer>
             <Modal
               visible={visible}
-              title="登陆"
+              title="登录"
               destroyOnClose
               footer={null}
               onOk={this.hideLogin.bind(this)}

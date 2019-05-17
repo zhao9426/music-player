@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Row, Col, List, Avatar, Divider, Button, Icon } from 'antd';
+import { List, Button, Icon } from 'antd';
 import { toJS } from 'mobx';
 import { observer } from "mobx-react";
 import './style.less';

@@ -1,10 +1,7 @@
 import React, { Component } from 'react'
 import moment from 'moment';
-import { Input, Button, Table } from 'antd';
-import { toJS } from "mobx";
+import { Button, Table } from 'antd';
 import { observer } from "mobx-react";
-import PropTypes from 'prop-types'
-const {Search} = Input;
 
 @observer
 export class ManageSongTable extends Component {

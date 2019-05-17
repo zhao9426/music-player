@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
-import { Tabs, Input, Button, Table } from 'antd';
+import { Tabs, Input, Button } from 'antd';
 import {
-  Switch,
-  Redirect,
   Route
 } from 'react-router';
 import './ManagePage.less'
@@ -179,7 +177,6 @@ export class ManageList extends Component {
   }
 
   render() {
-    const { mstore } = this.props;
     const { userList, songList, songListList, singerList } = this.props.mstore;
     const { match } = this.props;
     const { currentTab } = this.state;

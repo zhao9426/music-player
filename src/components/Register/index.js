@@ -1,20 +1,11 @@
-import React, { Component, Fragment } from "react";
-import { Link } from "react-router-dom";
+import React, { Component } from "react";
 import {
   Form,
   Input,
-  Tooltip,
-  Icon,
-  Cascader,
-  Select,
-  Row,
-  Col,
-  Checkbox,
   Button,
-  AutoComplete
 } from "antd";
-import { observer, PropTypes as ObservablePropTypes } from "mobx-react";
-import style from "./style.less";
+import { observer } from "mobx-react";
+import "./style.less";
 
 const FormItem = Form.Item;
 
@@ -140,5 +131,4 @@ export class Register extends Component {
 }
 
 const WrappedRegisterForm = Form.create()(Register);
-
 export default WrappedRegisterForm;

@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Tabs } from "antd";
-import { Switch, Redirect, Route } from "react-router";
-import { toJS } from "mobx";
-import { observer, PropTypes as ObservablePropTypes } from "mobx-react";
+import { Switch, Route } from "react-router";
+import { observer } from "mobx-react";
 import MySongListTable from "./MySongListTable";
 import MyLikeSingerTable from "./MyLikeSingerTable";
 import MyLikeSongTable from "./MyLikeSongTable";

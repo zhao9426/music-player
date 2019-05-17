@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types';
 import MusicVisualizer from "../../components/MusicVisualizer";
 import { observer } from 'mobx-react';
 

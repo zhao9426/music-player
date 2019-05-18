@@ -43,29 +43,29 @@ class HStore {
     callback && callback(this.isLogin)
   }
   // 获取歌手列表
-  @action.bound getHomeSingers() {
-    HomeService.fetchHomeSinger().then(list => {
-      this.singers = observable.array(list.data);//把js转换为可观察的对象
+  @action.bound getHomeSingers(query) {
+    HomeService.fetchHomeSinger(query).then(list => {
+      this.singers = observable.array(list.data);
     });
   }
 
   // 获取新歌列表
-  @action.bound getHomeSongs() {
-    HomeService.fetchHomeNewSong().then(res => {
-      this.songs = res.data;
+  @action.bound getHomeSongs(query) {
+    HomeService.fetchHomeNewSong(query).then(res => {
+      this.songs = (res && res.data)||[];
     });
   }
 
   @action.bound getSong(songId){
     HomeService.fetchSong(songId).then(res => {
-      this.currentSong = res.data;
+      this.currentSong = (res && res.data)||[];
     });
   }
 
   // 获取歌单列表
-  @action.bound getHomeSongList() {
-    HomeService.fetchHomeSongList().then(res => {
-      this.songList = res.data;
+  @action.bound getHomeSongList(query) {
+    HomeService.fetchHomeSongList(query).then(res => {
+      this.songList = (res && res.data)||[];
     });
   }
 
@@ -82,7 +82,7 @@ class HStore {
     HomeService.fetchCategories().then(res => {
       this.categories = res.data;
       this.currentCategory = res.data[0];
-      this.getRankList(res.data[0].type)
+      this.getRankList({ category: res.data[0].type, limit: 12 })
     });
   }
 

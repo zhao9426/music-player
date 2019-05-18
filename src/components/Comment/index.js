@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import "./style.less";
-import { Comment, Avatar, Form, Button, List, Input } from "antd";
+import React, { Component, Fragment } from "react";
+import style from "./style.less";
+import { Comment, Avatar, Form, Button, List, Input, message } from "antd";
 import moment from "moment";
 import { observer } from "mobx-react";
 import store from "store2";
@@ -142,6 +142,13 @@ export default class CommentArea extends Component {
   }
 
   handleSubmit() {
+    const { match, hstore } = this.props;
+    let loginUser = hstore.loginUser;
+    if(!loginUser.name){
+      message.warning("请先登录，再评论！");
+      return;
+    }
+
     if (!this.state.content) {
       return;
     }
@@ -149,7 +156,6 @@ export default class CommentArea extends Component {
     this.setState({
       submitting: true
     });
-    const { match, hstore } = this.props;
     let user = store.session.get("user");
 
     let topic_id = match.params.id;
@@ -184,6 +190,13 @@ export default class CommentArea extends Component {
   }
   // 回复评论
   replayComment(index) {
+    const { match, hstore } = this.props;
+    let loginUser = hstore.loginUser;
+    if(!loginUser.name){
+      message.warning("请先登录，再回复！");
+      return;
+    }
+
     this.setState({
       replyIndex: index
     })

@@ -13,9 +13,9 @@ export default class Home extends Component {
 
   componentDidMount() {
     const { hstore } = this.props;
-    hstore.getHomeSingers();
-    hstore.getHomeSongs();
-    hstore.getHomeSongList();
+    hstore.getHomeSingers({ limit: 12 });
+    hstore.getHomeSongs({ limit: 12 });
+    hstore.getHomeSongList({ limit: 12 });
   }
 
   jumpToPlaySong(songList) {

@@ -26,8 +26,8 @@ export function favoriteSongList(data){
 }
 
 // 获取新歌列表
-export function fetchHomeNewSong(){
-  return get(`${base}/new-songs`);
+export function fetchHomeNewSong(query){
+  return get(`${base}/new-songs`, query);
 }
 
 //获取某一首歌曲
@@ -35,8 +35,8 @@ export function fetchSong(songId){
   return get(`${base}/api/song/${songId}`);
 }
 // 获取歌手列表
-export function fetchHomeSinger(){
-  return get(`${base}/singers`)
+export function fetchHomeSinger(query){
+  return get(`${base}/singers`, query)
 }
 // 获取歌手信息
 export function fetchSingerInfo(id){

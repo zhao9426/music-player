@@ -11,19 +11,16 @@ const { Item } = Menu;
 export default class BankPage extends Component {
   componentDidMount() {
     const { hstore } = this.props;
-
     hstore.getCategries();
   }
 
   handleSelectCategory({ key }) {
-    const { hstore } = this.props;
-    hstore.getRankList({ category: key });
+    const { hstore } = this.props; 
+    hstore.getRankList({ category: key, limit: 12 });
     hstore.selectCategory(key);
   }
 
   playSong(song){
-    console.log(song, 's');
-    
     const { history } = this.props;
     history.push(`/song/play/${song.id}`)
   }

@@ -2,6 +2,7 @@ import {
     observable,
     action,
 } from "mobx";
+import { message } from 'antd'
 
 import store from 'store2';
 import HomeService, { createComment }  from '../services/HomeService';
@@ -71,8 +72,12 @@ class HStore {
 
   @action.bound favoriteSongList(data){
     HomeService.favoriteSongList(data).then(res => {
-      console.log('kenhuo');
-      
+      if(!res.success && res.message){
+        message.warning(res.message);
+      }
+      if(res.success){
+        message.success("收藏成功！");
+      }
       //this.songList = res.data;
     });
   }

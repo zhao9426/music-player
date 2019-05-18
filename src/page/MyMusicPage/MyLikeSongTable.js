@@ -8,11 +8,13 @@ import Player from '../../components/Player'
 export class MyLikeSongListTable extends Component {
 
     playList(){
+        console.log("kkkk");
+        
         this.refs.PLAYER.play();
-      }
+    }
+
     render() {
         const { list } = this.props
-        console.log(list,'klkl')
         /* const { songs } = list;
         let s = toJS(songs); */
         return (
@@ -23,7 +25,7 @@ export class MyLikeSongListTable extends Component {
                 renderItem={item => (
                     <List.Item>
                         <List.Item.Meta
-                            title={<a href="https://ant.design">{item.name}</a>}
+                            title={<a href="#">{item.name}</a>}
                             description={item.singer}
                         />
                         <Icon type="caret-right" onClick={this.playList.bind(this)} className="icon-fenge" />

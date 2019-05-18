@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { List, Button, Icon } from 'antd';
+import { List, Button, Icon, message } from 'antd';
 import { toJS } from 'mobx';
 import { observer } from "mobx-react";
 import './style.less';
@@ -36,6 +36,10 @@ export default class SongListPage extends Component {
     const { slstore, match, hstore } = this.props;
     let songListId = match.params.id;
     let userId = hstore.loginUser.id
+    if(!userId){
+      message.warning("请先登录后再收藏！");
+      return;
+    }
     hstore.favoriteSongList({ songListId, userId });
   }
 

@@ -16,8 +16,6 @@ export default class SongListPage extends Component {
 
   jumpTo(type, data) {
     const { history } = this.props;
-    console.log(data);
-    
     switch (type) {
       case 'song':
         history.push(`/song/play/${data.id}`);
@@ -41,6 +39,17 @@ export default class SongListPage extends Component {
       return;
     }
     hstore.favoriteSongList({ songListId, userId });
+  }
+
+  favoriteSong(){
+    const { match, hstore } = this.props;
+    let songId = match.params.id;
+    let userId = hstore.loginUser.id;
+    if(!userId){
+      message.warning("请先登录后再收藏！");
+      return;
+    }
+    hstore.favoriteSong({ songId, userId });
   }
 
   render() {
@@ -82,7 +91,7 @@ export default class SongListPage extends Component {
                     <Icon type="caret-right" className="icon-fenge"
                       onClick={this.jumpTo.bind(this, 'song', item)}
                     />
-                    <Icon type="heart" className="icon-fenge"  onClick={this.favoriteSongList.bind(this)}/>
+                    <Icon type="heart" className="icon-fenge"  onClick={this.favoriteSong.bind(this)}/>
                   </span>
                 </List.Item>
               )}

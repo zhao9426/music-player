@@ -82,6 +82,17 @@ class HStore {
     });
   }
 
+  @action.bound favoriteSong(data){
+    HomeService.favoriteSong(data).then(res => {
+      if(!res.success && res.message){
+        message.warning(res.message);
+      }
+      if(res.success){
+        message.success("收藏成功！");
+      }
+    });
+  }
+
   // 获取歌曲类别
   @action.bound getCategries() {
     HomeService.fetchCategories().then(res => {

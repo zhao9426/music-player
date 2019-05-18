@@ -25,6 +25,11 @@ export function favoriteSongList(data){
   return post(`${base}/my/csl`, data);
 }
 
+// 收藏歌曲
+export function favoriteSong(data){
+  return post(`${base}/my/like-song`, data);
+}
+
 // 获取新歌列表
 export function fetchHomeNewSong(query){
   return get(`${base}/new-songs`, query);
@@ -56,6 +61,7 @@ export default {
   fetchHomeNewSong,
   fetchSong,
   favoriteSongList,
+  favoriteSong,
   fetchHomeSinger,
   fetchCategories,
   fetchRankList,

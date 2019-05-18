@@ -189,9 +189,9 @@ export default class Player extends Component {
             />
           </div>
           <div className="option-group-2">
-            <Icon className="icon" type="retweet" />
+           {/*  <Icon className="icon" type="retweet" />
             <Icon className="icon" type="heart" />
-            <Icon className="icon" type="message" />
+            <Icon className="icon" type="message" /> */}
           </div>
           <div className="option-group-3">
             <MyIcon

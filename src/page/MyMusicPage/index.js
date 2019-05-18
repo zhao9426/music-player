@@ -27,6 +27,24 @@ export default class MyMusicPage extends Component {
     }
   }
 
+  delete(type, data) {
+    const { mstore, history, match } = this.props;
+    switch (type) {
+      case "song-list":
+        mstore.deleteSonglist(data);
+        break;
+      case "love-song-list":
+        mstore.deleteLoveSongList(data);
+        break;
+      case "love-song":
+        mstore.deleteLoveSong(data);
+        break;
+      case "love-singer":
+        mstore.deleteLoveSinger(data);
+        break;
+      default:
+    }
+  }
 
   componentDidMount() {
     const { location } = this.props;
@@ -69,7 +87,7 @@ export default class MyMusicPage extends Component {
         query = { userId: loginUser.id, isSelfCreat: false }
         mystore.getMySongList(query);
         break;
-      case "love-song-list":
+     /*  case "love-song-list":
         query = { userId: loginUser.id, isSelfCreat: false }
         mystore.getMyFavoriteSongList(query);
         break;
@@ -82,7 +100,7 @@ export default class MyMusicPage extends Component {
         mystore.getMyFlowSingers(query);
         break;
       default:
-        console.log("default");
+        console.log("default"); */
     }
   }
 
@@ -119,7 +137,7 @@ export default class MyMusicPage extends Component {
                 <Route
                   exact
                   path={`${match.url}/song-list`}
-                  render={props => <MySongListTable list={mySongList} hstore/>}
+                  render={props => <MySongListTable list={mySongList} hstore delete={this.delete.bind(this, "song-list")}/>}
                 />
                 <Route
                   exact

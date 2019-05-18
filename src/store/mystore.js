@@ -27,6 +27,17 @@ class MyStore {
     });
   }
 
+   // 删除歌曲
+   @action.bound deleteLikeSong(query){
+    let { song_id, user_id } = query;
+   HomeService.deleteLikeSong({ song_id, user_id }).then(res => {
+     console.log(res);
+     if(res.success){
+       this.commentList.remove(comment)
+     }
+   });
+ }
+
   // 获取我的歌单列表
   @action.bound getMySongList(query) {
     MyService.fetchMySongList(query).then(res => {

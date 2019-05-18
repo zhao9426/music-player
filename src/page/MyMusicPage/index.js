@@ -119,7 +119,7 @@ export default class MyMusicPage extends Component {
                 <Route
                   exact
                   path={`${match.url}/song-list`}
-                  render={props => <MySongListTable list={mySongList} />}
+                  render={props => <MySongListTable list={mySongList} hstore/>}
                 />
                 <Route
                   exact

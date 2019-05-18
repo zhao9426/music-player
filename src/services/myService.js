@@ -9,7 +9,7 @@ export function fetchMySongList(query) {
 
 // 获取我收藏的歌单列表
 export function fetchMyFavoriteSongList(query){
-  return get(`${base}/my/collect-song-list`, query);
+  return get(`${base}/my/showSongList`, query);
 }
 // 获取我关注的歌手列表
 export function fetchMyFlowSinger(query){

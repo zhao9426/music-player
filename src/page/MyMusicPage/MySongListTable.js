@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 @observer
 export class MySongListTable extends Component {
     render() {
-        const { list } = this.props
+        const { list } = this.props;
         return (
             <List
                 itemLayout="horizontal"
@@ -14,11 +14,9 @@ export class MySongListTable extends Component {
                 renderItem={item => (
                     <List.Item>
                         <List.Item.Meta
-                            title={<a href="https://ant.design">{list.title}</a>}
-                            description={item.description}
+                            title={<a href="https://ant.design">{item.name}</a>}
+                            description={item.author}
                         />
-                        <div>{item.count}</div>
-                        <div>{item.creater}</div>
                     </List.Item>
                 )}
             /> 

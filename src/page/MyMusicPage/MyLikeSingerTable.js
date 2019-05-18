@@ -13,7 +13,7 @@ export class MyLikeSingerTable extends Component {
                 renderItem={item => (
                     <List.Item>
                         <List.Item.Meta
-                            title={<a href="https://ant.design">{list.title}</a>}
+                            title={<a href="https://ant.design">{item.name}</a>}
                             description={item.description}
                         />
                     </List.Item>

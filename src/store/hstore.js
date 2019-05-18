@@ -71,7 +71,7 @@ class HStore {
 
   @action.bound favoriteSongList(data){
     HomeService.favoriteSongList(data).then(res => {
-      console.log(res);
+      console.log('kenhuo');
       
       //this.songList = res.data;
     });

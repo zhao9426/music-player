@@ -10,6 +10,12 @@ const { Meta } = Card;
 
 @observer
 export default class Home extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      checked: false
+    }
+  }
 
   componentDidMount() {
     const { hstore } = this.props;
@@ -38,12 +44,48 @@ export default class Home extends Component {
     }
   }
 
+  viewMore(){
+    /* console.log(checked,"kkk") */
+    this.setState((checked) => {
+      checked = !this.state.checked;
+      console.log(checked,'bbbb');
+    });
+  }
+
   render() {
     const { singers, songs, songList } = this.props.hstore;
     let slist = toJS(songList);
     let newSongList = toJS(songs);
     let newSingers = toJS(singers);
-
+    let newSongListView;
+    if(this.state.checked == false){
+      newSongListView = (
+          newSongList.map((s, index) => {
+            if(index < 8){
+            return(
+            <Card
+            className="list-card"
+            key={index}
+            onClick={this.jumpTo.bind(this, 'song', s)}
+            cover={<img alt={s.name} src={s.poster} />}
+          >
+            <Meta
+              title={s.name}
+              description={
+                <p>
+                  下载量:{s.download} 收藏量:
+                      {s.favorite}
+                </p>
+              }
+            />
+          </Card>
+          );
+        }
+       })
+      )
+    }else if(this.state.checked == true){
+      newSongListView=(<h1>显示更多</h1>)
+    }
     return (
       <Content>
         <TopCarousel />
@@ -75,28 +117,55 @@ export default class Home extends Component {
           </div>
         </div>
         <div className="new-song">
-          <h2>新歌首发</h2>
+        <div className="new-title"> 
+        <h2>新歌首发</h2>
+        <h4 onClick={this.viewMore.bind(this)}>更多</h4>
+        </div>
           <div className="list">
-            {newSongList.map(s => {
-              return (
-                <Card
-                  className="list-card"
-                  key={s.id}
-                  onClick={this.jumpTo.bind(this, 'song', s)}
-                  cover={<img alt={s.name} src={s.poster} />}
-                >
-                  <Meta
-                    title={s.name}
-                    description={
-                      <p>
-                        下载量:{s.download} 收藏量:
-                            {s.favorite}
-                      </p>
-                    }
-                  />
-                </Card>
-              );
-            })}
+           {/*  {newSongList.map((s, index) => {
+              if(this.state.checked == false){
+                if( index < 8) {
+                  return (
+                    <Card
+                      className="list-card"
+                      key={index}
+                      onClick={this.jumpTo.bind(this, 'song', s)}
+                      cover={<img alt={s.name} src={s.poster} />}
+                    >
+                      <Meta
+                        title={s.name}
+                        description={
+                          <p>
+                            下载量:{s.download} 收藏量:
+                                {s.favorite}
+                          </p>
+                        }
+                      />
+                    </Card>
+                  );
+                }
+              }else if(this.state){
+                return (
+                  <Card
+                    className="list-card"
+                    key={index}
+                    onClick={this.jumpTo.bind(this, 'song', s)}
+                    cover={<img alt={s.name} src={s.poster} />}
+                  >
+                    <Meta
+                      title={s.name}
+                      description={
+                        <p>
+                          下载量:{s.download} 收藏量:
+                              {s.favorite}
+                        </p>
+                      }
+                    />
+                  </Card>
+                );
+              }
+            })} */}
+            {newSongListView}
           </div>
         </div>
         <div className="singer">

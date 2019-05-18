@@ -27,17 +27,17 @@ export class ManageSongListTable extends Component {
       {
         title: "歌名",
         dataIndex: "name",
-        width: "6em"
+        width: "14em"
       },
       {
         title: "作者",
         dataIndex: "author",
-        width: "5em"
+        width: "8em"
       },
       {
         title: "封面图",
         dataIndex: "poster",
-        width: "12em"
+        width: "30em"
       },
       {
         title: "收藏数",

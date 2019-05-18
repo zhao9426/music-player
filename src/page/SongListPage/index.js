@@ -78,7 +78,7 @@ export default class SongListPage extends Component {
                     <Icon type="caret-right" className="icon-fenge"
                       onClick={this.jumpTo.bind(this, 'song', item)}
                     />
-                    <Icon type="heart" className="icon-fenge" />
+                    <Icon type="heart" className="icon-fenge"  onClick={this.favoriteSongList.bind(this)}/>
                   </span>
                 </List.Item>
               )}

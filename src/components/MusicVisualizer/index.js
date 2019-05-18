@@ -200,9 +200,9 @@ export class MusicVisualizer extends Component {
               className="icon"
               type={isPlay ? "pause" : "caret-right"}
             />
-             <Icon className="icon" type="heart" />
+            {/*  <Icon className="icon" type="heart" /> */}
             {/* <Icon className="icon" type="download" /> */}
-            <Icon className="icon" type="message" />
+            {/* <Icon className="icon" type="message" /> */}
           </div>
           <div className="option-group-2">
           <Switch

@@ -11,6 +11,7 @@ export class MyLikeSongListTable extends Component {
     playList() {
         this.refs.PLAYER.play();
     }
+
     deleteLikeSong(c){
         const { mystore } = this.props;
         mystore.deleteLikeSong(c);
@@ -22,7 +23,7 @@ export class MyLikeSongListTable extends Component {
                 <List
                     itemLayout="horizontal"
                     dataSource={list}
-                    renderItem={item => (
+                    renderItem={(item, index) => (
                         < List.Item key={item.id}>
                             <div className="list-wrapper">
                                <div className="left-list">
@@ -30,7 +31,7 @@ export class MyLikeSongListTable extends Component {
                                 </div>
                                 <span className="playcon">
                                     <Icon type="caret-right"  className="icon-fenge" onClick={this.playList.bind(this)}/>
-                                    <span onClick={deleteLikeSong.bind(this,c, index)}>删除</span>
+                                    <span onClick={this.deleteLikeSong.bind(this,item, index)}>删除</span>
                                 </span>
                             </div>
                         </List.Item>

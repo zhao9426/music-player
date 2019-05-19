@@ -87,7 +87,7 @@ export default class MyMusicPage extends Component {
         query = { userId: loginUser.id, isSelfCreat: false }
         mystore.getMySongList(query);
         break;
-     /*  case "love-song-list":
+      case "love-song-list":
         query = { userId: loginUser.id, isSelfCreat: false }
         mystore.getMyFavoriteSongList(query);
         break;
@@ -100,7 +100,7 @@ export default class MyMusicPage extends Component {
         mystore.getMyFlowSingers(query);
         break;
       default:
-        console.log("default"); */
+        console.log("default"); 
     }
   }
 
@@ -108,6 +108,8 @@ export default class MyMusicPage extends Component {
     const { myFlowSingers, myFavoriteSongs, mySongList, myFavoriteSongList } = this.props.mystore;
     const { match } = this.props;
     let { current } = this.state;
+    console.log(myFavoriteSongList);
+    
     return (
       <div className="my-music">
         <div className="card-container">

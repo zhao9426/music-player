@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { List } from 'antd';
+import { List, Icon } from 'antd';
 import { observer } from "mobx-react";
 
 @observer
@@ -16,6 +16,7 @@ export class MyLikeSingerTable extends Component {
                             title={<a href="https://ant.design">{item.name}</a>}
                             description={item.description}
                         />
+                        <Icon type="close" className="icon-fenge" /> 
                     </List.Item>
                 )}
             /> 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { List } from 'antd';
+import { List, Icon } from 'antd';
 import { observer } from "mobx-react";
 import PropTypes from 'prop-types';
 import './styles.less';
@@ -19,10 +19,9 @@ export class MySongListTable extends Component {
                                 {item.id + 1}
                                 <span className="title-fenge">{item.name}</span>
                                 <span className="title-fenge">{item.description}</span>
+                                <span className="title-fenge">{item.author}</span>
                             </div>
-                            <span className="playcon">
-                                <span>{item.author}</span>
-                            </span>
+                                <Icon type="close" className="icon-fenge" />
                         </div>
                     </List.Item>
                 )}

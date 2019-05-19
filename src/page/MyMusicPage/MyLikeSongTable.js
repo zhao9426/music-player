@@ -9,6 +9,7 @@ import './styles.less';
 export class MyLikeSongListTable extends Component {
 
     playList() {
+        console.log('播放')
         this.refs.PLAYER.play();
     }
 
@@ -31,7 +32,7 @@ export class MyLikeSongListTable extends Component {
                                 </div>
                                 <span className="playcon">
                                     <Icon type="caret-right"  className="icon-fenge" onClick={this.playList.bind(this)}/>
-                                    <span onClick={this.deleteLikeSong.bind(this,item, index)}>删除</span>
+                                    <Icon type="close" className="icon-fenge" onClick={this.deleteLikeSong.bind(this,item, index)}/>
                                 </span>
                             </div>
                         </List.Item>

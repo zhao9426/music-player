@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import moment from 'moment';
 import { Button, Table } from 'antd';
 import { observer } from "mobx-react";
+import './manage-songlist.less'
 
 
 @observer
@@ -37,7 +38,7 @@ export class ManageSongListTable extends Component {
       {
         title: "封面图",
         dataIndex: "poster",
-        width: "30em"
+        width: "12em"
       },
       {
         title: "收藏数",
@@ -67,7 +68,7 @@ export class ManageSongListTable extends Component {
       {
         title: "操作",
         align: "center",
-        width: "14em",
+        width: "12em",
         render: r => {
           return (
             <div className="btn-group">

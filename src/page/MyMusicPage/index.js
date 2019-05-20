@@ -1,10 +1,11 @@
 import React, { Component } from "react";
-import { Tabs,Button } from "antd";
+import { Tabs,Button, Modal } from "antd";
 import { Switch, Route } from "react-router";
 import { observer } from "mobx-react";
 import MySongListTable from "./MySongListTable";
 import MyLikeSingerTable from "./MyLikeSingerTable";
 import MyLikeSongTable from "./MyLikeSongTable";
+import AddOrEditSonglistForm from './addOrEditSonglistForm';
 const { TabPane } = Tabs;
 
 import "./styles.less";
@@ -23,7 +24,8 @@ export default class MyMusicPage extends Component {
     this.state = {
       current: {
         name: "我的歌单", key: "song-list"
-      }
+      },
+      visible: false
     }
   }
 
@@ -58,6 +60,18 @@ export default class MyMusicPage extends Component {
     })
   }
 
+  createSongList(){
+    this.setState({
+      visible: true
+    })
+  }
+
+  hideForm(){
+    this.setState({
+        visible: false
+    })
+  }
+
   changeTab(currentTab) {
     const { history } = this.props;
     let current = TABS.find(t => t.key == currentTab);
@@ -73,6 +87,10 @@ export default class MyMusicPage extends Component {
     const { hstore } = this.props;
     hstore.getRankList({ category: key });
     hstore.selectCategory(key);
+  }
+
+  handleSubmit(){
+    console.log("submit");
   }
 
   getData(currentTab) {
@@ -106,15 +124,12 @@ export default class MyMusicPage extends Component {
 
   render() {
     const { myFlowSingers, myFavoriteSongs, mySongList, myFavoriteSongList } = this.props.mystore;
-    const { match } = this.props;
-    let { current } = this.state;
-    console.log(myFavoriteSongList);
+    const { match, mstore, hstore, mystore } = this.props;
+    let { current, visible } = this.state;
+    console.log(current);
     
     return (
       <div className="my-music">
-        <Button type="primary" icon="plus"  className="addsonglist">
-          新建歌单
-        </Button>
         <div className="card-container">
           <Tabs
             type="card"
@@ -136,8 +151,11 @@ export default class MyMusicPage extends Component {
             })}
           </Tabs>
           <div className="wrapper-table">
+          <div className="wrapTop">
             <h2 className="tab-title">{current && current.name}</h2>
-            <div className="content-wrapper">
+            { current.key == "song-list" && <Button icon="plus"  className="addsonglist" onClick={this.createSongList.bind(this)}>新建歌单</Button>}
+          </div>
+          <div className="content-wrapper">
               <Switch>
               <Route
                   exact
@@ -174,6 +192,22 @@ export default class MyMusicPage extends Component {
             </div>
           </div>
         </div>
+        <Modal
+              className="songlist-form"
+              visible={visible}
+              title="添加歌单"
+              destroyOnClose
+              footer={null}
+              onOk={this.hideForm.bind(this)}
+              onCancel={this.hideForm.bind(this)}
+            >
+              <AddOrEditSonglistForm 
+              mstore={mstore}
+              hstore={hstore}
+              mystore={mystore}
+              hideForm={this.hideForm.bind(this)}
+              submit={this.handleSubmit.bind(this)} />
+            </Modal>
       </div>
     );
   }

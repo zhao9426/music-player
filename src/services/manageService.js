@@ -47,8 +47,7 @@ export function fetchSongListList(query) {
 
 // 创建歌单
 export function addSongList(data) {
-  console.log(data,'fff');
-  return put(`${apiPath}/song-list`, data);
+  return post(`${apiPath}/song-list`, data);
 }
 
 // 更新歌单信息

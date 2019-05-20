@@ -118,7 +118,7 @@ class Store {
   //创建歌单列表
   @action.bound createSongList(songlist, callback) {
     ManageService.addSongList(songlist).then(res => {
-      console.log(res,"kkkk");
+      console.log(songlist, res);
       callback(res);
     });
   }

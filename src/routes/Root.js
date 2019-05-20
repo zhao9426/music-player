@@ -59,7 +59,7 @@ export default class Root extends Component {
           />
             <Route
               path="/my"
-              render={props => <MyMusicPage mystore={mystore} hstore={hstore} {...props} />}
+              render={props => <MyMusicPage mystore={mystore} mstore={mstore} hstore={hstore} mystore={mystore} {...props} />}
             />
             <Route
               exact

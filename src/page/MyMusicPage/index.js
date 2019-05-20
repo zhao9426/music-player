@@ -11,7 +11,7 @@ const { TabPane } = Tabs;
 import "./styles.less";
 
 const TABS = [
-  { name: "我的歌单", key: "song-list" },
+  // { name: "我的歌单", key: "song-list" },
   { name: "我收藏的歌单", key: "love-song-list" },
   { name: "我收藏的歌曲", key: "love-song" },
   { name: "我关注的歌手", key: "love-singer" }
@@ -51,7 +51,7 @@ export default class MyMusicPage extends Component {
   componentDidMount() {
     const { location } = this.props;
     let paths = location.pathname.match(/\/[\w|-]*/ig);
-    let currentTab = paths[1] && paths[1].substring(1) || "song-list";
+    let currentTab = paths[1] && paths[1].substring(1) || "love-song-list";
     let current = TABS.find(t => t.key == currentTab);
     this.setState({
       current

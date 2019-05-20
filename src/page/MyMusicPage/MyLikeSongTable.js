@@ -10,7 +10,7 @@ export class MyLikeSongListTable extends Component {
 
     playList() {
         console.log('播放')
-        this.refs.PLAYER.play();
+        this.refs.PLAYER2.play();
     }
 
     deleteLikeSong(c){
@@ -19,6 +19,7 @@ export class MyLikeSongListTable extends Component {
     }
     render() {
         const { list } = this.props
+        
         return (
             <div>
                 <List
@@ -38,7 +39,7 @@ export class MyLikeSongListTable extends Component {
                         </List.Item>
                     )}
                 />
-                <Player list={list.songs || []} ref="PLAYER" />
+                <Player list={list || []} ref="PLAYER2" />
             </div>
         );
     }

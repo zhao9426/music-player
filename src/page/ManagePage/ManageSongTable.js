@@ -43,11 +43,11 @@ export class ManageSongTable extends Component {
         dataIndex: "favorite",
         width: "6em"
       },
-      {
+     /*  {
         title: "播放次数",
         dataIndex: "count",
         width: "7em"
-      },
+      }, */
       {
         title: "描述",
         dataIndex: "description",

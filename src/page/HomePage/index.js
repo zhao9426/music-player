@@ -44,13 +44,12 @@ export default class Home extends Component {
     }
   }
 
-  viewMore(){
-    /* console.log(checked,"kkk") */
+ /*  viewMore(){
     this.setState((checked) => {
       checked = !this.state.checked;
       console.log(checked,'bbbb');
     });
-  }
+  } */
 
   render() {
     const { singers, songs, songList } = this.props.hstore;
@@ -117,10 +116,7 @@ export default class Home extends Component {
           </div>
         </div>
         <div className="new-song">
-        <div className="new-title"> 
         <h2>新歌首发</h2>
-        <h4 onClick={this.viewMore.bind(this)}>更多</h4>
-        </div>
           <div className="list">
            {/*  {newSongList.map((s, index) => {
               if(this.state.checked == false){

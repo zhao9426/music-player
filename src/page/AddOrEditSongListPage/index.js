@@ -20,6 +20,7 @@ class AddOrEditSongListPage extends Component {
       if (!err) {
         if ("add" === option) {
           mstore.createSongList(values, res => {
+            console.log(res,"geddd")
             if (res.success) {
               message.info("歌单创建成功！");
               setTimeout(() => {

@@ -33,7 +33,7 @@ export default class BankPage extends Component {
         </div>
         <span className="playcon">
           <Icon type="caret-right" onClick={this.playSong.bind(this, item)} className="icon-fenge" />
-          <Icon type="heart" className="icon-fenge" />
+         {/*  <Icon type="heart" className="icon-fenge" /> */}
         </span>
       </div>
     </List.Item>;

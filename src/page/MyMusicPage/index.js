@@ -1,5 +1,9 @@
 import React, { Component } from "react";
+<<<<<<< Updated upstream
 import { Tabs,Button, Modal } from "antd";
+=======
+import { Tabs } from "antd";
+>>>>>>> Stashed changes
 import { Switch, Route } from "react-router";
 import { observer } from "mobx-react";
 import MySongListTable from "./MySongListTable";
@@ -13,7 +17,7 @@ import "./styles.less";
 const TABS = [
   // { name: "我的歌单", key: "song-list" },
   { name: "我收藏的歌单", key: "love-song-list" },
-  { name: "我收藏的歌曲", key: "love-song" },
+  { name: "我喜欢的歌曲", key: "love-song" },
   { name: "我关注的歌手", key: "love-singer" }
 ];
 
@@ -157,11 +161,6 @@ export default class MyMusicPage extends Component {
           </div>
           <div className="content-wrapper">
               <Switch>
-              <Route
-                  exact
-                  path={`${match.url}/song-list`}
-                  render={props => <MySongListTable list={mySongList} hstore delete={this.delete.bind(this, "song-list")}/>}
-                />
                 <Route
                   exact
                   path={`${match.url}/song-list`}

@@ -31,7 +31,7 @@ export default class SongListPage extends Component {
   }
 
   favoriteSongList(){
-    const { slstore, match, hstore } = this.props;
+    const { match, hstore } = this.props;
     let songListId = match.params.id;
     let userId = hstore.loginUser.id
     if(!userId){

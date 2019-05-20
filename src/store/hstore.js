@@ -78,7 +78,7 @@ class HStore {
       if(res.success){
         message.success("收藏成功！");
       }
-      //this.songList = res.data;
+      /* this.songList = res.data; */
     });
   }
 

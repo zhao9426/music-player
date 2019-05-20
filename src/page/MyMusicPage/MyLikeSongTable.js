@@ -32,14 +32,18 @@ export class MyLikeSongListTable extends Component {
                                     {item.id + 1}<span className="title-fenge">{item.name}</span><span className="title-fenge">{item.singer}</span>
                                 </div>
                                 <span className="playcon">
-                                    <Icon type="caret-right"  className="icon-fenge" onClick={this.playList.bind(this)}/>
-                                    <Icon type="close" className="icon-fenge" onClick={this.deleteLikeSong.bind(this,item, index)}/>
+                                    {/* <Icon type="caret-right"  className="icon-fenge" onClick={this.playList.bind(this)}/> */}
+                                   {/*  <Icon type="close" className="icon-fenge" onClick={this.deleteLikeSong.bind(this,item, index)}/> */}
                                 </span>
                             </div>
                         </List.Item>
                     )}
                 />
+<<<<<<< Updated upstream
                 <Player list={list || []} ref="PLAYER2" />
+=======
+                {/* <Player list={list.songs || []} ref="PLAYER" /> */}
+>>>>>>> Stashed changes
             </div>
         );
     }

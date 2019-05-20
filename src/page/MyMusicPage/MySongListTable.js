@@ -21,7 +21,7 @@ export class MySongListTable extends Component {
                                 <span className="title-fenge">{item.description}</span>
                                 <span className="title-fenge">{item.author}</span>
                             </div>
-                                <Icon type="close" className="icon-fenge" />
+                                {/* <Icon type="close" className="icon-fenge" /> */}
                         </div>
                     </List.Item>
                 )}
